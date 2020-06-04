@@ -1,6 +1,6 @@
 package com.radichev.workforyou.config;
 
-import com.radichev.workforyou.service.service.serviceImpl.AuditorAwareImpl;
+import com.radichev.workforyou.service.serviceImpl.AuditorAwareImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;

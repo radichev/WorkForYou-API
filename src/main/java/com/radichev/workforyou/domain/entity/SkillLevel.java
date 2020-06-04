@@ -16,7 +16,7 @@ public class SkillLevel extends BaseEntity {
         this.skillLevel = skillLevel;
     }
 
-    @Column(name = "skill_level", nullable = false)
+    @Column(name = "display_name", nullable = false)
     public String getSkillLevel() {
         return skillLevel;
     }

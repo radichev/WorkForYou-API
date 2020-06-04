@@ -1,12 +1,12 @@
 package com.radichev.workforyou.security;
 
-import com.radichev.workforyou.security.jwt.JwtConfig;
+import com.radichev.workforyou.security.jwt.JwtAuthenticationEntryPoint;
 import com.radichev.workforyou.security.jwt.JwtTokenVerifier;
-import com.radichev.workforyou.security.jwt.JwtUsernameAndPasswordAuthenticationFilter;
-import com.radichev.workforyou.service.service.UserService;
+import com.radichev.workforyou.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,8 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.crypto.SecretKey;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
@@ -26,34 +25,35 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
-    private final SecretKey secretKey;
-    private final JwtConfig jwtConfig;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtTokenVerifier jwtTokenVerifier;
 
     @Autowired
     public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
-                                     UserService userService,
-                                     SecretKey secretKey,
-                                     JwtConfig jwtConfig) {
+                                     UserService userService, JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, JwtTokenVerifier jwtTokenVerifier) {
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
-        this.secretKey = secretKey;
-        this.jwtConfig = jwtConfig;
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+        this.jwtTokenVerifier = jwtTokenVerifier;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .csrf().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
+                .antMatchers("/api/login", "/api/register").permitAll()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers("/api/register").permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.addFilterBefore(jwtTokenVerifier, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
@@ -64,9 +64,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(passwordEncoder);
-        provider.setUserDetailsService(userService);
+        provider.setPasswordEncoder(this.passwordEncoder);
+        provider.setUserDetailsService(this.userService);
         return provider;
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
 }

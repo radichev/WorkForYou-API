@@ -1,4 +1,4 @@
-package com.radichev.workforyou.service.service.serviceImpl;
+package com.radichev.workforyou.service.serviceImpl;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.context.SecurityContextHolder;

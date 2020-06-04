@@ -16,7 +16,7 @@ public class LanguageLevel extends BaseEntity {
         this.languageLevel = languageLevel;
     }
 
-    @Column(name = "language_level", nullable = false)
+    @Column(name = "display_name", nullable = false)
     public String getLanguageLevel() {
         return languageLevel;
     }

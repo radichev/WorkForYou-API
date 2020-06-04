@@ -1,13 +1,13 @@
-package com.radichev.workforyou.service.model;
+package com.radichev.workforyou.domain.model.bindingModels.auth;
 
 import java.util.Set;
 
-public class UserServiceModel {
+public class RegisterBindingModel {
     private String username;
     private String password;
-    private Set<RoleServiceModel> authorities;
+    private Set<RoleBindingModel> authorities;
 
-    public UserServiceModel() {
+    public RegisterBindingModel() {
     }
 
     public String getUsername() {
@@ -26,11 +26,11 @@ public class UserServiceModel {
         this.password = password;
     }
 
-    public Set<RoleServiceModel> getAuthorities() {
+    public Set<RoleBindingModel> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Set<RoleServiceModel> authorities) {
+    public void setAuthorities(Set<RoleBindingModel> authorities) {
         this.authorities = authorities;
     }
 }

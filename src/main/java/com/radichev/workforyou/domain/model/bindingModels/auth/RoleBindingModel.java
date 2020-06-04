@@ -1,10 +1,10 @@
-package com.radichev.workforyou.service.model;
+package com.radichev.workforyou.domain.model.bindingModels.auth;
 
-public class RoleServiceModel {
+public class RoleBindingModel {
 
     private String authority;
 
-    public RoleServiceModel() {
+    public RoleBindingModel() {
     }
 
     public String getAuthority() {

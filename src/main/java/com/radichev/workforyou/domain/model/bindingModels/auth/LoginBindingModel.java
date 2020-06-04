@@ -1,11 +1,18 @@
-package com.radichev.workforyou.security.jwt;
+package com.radichev.workforyou.domain.model.bindingModels.auth;
 
-public class UsernameAndPasswordAuthenticationRequest {
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotNull;
+
+public class LoginBindingModel {
+    @NotNull
     private String username;
+
+    @NotNull
+    @Length(min = 4, max = 30)
     private String password;
 
-    public UsernameAndPasswordAuthenticationRequest() {
+    public LoginBindingModel() {
     }
 
     public String getUsername() {

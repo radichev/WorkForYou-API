@@ -1,4 +1,4 @@
-package com.radichev.workforyou.service.service;
+package com.radichev.workforyou.service;
 
 public interface RoleService {
     void seedRolesInDB();

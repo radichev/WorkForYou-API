@@ -1,24 +1,47 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.service.model.UserServiceModel;
-import com.radichev.workforyou.service.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.radichev.workforyou.domain.entity.auth.User;
+import com.radichev.workforyou.domain.model.bindingModels.auth.LoginBindingModel;
+import com.radichev.workforyou.domain.model.bindingModels.auth.RegisterBindingModel;
+import com.radichev.workforyou.domain.model.viewModels.auth.JwtViewModel;
+import com.radichev.workforyou.domain.model.viewModels.auth.RegisterViewModel;
+import com.radichev.workforyou.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("api")
 public class AuthenticationController {
     private final UserService userService;
+    private final AuthenticationManager authenticationManager;
 
-    public AuthenticationController(UserService userService) {
+
+    public AuthenticationController(UserService userService, AuthenticationManager authenticationManager) {
         this.userService = userService;
+        this.authenticationManager = authenticationManager;
     }
 
     @PostMapping("/register")
-    public void registerNewStudent(@RequestBody UserServiceModel userServiceModel) {
-        userService.register(userServiceModel);
+    public ResponseEntity<RegisterViewModel> createUser(@RequestBody RegisterBindingModel registerBindingModel) {
+        RegisterViewModel created = this.userService.register(registerBindingModel);
+
+        URI location = MvcUriComponentsBuilder.fromMethodName(AuthenticationController.class, "createUser", User.class)
+                .pathSegment("{id}").buildAndExpand(created.getId()).toUri();
+
+        return ResponseEntity.created(location).body(created);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<JwtViewModel> login(@RequestBody LoginBindingModel loginBindingModel) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginBindingModel.getUsername(), loginBindingModel.getPassword()));
+
+        return ResponseEntity.ok(this.userService.loginUser(loginBindingModel));
     }
 
 }

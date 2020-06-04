@@ -14,7 +14,7 @@ public class SubSphere extends BaseEntity {
     public SubSphere() {
     }
 
-    @Column(name = "sub_sphere", nullable = false)
+    @Column(name = "display_name", nullable = false)
     public String getSubSphere() {
         return subSphere;
     }
