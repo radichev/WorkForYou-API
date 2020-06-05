@@ -3,13 +3,15 @@ package com.radichev.workforyou.domain.model.bindingModels.auth;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class LoginBindingModel {
     @NotNull
+    @Size(min = 4, max = 30)
     private String username;
 
     @NotNull
-    @Length(min = 4, max = 30)
+    @Length(min = 6, max = 30)
     private String password;
 
     public LoginBindingModel() {

@@ -12,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -27,7 +28,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterViewModel> createUser(@RequestBody RegisterBindingModel registerBindingModel) {
+    public ResponseEntity<RegisterViewModel> createUser(@Valid @RequestBody RegisterBindingModel registerBindingModel) {
         RegisterViewModel created = this.userService.register(registerBindingModel);
 
         URI location = MvcUriComponentsBuilder.fromMethodName(AuthenticationController.class, "createUser", User.class)
@@ -37,7 +38,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtViewModel> login(@RequestBody LoginBindingModel loginBindingModel) {
+    public ResponseEntity<JwtViewModel> login(@Valid @RequestBody LoginBindingModel loginBindingModel) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginBindingModel.getUsername(), loginBindingModel.getPassword()));
 

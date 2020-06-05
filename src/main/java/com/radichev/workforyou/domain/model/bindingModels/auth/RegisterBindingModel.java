@@ -1,11 +1,15 @@
 package com.radichev.workforyou.domain.model.bindingModels.auth;
 
-import java.util.Set;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class RegisterBindingModel {
+    @NotNull
+    @Size(min = 4, max = 30)
     private String username;
+    @NotNull
+    @Size(min = 6, max = 30)
     private String password;
-    private Set<RoleBindingModel> authorities;
 
     public RegisterBindingModel() {
     }
@@ -24,13 +28,5 @@ public class RegisterBindingModel {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<RoleBindingModel> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(Set<RoleBindingModel> authorities) {
-        this.authorities = authorities;
     }
 }

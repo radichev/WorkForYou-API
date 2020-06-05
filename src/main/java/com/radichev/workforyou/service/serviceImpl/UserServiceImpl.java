@@ -35,7 +35,8 @@ public class UserServiceImpl implements UserService {
                            RoleService roleService,
                            ModelMapper modelMapper,
                            RoleRepository roleRepository,
-                           BCryptPasswordEncoder bCryptPasswordEncoder, JwtUtils jwtUtils) {
+                           BCryptPasswordEncoder bCryptPasswordEncoder,
+                           JwtUtils jwtUtils) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.modelMapper = modelMapper;
