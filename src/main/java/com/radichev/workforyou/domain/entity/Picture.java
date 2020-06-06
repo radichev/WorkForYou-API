@@ -13,7 +13,7 @@ public class Picture extends BaseEntity {
     public Picture() {
     }
 
-    @Column(name = "picture_url")
+    @Column(name = "picture_url", nullable = false)
     public String getPictureUrl() {
         return pictureUrl;
     }

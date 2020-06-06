@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "languages")
@@ -14,7 +15,7 @@ public class Language extends BaseEntity {
     public Language() {
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     public String getLanguage() {
         return language;
     }
@@ -24,6 +25,7 @@ public class Language extends BaseEntity {
     }
 
     //May have to change the Relation
+    @NotNull
     @ManyToOne
     public LanguageLevel getLanguageLevel() {
         return languageLevel;

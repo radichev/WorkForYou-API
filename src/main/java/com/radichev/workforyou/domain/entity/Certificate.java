@@ -25,7 +25,7 @@ public class Certificate extends BaseEntity {
         this.certificateSubject = certificateSubject;
     }
 
-    @Column(name = "awarded_from")
+    @Column(name = "awarded_from", nullable = false)
     public String getAwardedFrom() {
         return awardedFrom;
     }

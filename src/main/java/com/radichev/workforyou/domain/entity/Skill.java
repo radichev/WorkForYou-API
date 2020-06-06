@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "skills")
@@ -25,6 +26,7 @@ public class Skill extends BaseEntity {
     }
 
     //May have to change the Relation
+    @NotNull
     @ManyToOne
     public SkillLevel getSkillLevel() {
         return skillLevel;

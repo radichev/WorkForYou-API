@@ -21,7 +21,7 @@ public class Role extends BaseEntity implements GrantedAuthority {
     }
 
     @Override
-    @Column
+    @Column(nullable = false, unique = true)
     public String getAuthority() {
         return this.authority;
     }

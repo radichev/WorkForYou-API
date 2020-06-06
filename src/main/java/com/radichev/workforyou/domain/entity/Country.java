@@ -12,7 +12,7 @@ public class Country extends BaseEntity {
     public Country() {
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     public String getCountry() {
         return country;
     }

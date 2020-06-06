@@ -22,7 +22,7 @@ public class User extends BaseEntity implements UserDetails {
 
 
     @Override
-    @Column
+    @Column(nullable = false, unique = true)
     public String getUsername() {
         return username;
     }
@@ -32,7 +32,7 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     @Override
-    @Column
+    @Column(nullable = false)
     public String getPassword() {
         return password;
     }

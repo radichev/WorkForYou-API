@@ -1,6 +1,7 @@
 package com.radichev.workforyou.domain.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -28,6 +29,7 @@ public class Job extends BaseEntity {
         this.jobTitle = jobTitle;
     }
 
+    @NotNull
     @ManyToMany
     public Set<WorkSphere> getWorkSpheres() {
         return workSpheres;

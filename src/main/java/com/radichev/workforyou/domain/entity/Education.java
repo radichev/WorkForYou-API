@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "educations")
@@ -18,6 +19,7 @@ public class Education extends BaseEntity {
     public Education() {
     }
 
+    @NotNull
     @ManyToOne
     public Country getCountry() {
         return country;
@@ -36,6 +38,7 @@ public class Education extends BaseEntity {
         this.universityName = universityName;
     }
 
+    @NotNull
     @ManyToOne
     public TitleType getTitleType() {
         return titleType;
