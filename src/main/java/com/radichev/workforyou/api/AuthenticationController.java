@@ -17,6 +17,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
