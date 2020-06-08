@@ -3,13 +3,14 @@ package com.radichev.workforyou.security.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtUtils {
@@ -44,13 +45,17 @@ public class JwtUtils {
     }
 
     public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
+//        Map<String, Object> claims = new HashMap<>();
+        Set<Object> claims = userDetails.getAuthorities().stream()
+                .map(m -> new SimpleGrantedAuthority(m.getAuthority())).collect(Collectors.toSet());
+
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
-    private String doGenerateToken(Map<String, Object> claims, String subject) {
+    private String doGenerateToken(Set<Object> claims, String subject) {
         return Jwts.builder()
-                .setClaims(claims)
+//                .setClaims(claims)
+                .claim("authorities", claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
