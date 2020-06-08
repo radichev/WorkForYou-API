@@ -45,7 +45,6 @@ public class JwtUtils {
     }
 
     public String generateToken(UserDetails userDetails) {
-//        Map<String, Object> claims = new HashMap<>();
         Set<Object> claims = userDetails.getAuthorities().stream()
                 .map(m -> new SimpleGrantedAuthority(m.getAuthority())).collect(Collectors.toSet());
 
@@ -54,8 +53,7 @@ public class JwtUtils {
 
     private String doGenerateToken(Set<Object> claims, String subject) {
         return Jwts.builder()
-//                .setClaims(claims)
-                .claim("authorities", claims)
+                .claim("authorities", claims.toString())
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
