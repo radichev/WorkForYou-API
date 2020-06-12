@@ -1,5 +1,6 @@
 package com.radichev.workforyou.service.serviceImpl;
 
+import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.service.UserProfileDetailsService;
@@ -19,6 +20,8 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
     @Override
     public void editUserProfileDetails(UserProfileDetailsBindingModel userProfileDetailsBindingModel) {
+        UserProfileDetails userProfileDetails = this.modelMapper.map(userProfileDetailsBindingModel, UserProfileDetails.class);
 
+        System.out.println();
     }
 }
