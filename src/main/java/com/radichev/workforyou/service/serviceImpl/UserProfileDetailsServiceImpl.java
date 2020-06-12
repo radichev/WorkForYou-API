@@ -13,4 +13,8 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     }
 
 
+    @Override
+    public void editDetails() {
+        
+    }
 }

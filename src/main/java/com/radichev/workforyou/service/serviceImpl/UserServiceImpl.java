@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
+
         this.userRepository.saveAndFlush(user);
 
         return this.modelMapper.map(user, RegisterViewModel.class);

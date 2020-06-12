@@ -1,5 +1,7 @@
 package com.radichev.workforyou.domain.entity;
 
+import com.radichev.workforyou.domain.entity.auth.User;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,6 +19,7 @@ public class UserProfileDetails extends BaseEntity {
     private Set<Skill> skills;
     private Set<Education> educations;
     private Set<Certificate> certificates;
+    private User user;
 
     public UserProfileDetails() {
     }
@@ -118,5 +121,14 @@ public class UserProfileDetails extends BaseEntity {
 
     public void setCertificates(Set<Certificate> certificates) {
         this.certificates = certificates;
+    }
+
+    @OneToOne
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

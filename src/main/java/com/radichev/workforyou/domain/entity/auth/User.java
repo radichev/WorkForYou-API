@@ -15,8 +15,6 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
     private String email;
     private Set<Role> authorities;
-    private UserProfileDetails userProfileDetails;
-
 
     public User() {
     }
@@ -42,7 +40,7 @@ public class User extends BaseEntity implements UserDetails {
         this.password = password;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     public String getEmail() {
         return email;
     }
@@ -83,14 +81,5 @@ public class User extends BaseEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @OneToOne
-    public UserProfileDetails getUserProfileDetails() {
-        return userProfileDetails;
-    }
-
-    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
-        this.userProfileDetails = userProfileDetails;
     }
 }
