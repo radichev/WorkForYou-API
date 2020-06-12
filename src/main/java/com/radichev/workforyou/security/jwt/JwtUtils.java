@@ -1,5 +1,6 @@
 package com.radichev.workforyou.security.jwt;
 
+import com.radichev.workforyou.domain.entity.auth.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -44,16 +45,17 @@ public class JwtUtils {
         return expiration.before(new Date());
     }
 
-    public String generateToken(UserDetails userDetails) {
-        Set<Object> claims = userDetails.getAuthorities().stream()
+    public String generateToken(User user) {
+        Set<Object> claims = user.getAuthorities().stream()
                 .map(m -> new SimpleGrantedAuthority(m.getAuthority())).collect(Collectors.toSet());
 
-        return doGenerateToken(claims, userDetails.getUsername());
+        return doGenerateToken(claims, user.getUsername(), user.getId());
     }
 
-    private String doGenerateToken(Set<Object> claims, String subject) {
+    private String doGenerateToken(Set<Object> claims, String subject, String id) {
         return Jwts.builder()
                 .claim("authorities", claims.toString())
+                .claim("id", id)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
