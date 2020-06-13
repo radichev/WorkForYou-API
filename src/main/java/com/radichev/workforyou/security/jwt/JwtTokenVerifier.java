@@ -1,10 +1,10 @@
 package com.radichev.workforyou.security.jwt;
 
+import com.radichev.workforyou.domain.entity.auth.User;
 import com.radichev.workforyou.service.UserService;
 import io.jsonwebtoken.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -53,13 +53,13 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            UserDetails userDetails = userService.findByUsername(username).orElseThrow(() ->
+            User user = userService.findByUsername(username).orElseThrow(() ->
                     new UsernameNotFoundException(("Username not found")
                     ));
 
-            if (jwtUtils.validateToken(jwtToken, userDetails)) {
+            if (jwtUtils.validateToken(jwtToken, user)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                        user, null, user.getAuthorities());
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
