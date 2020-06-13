@@ -8,8 +8,6 @@ import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBind
 import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.pictureBindingModels.PictureBindingModel;
 import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.workSphereBindingModels.WorkSphereBindingModel;
 
-import java.util.Set;
-
 public class UserProfileDetailsBindingModel {
     private String firstName;
     private String lastName;
@@ -17,11 +15,11 @@ public class UserProfileDetailsBindingModel {
     private String personalWebsite;
     private String country;
     private PictureBindingModel pictureBindingModel;
-    private Set<LanguageBindingModel> languageBindingModels;
-    private Set<WorkSphereBindingModel> workSphereBindingModels;
-    private Set<SkillBindingModel> skillBindingModels;
-    private Set<EducationBindingModel> educationBindingModels;
-    private Set<CertificateBindingModel> certificateBindingModels;
+    private LanguageBindingModel languageBindingModels;
+    private WorkSphereBindingModel workSphereBindingModels;
+    private SkillBindingModel skillBindingModels;
+    private EducationBindingModel educationBindingModels;
+    private CertificateBindingModel certificateBindingModels;
 
     public UserProfileDetailsBindingModel() {
     }
@@ -74,43 +72,43 @@ public class UserProfileDetailsBindingModel {
         this.pictureBindingModel = pictureBindingModel;
     }
 
-    public Set<LanguageBindingModel> getLanguageBindingModels() {
+    public LanguageBindingModel getLanguageBindingModels() {
         return languageBindingModels;
     }
 
-    public void setLanguageBindingModels(Set<LanguageBindingModel> languageBindingModels) {
+    public void setLanguageBindingModels(LanguageBindingModel languageBindingModels) {
         this.languageBindingModels = languageBindingModels;
     }
 
-    public Set<WorkSphereBindingModel> getWorkSphereBindingModels() {
+    public WorkSphereBindingModel getWorkSphereBindingModels() {
         return workSphereBindingModels;
     }
 
-    public void setWorkSphereBindingModels(Set<WorkSphereBindingModel> workSphereBindingModels) {
+    public void setWorkSphereBindingModels(WorkSphereBindingModel workSphereBindingModels) {
         this.workSphereBindingModels = workSphereBindingModels;
     }
 
-    public Set<SkillBindingModel> getSkillBindingModels() {
+    public SkillBindingModel getSkillBindingModels() {
         return skillBindingModels;
     }
 
-    public void setSkillBindingModels(Set<SkillBindingModel> skillBindingModels) {
+    public void setSkillBindingModels(SkillBindingModel skillBindingModels) {
         this.skillBindingModels = skillBindingModels;
     }
 
-    public Set<EducationBindingModel> getEducationBindingModels() {
+    public EducationBindingModel getEducationBindingModels() {
         return educationBindingModels;
     }
 
-    public void setEducationBindingModels(Set<EducationBindingModel> educationBindingModels) {
+    public void setEducationBindingModels(EducationBindingModel educationBindingModels) {
         this.educationBindingModels = educationBindingModels;
     }
 
-    public Set<CertificateBindingModel> getCertificateBindingModels() {
+    public CertificateBindingModel getCertificateBindingModels() {
         return certificateBindingModels;
     }
 
-    public void setCertificateBindingModels(Set<CertificateBindingModel> certificateBindingModels) {
+    public void setCertificateBindingModels(CertificateBindingModel certificateBindingModels) {
         this.certificateBindingModels = certificateBindingModels;
     }
 }
