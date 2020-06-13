@@ -1,6 +1,6 @@
 package com.radichev.workforyou.service;
 
-import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
+import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
 
 public interface UserProfileDetailsService {
 

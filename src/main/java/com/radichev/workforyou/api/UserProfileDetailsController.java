@@ -1,9 +1,7 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
+import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
 import com.radichev.workforyou.service.UserProfileDetailsService;
-import com.radichev.workforyou.service.UserService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

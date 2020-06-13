@@ -1,12 +1,12 @@
-package com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels;
+package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels;
 
 
-import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.SkillBindingModels.SkillBindingModel;
-import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.certificateBindingModels.CertificateBindingModel;
-import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.educationBindingModels.EducationBindingModel;
-import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.languageBindingModels.LanguageBindingModel;
-import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.pictureBindingModels.PictureBindingModel;
-import com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.workSphereBindingModels.WorkSphereBindingModel;
+import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.SkillBindingModels.SkillBindingModel;
+import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.certificateBindingModels.CertificateBindingModel;
+import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.educationBindingModels.EducationBindingModel;
+import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.languageBindingModels.LanguageBindingModel;
+import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.pictureBindingModels.PictureBindingModel;
+import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.workSphereBindingModels.WorkSphereBindingModel;
 
 public class UserProfileDetailsBindingModel {
     private String firstName;

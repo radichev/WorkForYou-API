@@ -1,4 +1,4 @@
-package com.radichev.workforyou.domain.model.bindingModels.auth;
+package com.radichev.workforyou.model.bindingModels.auth;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;

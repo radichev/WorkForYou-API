@@ -1,4 +1,4 @@
-package com.radichev.workforyou.domain.model.bindingModels.auth;
+package com.radichev.workforyou.model.bindingModels.auth;
 
 import org.hibernate.validator.constraints.Length;
 

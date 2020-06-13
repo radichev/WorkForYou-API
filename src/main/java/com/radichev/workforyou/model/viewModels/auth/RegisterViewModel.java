@@ -1,4 +1,4 @@
-package com.radichev.workforyou.domain.model.viewModels.auth;
+package com.radichev.workforyou.model.viewModels.auth;
 
 import javax.validation.constraints.NotNull;
 

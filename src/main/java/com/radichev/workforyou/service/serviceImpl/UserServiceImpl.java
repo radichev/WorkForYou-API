@@ -2,10 +2,10 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.google.common.collect.Sets;
 import com.radichev.workforyou.domain.entity.auth.User;
-import com.radichev.workforyou.domain.model.bindingModels.auth.LoginBindingModel;
-import com.radichev.workforyou.domain.model.bindingModels.auth.RegisterBindingModel;
-import com.radichev.workforyou.domain.model.viewModels.auth.JwtViewModel;
-import com.radichev.workforyou.domain.model.viewModels.auth.RegisterViewModel;
+import com.radichev.workforyou.model.bindingModels.auth.LoginBindingModel;
+import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;
+import com.radichev.workforyou.model.viewModels.auth.JwtViewModel;
+import com.radichev.workforyou.model.viewModels.auth.RegisterViewModel;
 import com.radichev.workforyou.exception.InvalidEntityException;
 import com.radichev.workforyou.repository.auth.RoleRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;

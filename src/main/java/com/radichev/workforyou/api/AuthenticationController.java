@@ -1,10 +1,10 @@
 package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.domain.entity.auth.User;
-import com.radichev.workforyou.domain.model.bindingModels.auth.LoginBindingModel;
-import com.radichev.workforyou.domain.model.bindingModels.auth.RegisterBindingModel;
-import com.radichev.workforyou.domain.model.viewModels.auth.JwtViewModel;
-import com.radichev.workforyou.domain.model.viewModels.auth.RegisterViewModel;
+import com.radichev.workforyou.model.bindingModels.auth.LoginBindingModel;
+import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;
+import com.radichev.workforyou.model.viewModels.auth.JwtViewModel;
+import com.radichev.workforyou.model.viewModels.auth.RegisterViewModel;
 import com.radichev.workforyou.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

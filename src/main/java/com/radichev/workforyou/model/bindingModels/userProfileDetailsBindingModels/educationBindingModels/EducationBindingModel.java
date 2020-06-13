@@ -1,4 +1,4 @@
-package com.radichev.workforyou.domain.model.bindingModels.userProfileDetailsBindingModels.educationBindingModels;
+package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.educationBindingModels;
 
 
 import javax.validation.constraints.NotNull;
