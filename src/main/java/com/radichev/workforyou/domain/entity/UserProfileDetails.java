@@ -14,6 +14,7 @@ public class UserProfileDetails extends BaseEntity {
     private String personalWebsite;
     private Picture profilePicture;
     private String country;
+    private String email;
     private Set<Language> language;
     private Set<WorkSphere> workSpheres;
     private Set<Skill> skills;
@@ -76,6 +77,15 @@ public class UserProfileDetails extends BaseEntity {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Column(nullable = false, unique = true)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @ManyToMany
