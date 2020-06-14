@@ -20,12 +20,12 @@ public class UserProfileDetails extends BaseEntity {
     private Set<Skill> skills;
     private Set<Education> educations;
     private Set<Certificate> certificates;
-    private User user;
+//    private User user;
 
     public UserProfileDetails() {
     }
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name")
     public String getFirstName() {
         return firstName;
     }
@@ -34,7 +34,7 @@ public class UserProfileDetails extends BaseEntity {
         this.firstName = firstName;
     }
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     public String getLastName() {
         return lastName;
     }
@@ -133,12 +133,12 @@ public class UserProfileDetails extends BaseEntity {
         this.certificates = certificates;
     }
 
-    @OneToOne
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    @OneToOne
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

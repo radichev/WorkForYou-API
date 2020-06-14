@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
+import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;
 import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.service.UserProfileDetailsService;
@@ -17,6 +18,13 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         this.modelMapper = modelMapper;
     }
 
+
+    @Override
+    public UserProfileDetails createUserProfileDetails(RegisterBindingModel registerBindingModel) {
+        UserProfileDetails userProfileDetails = this.modelMapper.map(registerBindingModel, UserProfileDetails.class);
+        
+        return this.userProfileDetailsRepository.saveAndFlush(userProfileDetails);
+    }
 
     @Override
     public void editUserProfileDetails(UserProfileDetailsBindingModel userProfileDetailsBindingModel) {

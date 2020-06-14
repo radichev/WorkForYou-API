@@ -5,6 +5,7 @@ import com.radichev.workforyou.model.bindingModels.auth.LoginBindingModel;
 import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;
 import com.radichev.workforyou.model.viewModels.auth.JwtViewModel;
 import com.radichev.workforyou.model.viewModels.auth.RegisterViewModel;
+import com.radichev.workforyou.service.UserProfileDetailsService;
 import com.radichev.workforyou.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,8 +23,7 @@ public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
 
-
-    public AuthenticationController(UserService userService, AuthenticationManager authenticationManager) {
+    public AuthenticationController(UserService userService, AuthenticationManager authenticationManager, UserProfileDetailsService userProfileDetailsService) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
     }
@@ -34,6 +34,8 @@ public class AuthenticationController {
 
         URI location = MvcUriComponentsBuilder.fromMethodName(AuthenticationController.class, "createUser", User.class)
                 .pathSegment("{id}").buildAndExpand(created.getId()).toUri();
+
+
 
         return ResponseEntity.created(location).body(created);
     }

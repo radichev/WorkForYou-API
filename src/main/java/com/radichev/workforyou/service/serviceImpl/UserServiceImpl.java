@@ -11,6 +11,7 @@ import com.radichev.workforyou.repository.auth.RoleRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
 import com.radichev.workforyou.security.jwt.JwtUtils;
 import com.radichev.workforyou.service.RoleService;
+import com.radichev.workforyou.service.UserProfileDetailsService;
 import com.radichev.workforyou.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final JwtUtils jwtUtils;
+    private final UserProfileDetailsService userProfileDetailsService;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
@@ -36,13 +38,14 @@ public class UserServiceImpl implements UserService {
                            ModelMapper modelMapper,
                            RoleRepository roleRepository,
                            BCryptPasswordEncoder bCryptPasswordEncoder,
-                           JwtUtils jwtUtils) {
+                           JwtUtils jwtUtils, UserProfileDetailsService userProfileDetailsService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.modelMapper = modelMapper;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.jwtUtils = jwtUtils;
+        this.userProfileDetailsService = userProfileDetailsService;
     }
 
 
@@ -73,6 +76,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
+        user.setUserProfileDetails(this.userProfileDetailsService.createUserProfileDetails(registerBindingModel));
 
         this.userRepository.saveAndFlush(user);
 

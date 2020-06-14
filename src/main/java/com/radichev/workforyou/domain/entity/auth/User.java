@@ -15,6 +15,7 @@ public class User extends BaseEntity implements UserDetails {
     private String password;
 //    private String email;
     private Set<Role> authorities;
+    private UserProfileDetails userProfileDetails;
 
     public User() {
     }
@@ -57,6 +58,15 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
+    }
+
+    @OneToOne
+    public UserProfileDetails getUserProfileDetails() {
+        return userProfileDetails;
+    }
+
+    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
+        this.userProfileDetails = userProfileDetails;
     }
 
     @Transient
