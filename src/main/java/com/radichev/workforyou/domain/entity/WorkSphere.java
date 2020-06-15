@@ -1,9 +1,6 @@
 package com.radichev.workforyou.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -24,7 +21,8 @@ public class WorkSphere extends BaseEntity {
         this.workSphere = workSphere;
     }
 
-    @OneToMany(mappedBy = "workSphere")
+    @OneToMany
+    @JoinColumn(name="subshpere_id", referencedColumnName = "id")
     public Set<SubSphere> getSubSpheres() {
         return subSpheres;
     }
