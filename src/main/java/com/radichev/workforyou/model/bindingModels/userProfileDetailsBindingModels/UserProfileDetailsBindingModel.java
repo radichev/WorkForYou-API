@@ -15,9 +15,9 @@ public class UserProfileDetailsBindingModel {
     private String lastName;
     private String description;
     private String personalWebsite;
+    private PictureBindingModel pictureBindingModel;
     private String country;
     private String email;
-    private PictureBindingModel pictureBindingModel;
     private Set<LanguageBindingModel> languageBindingModels;
     private Set<WorkSphereBindingModel> workSphereBindingModels;
     private Set<SkillBindingModel> skillBindingModels;
