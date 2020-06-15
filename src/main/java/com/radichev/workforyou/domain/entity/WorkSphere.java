@@ -22,7 +22,7 @@ public class WorkSphere extends BaseEntity {
     }
 
     @OneToMany
-    @JoinColumn(name="subshpere_id", referencedColumnName = "id")
+    @JoinColumn(name="work_sphere_id", referencedColumnName = "id")
     public Set<SubSphere> getSubSpheres() {
         return subSpheres;
     }
