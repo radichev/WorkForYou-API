@@ -1,5 +1,6 @@
 package com.radichev.workforyou.api;
 
+import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +14,14 @@ public class UserProfileDetailsController {
         this.userProfileDetailsService = userProfileDetailsService;
     }
 
-    @PostMapping("/edit")
-//    @PreAuthorize("hasAuthority('ADMIN')")
-    public String edit(@RequestBody UserProfileDetailsBindingModel userProfileDetailsBindingModel) {
-        this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsBindingModel);
+    @GetMapping("/edit/{id}")
+    public UserProfileDetails getUserProfileDetails(@PathVariable String id){
+        return this.userProfileDetailsService.getUserProfileDetails(id);
+    }
+
+    @PostMapping("/edit/{id}")
+    public String edit(@RequestBody UserProfileDetailsBindingModel userProfileDetailsBindingModel, @PathVariable String id) {
+        this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsBindingModel, id);
         return "Succeeded";
     }
 }

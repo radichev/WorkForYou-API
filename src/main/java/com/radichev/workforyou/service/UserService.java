@@ -1,5 +1,6 @@
 package com.radichev.workforyou.service;
 
+import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.auth.User;
 import com.radichev.workforyou.model.bindingModels.auth.LoginBindingModel;
 import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;

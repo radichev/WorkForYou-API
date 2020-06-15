@@ -8,5 +8,7 @@ public interface UserProfileDetailsService {
 
     UserProfileDetails createUserProfileDetails(RegisterBindingModel registerBindingModel);
 
-    void editUserProfileDetails(UserProfileDetailsBindingModel userProfileDetailsBindingModel);
+    void editUserProfileDetails(UserProfileDetailsBindingModel userProfileDetailsBindingModel, String id);
+
+    UserProfileDetails getUserProfileDetails(String id);
 }

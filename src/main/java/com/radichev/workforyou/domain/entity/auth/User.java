@@ -13,7 +13,6 @@ public class User extends BaseEntity implements UserDetails {
 
     private String username;
     private String password;
-//    private String email;
     private Set<Role> authorities;
     private UserProfileDetails userProfileDetails;
 
@@ -40,15 +39,6 @@ public class User extends BaseEntity implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
-//    @Column(nullable = false, unique = true)
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Override

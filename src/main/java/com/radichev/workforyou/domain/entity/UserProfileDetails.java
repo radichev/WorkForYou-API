@@ -20,7 +20,6 @@ public class UserProfileDetails extends BaseEntity {
     private Set<Skill> skills;
     private Set<Education> educations;
     private Set<Certificate> certificates;
-//    private User user;
 
     public UserProfileDetails() {
     }
@@ -61,7 +60,7 @@ public class UserProfileDetails extends BaseEntity {
         this.personalWebsite = personalWebsite;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Picture getProfilePicture() {
         return profilePicture;
     }
@@ -88,7 +87,7 @@ public class UserProfileDetails extends BaseEntity {
         this.email = email;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Language> getLanguage() {
         return language;
     }
@@ -97,7 +96,7 @@ public class UserProfileDetails extends BaseEntity {
         this.language = language;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<WorkSphere> getWorkSpheres() {
         return workSpheres;
     }
@@ -106,7 +105,7 @@ public class UserProfileDetails extends BaseEntity {
         this.workSpheres = workSpheres;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Skill> getSkills() {
         return skills;
     }
@@ -115,7 +114,7 @@ public class UserProfileDetails extends BaseEntity {
         this.skills = skills;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Education> getEducations() {
         return educations;
     }
@@ -124,7 +123,7 @@ public class UserProfileDetails extends BaseEntity {
         this.educations = educations;
     }
 
-    @OneToMany(mappedBy = "userProfileDetails")
+    @OneToMany(mappedBy = "userProfileDetails", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<Certificate> getCertificates() {
         return certificates;
     }
@@ -132,13 +131,4 @@ public class UserProfileDetails extends BaseEntity {
     public void setCertificates(Set<Certificate> certificates) {
         this.certificates = certificates;
     }
-
-//    @OneToOne
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 }

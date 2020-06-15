@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.google.common.collect.Sets;
+import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.auth.User;
 import com.radichev.workforyou.model.bindingModels.auth.LoginBindingModel;
 import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -58,6 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public RegisterViewModel register(RegisterBindingModel registerBindingModel) {
 
         this.userRepository.findByUsername(registerBindingModel.getUsername()).ifPresent(u -> {
@@ -101,4 +104,5 @@ public class UserServiceImpl implements UserService {
 
         return new JwtViewModel(token);
     }
+
 }
