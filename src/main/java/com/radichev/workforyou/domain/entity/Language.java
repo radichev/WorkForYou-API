@@ -1,9 +1,6 @@
 package com.radichev.workforyou.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,7 +23,7 @@ public class Language extends BaseEntity {
 
     //May have to change the Relation
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public LanguageLevel getLanguageLevel() {
         return languageLevel;
     }
