@@ -6,8 +6,10 @@ import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/user-profile-details")
 public class UserProfileDetailsController {
     private final UserProfileDetailsService userProfileDetailsService;
 
@@ -21,7 +23,7 @@ public class UserProfileDetailsController {
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<Void> edit(@RequestBody EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, @PathVariable String id) {
+    public ResponseEntity<Void> editUserProfileDetails(@Valid @RequestBody EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, @PathVariable String id) {
         this.userProfileDetailsService.editUserProfileDetails(editUserProfileDetailsBindingModel, id);
         return ResponseEntity.ok().build();
     }
