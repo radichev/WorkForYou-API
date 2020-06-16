@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/user-profile-details")
+@RequestMapping("api/profile/details")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserProfileDetailsController {
     private final UserProfileDetailsService userProfileDetailsService;
