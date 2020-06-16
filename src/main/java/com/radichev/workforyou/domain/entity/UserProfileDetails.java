@@ -15,7 +15,7 @@ public class UserProfileDetails extends BaseEntity {
     private Picture profilePicture;
     private String country;
     private String email;
-    private Set<Language> language;
+    private Set<Language> languages;
     private Set<WorkSphere> workSpheres;
     private Set<Skill> skills;
     private Set<Education> educations;
@@ -87,14 +87,16 @@ public class UserProfileDetails extends BaseEntity {
         this.email = email;
     }
 
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Language> getLanguage() {
-        return language;
+    public Set<Language> getLanguages() {
+        return languages;
     }
 
-    public void setLanguage(Set<Language> language) {
-        this.language = language;
+    public void setLanguages(Set<Language> languages) {
+        this.languages = languages;
     }
+
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<WorkSphere> getWorkSpheres() {

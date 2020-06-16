@@ -1,9 +1,6 @@
 package com.radichev.workforyou.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,7 +17,7 @@ public class Education extends BaseEntity {
     }
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public Country getCountry() {
         return country;
     }
@@ -39,7 +36,7 @@ public class Education extends BaseEntity {
     }
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public TitleType getTitleType() {
         return titleType;
     }

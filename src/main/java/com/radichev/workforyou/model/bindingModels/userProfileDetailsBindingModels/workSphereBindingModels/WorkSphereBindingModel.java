@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class WorkSphereBindingModel {
     String workSphere;
-    Set<SubSphereBindingModel> subSphereBindingModels;
+    Set<SubSphereBindingModel> subSpheres;
 
     public WorkSphereBindingModel() {
     }
@@ -20,11 +20,11 @@ public class WorkSphereBindingModel {
     }
 
     @NotNull
-    public Set<SubSphereBindingModel> getSubSphereBindingModels() {
-        return subSphereBindingModels;
+    public Set<SubSphereBindingModel> getSubSpheres() {
+        return subSpheres;
     }
 
-    public void setSubSphereBindingModels(Set<SubSphereBindingModel> subSphereBindingModels) {
-        this.subSphereBindingModels = subSphereBindingModels;
+    public void setSubSpheres(Set<SubSphereBindingModel> subSpheres) {
+        this.subSpheres = subSpheres;
     }
 }

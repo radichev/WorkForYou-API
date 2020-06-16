@@ -15,14 +15,14 @@ public class UserProfileDetailsBindingModel {
     private String lastName;
     private String description;
     private String personalWebsite;
-    private PictureBindingModel pictureBindingModel;
+    private PictureBindingModel profilePicture;
     private String country;
     private String email;
-    private Set<LanguageBindingModel> languageBindingModels;
-    private Set<WorkSphereBindingModel> workSphereBindingModels;
-    private Set<SkillBindingModel> skillBindingModels;
-    private Set<EducationBindingModel> educationBindingModels;
-    private Set<CertificateBindingModel> certificateBindingModels;
+    private Set<LanguageBindingModel> languages;
+    private Set<WorkSphereBindingModel> workSpheres;
+    private Set<SkillBindingModel> skills;
+    private Set<EducationBindingModel> educations;
+    private Set<CertificateBindingModel> certificates;
 
     public UserProfileDetailsBindingModel() {
     }
@@ -75,51 +75,51 @@ public class UserProfileDetailsBindingModel {
         this.email = email;
     }
 
-    public PictureBindingModel getPictureBindingModel() {
-        return pictureBindingModel;
+    public PictureBindingModel getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setPictureBindingModel(PictureBindingModel pictureBindingModel) {
-        this.pictureBindingModel = pictureBindingModel;
+    public void setProfilePicture(PictureBindingModel profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
-    public Set<LanguageBindingModel> getLanguageBindingModels() {
-        return languageBindingModels;
+    public Set<LanguageBindingModel> getLanguages() {
+        return languages;
     }
 
-    public void setLanguageBindingModels(Set<LanguageBindingModel> languageBindingModels) {
-        this.languageBindingModels = languageBindingModels;
+    public void setLanguages(Set<LanguageBindingModel> languages) {
+        this.languages = languages;
     }
 
-    public Set<WorkSphereBindingModel> getWorkSphereBindingModels() {
-        return workSphereBindingModels;
+    public Set<WorkSphereBindingModel> getWorkSpheres() {
+        return workSpheres;
     }
 
-    public void setWorkSphereBindingModels(Set<WorkSphereBindingModel> workSphereBindingModels) {
-        this.workSphereBindingModels = workSphereBindingModels;
+    public void setWorkSpheres(Set<WorkSphereBindingModel> workSpheres) {
+        this.workSpheres = workSpheres;
     }
 
-    public Set<SkillBindingModel> getSkillBindingModels() {
-        return skillBindingModels;
+    public Set<SkillBindingModel> getSkills() {
+        return skills;
     }
 
-    public void setSkillBindingModels(Set<SkillBindingModel> skillBindingModels) {
-        this.skillBindingModels = skillBindingModels;
+    public void setSkills(Set<SkillBindingModel> skills) {
+        this.skills = skills;
     }
 
-    public Set<EducationBindingModel> getEducationBindingModels() {
-        return educationBindingModels;
+    public Set<EducationBindingModel> getEducations() {
+        return educations;
     }
 
-    public void setEducationBindingModels(Set<EducationBindingModel> educationBindingModels) {
-        this.educationBindingModels = educationBindingModels;
+    public void setEducations(Set<EducationBindingModel> educations) {
+        this.educations = educations;
     }
 
-    public Set<CertificateBindingModel> getCertificateBindingModels() {
-        return certificateBindingModels;
+    public Set<CertificateBindingModel> getCertificates() {
+        return certificates;
     }
 
-    public void setCertificateBindingModels(Set<CertificateBindingModel> certificateBindingModels) {
-        this.certificateBindingModels = certificateBindingModels;
+    public void setCertificates(Set<CertificateBindingModel> certificates) {
+        this.certificates = certificates;
     }
 }

@@ -50,7 +50,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         userProfileDetails.setProfilePicture(edited.getProfilePicture());
         userProfileDetails.setCountry(edited.getCountry());
         userProfileDetails.setEmail(edited.getEmail());
-        userProfileDetails.setLanguage(edited.getLanguage());
+        userProfileDetails.setLanguages(edited.getLanguages());
         userProfileDetails.setWorkSpheres(edited.getWorkSpheres());
         userProfileDetails.setSkills(edited.getSkills());
         userProfileDetails.setEducations(edited.getEducations());

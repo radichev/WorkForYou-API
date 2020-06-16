@@ -21,7 +21,7 @@ public class WorkSphere extends BaseEntity {
         this.workSphere = workSphere;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="work_sphere_id", referencedColumnName = "id")
     public Set<SubSphere> getSubSpheres() {
         return subSpheres;

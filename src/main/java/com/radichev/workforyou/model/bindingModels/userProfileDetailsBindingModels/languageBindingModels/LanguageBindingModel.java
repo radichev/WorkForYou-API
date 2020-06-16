@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 public class LanguageBindingModel {
     private String language;
-    private LanguageLevelBindingModel languageLevelBindingModel;
+    private LanguageLevelBindingModel languageLevel;
 
     public LanguageBindingModel() {
     }
@@ -19,11 +19,11 @@ public class LanguageBindingModel {
     }
 
     @NotNull
-    public LanguageLevelBindingModel getLanguageLevelBindingModel() {
-        return languageLevelBindingModel;
+    public LanguageLevelBindingModel getLanguageLevel() {
+        return languageLevel;
     }
 
-    public void setLanguageLevelBindingModel(LanguageLevelBindingModel languageLevelBindingModel) {
-        this.languageLevelBindingModel = languageLevelBindingModel;
+    public void setLanguageLevel(LanguageLevelBindingModel languageLevel) {
+        this.languageLevel = languageLevel;
     }
 }

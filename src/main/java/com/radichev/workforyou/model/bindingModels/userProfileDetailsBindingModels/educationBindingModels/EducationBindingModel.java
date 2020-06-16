@@ -4,9 +4,9 @@ package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingMod
 import javax.validation.constraints.NotNull;
 
 public class EducationBindingModel {
-    private CountryBindingModel countryBindingModel;
+    private CountryBindingModel country;
     private String universityName;
-    private TitleTypeBindingModel titleTypeBindingModel;
+    private TitleTypeBindingModel titleType;
     private String educationSubject;
     private int graduationYear;
 
@@ -14,12 +14,12 @@ public class EducationBindingModel {
     }
 
     @NotNull
-    public CountryBindingModel getCountryBindingModel() {
-        return countryBindingModel;
+    public CountryBindingModel getCountry() {
+        return country;
     }
 
-    public void setCountryBindingModel(CountryBindingModel countryBindingModel) {
-        this.countryBindingModel = countryBindingModel;
+    public void setCountry(CountryBindingModel country) {
+        this.country = country;
     }
 
     @NotNull
@@ -32,12 +32,12 @@ public class EducationBindingModel {
     }
 
     @NotNull
-    public TitleTypeBindingModel getTitleTypeBindingModel() {
-        return titleTypeBindingModel;
+    public TitleTypeBindingModel getTitleType() {
+        return titleType;
     }
 
-    public void setTitleTypeBindingModel(TitleTypeBindingModel titleTypeBindingModel) {
-        this.titleTypeBindingModel = titleTypeBindingModel;
+    public void setTitleType(TitleTypeBindingModel titleType) {
+        this.titleType = titleType;
     }
 
     @NotNull

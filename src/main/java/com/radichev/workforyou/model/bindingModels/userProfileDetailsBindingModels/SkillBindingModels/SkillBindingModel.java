@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 public class SkillBindingModel {
     private String skill;
-    private SkillLevelBindingModel skillLevelBindingModel;
+    private SkillLevelBindingModel skillLevel;
 
     public SkillBindingModel() {
     }
@@ -19,11 +19,11 @@ public class SkillBindingModel {
     }
 
     @NotNull
-    public SkillLevelBindingModel getSkillLevelBindingModel() {
-        return skillLevelBindingModel;
+    public SkillLevelBindingModel getSkillLevel() {
+        return skillLevel;
     }
 
-    public void setSkillLevelBindingModel(SkillLevelBindingModel skillLevelBindingModel) {
-        this.skillLevelBindingModel = skillLevelBindingModel;
+    public void setSkillLevel(SkillLevelBindingModel skillLevel) {
+        this.skillLevel = skillLevel;
     }
 }
