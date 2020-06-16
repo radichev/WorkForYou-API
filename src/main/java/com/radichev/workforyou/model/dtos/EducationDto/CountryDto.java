@@ -1,11 +1,11 @@
-package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editEducationDto;
+package com.radichev.workforyou.model.dtos.EducationDto;
 
 import javax.validation.constraints.NotNull;
 
-public class EditCountryDto {
+public class CountryDto {
     private String country;
 
-    public EditCountryDto() {
+    public CountryDto() {
     }
 
     @NotNull

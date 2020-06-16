@@ -1,13 +1,13 @@
-package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editCertificateDto;
+package com.radichev.workforyou.model.dtos.CertificateDto;
 
 import javax.validation.constraints.NotNull;
 
-public class EditCertificateDto {
+public class CertificateDto {
     private String certificateSubject;
     private String awardedFrom;
     private int graduationYear;
 
-    public EditCertificateDto() {
+    public CertificateDto() {
     }
 
     @NotNull

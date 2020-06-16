@@ -2,6 +2,7 @@ package com.radichev.workforyou.service;
 
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.EditUserProfileDetailsBindingModel;
+import com.radichev.workforyou.model.viewModels.editUserProfileDetails.EditUserProfileDetailsViewModel;
 
 public interface UserProfileDetailsService {
 
@@ -9,5 +10,5 @@ public interface UserProfileDetailsService {
 
     void editUserProfileDetails(EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, String id);
 
-    UserProfileDetails getUserProfileDetails(String id);
+    EditUserProfileDetailsViewModel getUserProfileDetails(String id);
 }

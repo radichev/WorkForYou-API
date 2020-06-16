@@ -1,12 +1,12 @@
-package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editLanguageDto;
+package com.radichev.workforyou.model.dtos.LanguageDto;
 
 import javax.validation.constraints.NotNull;
 
-public class EditLanguageDto {
+public class LanguageDto {
     private String language;
-    private EditLanguageLevelDto languageLevel;
+    private LanguageLevelDto languageLevel;
 
-    public EditLanguageDto() {
+    public LanguageDto() {
     }
 
     @NotNull
@@ -19,11 +19,11 @@ public class EditLanguageDto {
     }
 
     @NotNull
-    public EditLanguageLevelDto getLanguageLevel() {
+    public LanguageLevelDto getLanguageLevel() {
         return languageLevel;
     }
 
-    public void setLanguageLevel(EditLanguageLevelDto languageLevel) {
+    public void setLanguageLevel(LanguageLevelDto languageLevel) {
         this.languageLevel = languageLevel;
     }
 }

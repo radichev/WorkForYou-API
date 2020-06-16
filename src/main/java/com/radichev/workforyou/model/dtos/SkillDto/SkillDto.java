@@ -1,12 +1,12 @@
-package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editSkillDto;
+package com.radichev.workforyou.model.dtos.SkillDto;
 
 import javax.validation.constraints.NotNull;
 
-public class EditSkillDto {
+public class SkillDto {
     private String skill;
-    private EditSkillLevelDto skillLevel;
+    private SkillLevelDto skillLevel;
 
-    public EditSkillDto() {
+    public SkillDto() {
     }
 
     @NotNull
@@ -19,11 +19,11 @@ public class EditSkillDto {
     }
 
     @NotNull
-    public EditSkillLevelDto getSkillLevel() {
+    public SkillLevelDto getSkillLevel() {
         return skillLevel;
     }
 
-    public void setSkillLevel(EditSkillLevelDto skillLevel) {
+    public void setSkillLevel(SkillLevelDto skillLevel) {
         this.skillLevel = skillLevel;
     }
 }

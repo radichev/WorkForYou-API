@@ -1,11 +1,11 @@
-package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editEducationDto;
+package com.radichev.workforyou.model.dtos.EducationDto;
 
 import javax.validation.constraints.NotNull;
 
-public class EditTitleTypeDto {
+public class TitleTypeDto {
     private String titleType;
 
-    public EditTitleTypeDto() {
+    public TitleTypeDto() {
     }
 
     @NotNull

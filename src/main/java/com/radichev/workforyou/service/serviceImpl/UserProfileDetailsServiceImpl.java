@@ -3,6 +3,7 @@ package com.radichev.workforyou.service.serviceImpl;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.exception.InvalidEntityException;
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.EditUserProfileDetailsBindingModel;
+import com.radichev.workforyou.model.viewModels.editUserProfileDetails.EditUserProfileDetailsViewModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
 import com.radichev.workforyou.service.UserProfileDetailsService;
@@ -37,7 +38,10 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     public void editUserProfileDetails(EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, String id) {
         UserProfileDetails edited = this.modelMapper.map(editUserProfileDetailsBindingModel, UserProfileDetails.class);
 
-        UserProfileDetails userProfileDetails = this.getUserProfileDetails(id);
+        UserProfileDetails userProfileDetails = this.userRepository.findUserProfileDetails(id)
+                .orElseThrow(() ->
+                        new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id))
+                );
 
 
         userProfileDetails.setFirstName(edited.getFirstName());
@@ -57,10 +61,10 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     }
 
     @Override
-    public UserProfileDetails getUserProfileDetails(String id) {
-        return this.userRepository.findUserProfileDetails(id)
+    public EditUserProfileDetailsViewModel getUserProfileDetails(String id) {
+        return this.modelMapper.map(this.userRepository.findUserProfileDetails(id)
                 .orElseThrow(() ->
                         new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id))
-                );
+                ), EditUserProfileDetailsViewModel.class);
     }
 }
