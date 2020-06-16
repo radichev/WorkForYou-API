@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
-        user.setUserProfileDetails(this.userProfileDetailsService.createUserProfileDetails(registerBindingModel));
+        user.setUserProfileDetails(this.userProfileDetailsService.createUserProfileDetails(registerBindingModel.getEmail()));
 
         this.userRepository.saveAndFlush(user);
 

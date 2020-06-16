@@ -29,8 +29,9 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
 
     @Override
-    public UserProfileDetails createUserProfileDetails(RegisterBindingModel registerBindingModel) {
-        UserProfileDetails userProfileDetails = this.modelMapper.map(registerBindingModel, UserProfileDetails.class);
+    public UserProfileDetails createUserProfileDetails(String email) {
+        UserProfileDetails userProfileDetails = new UserProfileDetails();
+        userProfileDetails.setEmail(email);
 
         return this.userProfileDetailsRepository.saveAndFlush(userProfileDetails);
     }

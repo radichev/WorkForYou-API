@@ -6,7 +6,7 @@ import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingMode
 
 public interface UserProfileDetailsService {
 
-    UserProfileDetails createUserProfileDetails(RegisterBindingModel registerBindingModel);
+    UserProfileDetails createUserProfileDetails(String email);
 
     void editUserProfileDetails(UserProfileDetailsBindingModel userProfileDetailsBindingModel, String id);
 
