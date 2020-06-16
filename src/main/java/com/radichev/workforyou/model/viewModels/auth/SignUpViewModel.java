@@ -2,11 +2,11 @@ package com.radichev.workforyou.model.viewModels.auth;
 
 import javax.validation.constraints.NotNull;
 
-public class RegisterViewModel {
+public class SignUpViewModel {
     @NotNull
     private String id;
 
-    public RegisterViewModel() {
+    public SignUpViewModel() {
     }
 
     public String getId() {

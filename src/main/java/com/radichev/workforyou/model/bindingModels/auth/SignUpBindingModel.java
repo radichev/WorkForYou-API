@@ -4,7 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class RegisterBindingModel {
+public class SignUpBindingModel {
     @NotNull
     @Size(min = 4, max = 30)
     private String username;
@@ -17,7 +17,7 @@ public class RegisterBindingModel {
     @Size(min = 6, max = 30)
     private String password;
 
-    public RegisterBindingModel() {
+    public SignUpBindingModel() {
     }
 
     public String getUsername() {

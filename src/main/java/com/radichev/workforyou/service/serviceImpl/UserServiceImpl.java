@@ -1,12 +1,11 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.google.common.collect.Sets;
-import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.auth.User;
-import com.radichev.workforyou.model.bindingModels.auth.LoginBindingModel;
-import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;
-import com.radichev.workforyou.model.viewModels.auth.JwtViewModel;
-import com.radichev.workforyou.model.viewModels.auth.RegisterViewModel;
+import com.radichev.workforyou.model.bindingModels.auth.SignInBindingModel;
+import com.radichev.workforyou.model.bindingModels.auth.SignUpBindingModel;
+import com.radichev.workforyou.model.viewModels.auth.SignInViewModel;
+import com.radichev.workforyou.model.viewModels.auth.SignUpViewModel;
 import com.radichev.workforyou.exception.InvalidEntityException;
 import com.radichev.workforyou.repository.auth.RoleRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
@@ -61,13 +60,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public RegisterViewModel register(RegisterBindingModel registerBindingModel) {
+    public SignUpViewModel signUpUser(SignUpBindingModel signUpBindingModel) {
 
-        this.userRepository.findByUsername(registerBindingModel.getUsername()).ifPresent(u -> {
-            throw new InvalidEntityException(String.format("User with username '%s' already exists.", registerBindingModel.getUsername()));
+        this.userRepository.findByUsername(signUpBindingModel.getUsername()).ifPresent(u -> {
+            throw new InvalidEntityException(String.format("User with username '%s' already exists.", signUpBindingModel.getUsername()));
         });
 
-        User user = this.modelMapper.map(registerBindingModel, User.class);
+        User user = this.modelMapper.map(signUpBindingModel, User.class);
 
         if (this.userRepository.count() == 0) {
             roleService.seedRolesInDB();
@@ -79,11 +78,11 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
-        user.setUserProfileDetails(this.userProfileDetailsService.createUserProfileDetails(registerBindingModel.getEmail()));
+        user.setUserProfileDetails(this.userProfileDetailsService.createUserProfileDetails(signUpBindingModel.getEmail()));
 
         this.userRepository.saveAndFlush(user);
 
-        return this.modelMapper.map(user, RegisterViewModel.class);
+        return this.modelMapper.map(user, SignUpViewModel.class);
     }
 
     @Override
@@ -92,17 +91,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JwtViewModel loginUser(LoginBindingModel loginBindingModel) {
+    public SignInViewModel signInUser(SignInBindingModel signInBindingModel) {
 
-        final User user = findByUsername(loginBindingModel.getUsername())
+        final User user = findByUsername(signInBindingModel.getUsername())
                 .orElseThrow(() ->
-                new UsernameNotFoundException(String.format("Username %s not found", loginBindingModel.getUsername()))
+                new UsernameNotFoundException(String.format("Username %s not found", signInBindingModel.getUsername()))
         );
 
         final String token = jwtUtils.generateToken(user);
 
 
-        return new JwtViewModel(token);
+        return new SignInViewModel(token);
     }
 
 }

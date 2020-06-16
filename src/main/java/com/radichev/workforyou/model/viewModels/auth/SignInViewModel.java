@@ -2,15 +2,15 @@ package com.radichev.workforyou.model.viewModels.auth;
 
 import javax.validation.constraints.NotNull;
 
-public class JwtViewModel {
+public class SignInViewModel {
     @NotNull
     private String jwt;
 
 
-    public JwtViewModel() {
+    public SignInViewModel() {
     }
 
-    public JwtViewModel(@NotNull String jwt) {
+    public SignInViewModel(@NotNull String jwt) {
         this.jwt = jwt;
     }
 

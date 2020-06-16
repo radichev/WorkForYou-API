@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class LoginBindingModel {
+public class SignInBindingModel {
     @NotNull
     @Size(min = 4, max = 30)
     private String username;
@@ -14,7 +14,7 @@ public class LoginBindingModel {
     @Length(min = 6, max = 30)
     private String password;
 
-    public LoginBindingModel() {
+    public SignInBindingModel() {
     }
 
     public String getUsername() {

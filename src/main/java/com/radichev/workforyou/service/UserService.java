@@ -1,20 +1,19 @@
 package com.radichev.workforyou.service;
 
-import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.auth.User;
-import com.radichev.workforyou.model.bindingModels.auth.LoginBindingModel;
-import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;
-import com.radichev.workforyou.model.viewModels.auth.JwtViewModel;
-import com.radichev.workforyou.model.viewModels.auth.RegisterViewModel;
+import com.radichev.workforyou.model.bindingModels.auth.SignInBindingModel;
+import com.radichev.workforyou.model.bindingModels.auth.SignUpBindingModel;
+import com.radichev.workforyou.model.viewModels.auth.SignInViewModel;
+import com.radichev.workforyou.model.viewModels.auth.SignUpViewModel;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
 
-    RegisterViewModel register(RegisterBindingModel registerBindingModel);
+    SignUpViewModel signUpUser(SignUpBindingModel signUpBindingModel);
 
     Optional<User> findByUsername(String username);
 
-    JwtViewModel loginUser(LoginBindingModel loginBindingModel);
+    SignInViewModel signInUser(SignInBindingModel signInBindingModel);
 }

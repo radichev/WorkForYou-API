@@ -1,6 +1,5 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.EditUserProfileDetailsBindingModel;
 import com.radichev.workforyou.model.viewModels.editUserProfileDetails.EditUserProfileDetailsViewModel;
 import com.radichev.workforyou.service.UserProfileDetailsService;
