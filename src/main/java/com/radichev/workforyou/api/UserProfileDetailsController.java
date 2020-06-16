@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/user-profile-details")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserProfileDetailsController {
     private final UserProfileDetailsService userProfileDetailsService;
 
