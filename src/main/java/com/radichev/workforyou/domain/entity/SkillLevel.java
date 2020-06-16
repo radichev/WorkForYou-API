@@ -7,7 +7,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "skill_levels")
 public class SkillLevel extends BaseEntity {
-    String skillLevel;
+    private String skillLevel;
 
     public SkillLevel() {
     }

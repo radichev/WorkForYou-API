@@ -3,7 +3,7 @@ package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingMod
 import javax.validation.constraints.NotNull;
 
 public class SkillLevelBindingModel {
-    String skillLevel;
+    private String skillLevel;
 
     public SkillLevelBindingModel() {
     }

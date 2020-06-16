@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Skill extends BaseEntity {
 
     private String skill;
-    SkillLevel skillLevel;
+    private SkillLevel skillLevel;
 
     public Skill() {
     }
