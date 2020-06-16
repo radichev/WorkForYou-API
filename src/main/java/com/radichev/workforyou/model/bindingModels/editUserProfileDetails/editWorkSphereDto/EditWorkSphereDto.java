@@ -1,13 +1,13 @@
-package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.workSphereBindingModels;
+package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editWorkSphereDto;
 
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-public class WorkSphereBindingModel {
+public class EditWorkSphereDto {
     String workSphere;
-    Set<SubSphereBindingModel> subSpheres;
+    Set<EditSubSphereDto> subSpheres;
 
-    public WorkSphereBindingModel() {
+    public EditWorkSphereDto() {
     }
 
     @NotNull
@@ -20,11 +20,11 @@ public class WorkSphereBindingModel {
     }
 
     @NotNull
-    public Set<SubSphereBindingModel> getSubSpheres() {
+    public Set<EditSubSphereDto> getSubSpheres() {
         return subSpheres;
     }
 
-    public void setSubSpheres(Set<SubSphereBindingModel> subSpheres) {
+    public void setSubSpheres(Set<EditSubSphereDto> subSpheres) {
         this.subSpheres = subSpheres;
     }
 }

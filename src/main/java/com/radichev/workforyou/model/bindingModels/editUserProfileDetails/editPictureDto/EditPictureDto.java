@@ -1,11 +1,11 @@
-package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.pictureBindingModels;
+package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editPictureDto;
 
 import javax.validation.constraints.NotNull;
 
-public class PictureBindingModel {
+public class EditPictureDto {
     private String pictureUrl;
 
-    public PictureBindingModel() {
+    public EditPictureDto() {
     }
 
     @NotNull

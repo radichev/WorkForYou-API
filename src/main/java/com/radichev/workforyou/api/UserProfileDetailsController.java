@@ -1,7 +1,7 @@
 package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
-import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
+import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.EditUserProfileDetailsBindingModel;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +20,8 @@ public class UserProfileDetailsController {
     }
 
     @PostMapping("/edit/{id}")
-    public String edit(@RequestBody UserProfileDetailsBindingModel userProfileDetailsBindingModel, @PathVariable String id) {
-        this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsBindingModel, id);
+    public String edit(@RequestBody EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, @PathVariable String id) {
+        this.userProfileDetailsService.editUserProfileDetails(editUserProfileDetailsBindingModel, id);
         return "Succeeded";
     }
 }

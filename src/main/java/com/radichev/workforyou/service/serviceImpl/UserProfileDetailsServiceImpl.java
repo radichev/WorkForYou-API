@@ -1,10 +1,8 @@
 package com.radichev.workforyou.service.serviceImpl;
 
-import com.radichev.workforyou.domain.entity.Language;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.exception.InvalidEntityException;
-import com.radichev.workforyou.model.bindingModels.auth.RegisterBindingModel;
-import com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.UserProfileDetailsBindingModel;
+import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.EditUserProfileDetailsBindingModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
 import com.radichev.workforyou.service.UserProfileDetailsService;
@@ -12,8 +10,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserProfileDetailsServiceImpl implements UserProfileDetailsService {
@@ -38,8 +34,8 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
     @Override
     @Transactional
-    public void editUserProfileDetails(UserProfileDetailsBindingModel userProfileDetailsBindingModel, String id) {
-        UserProfileDetails edited = this.modelMapper.map(userProfileDetailsBindingModel, UserProfileDetails.class);
+    public void editUserProfileDetails(EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, String id) {
+        UserProfileDetails edited = this.modelMapper.map(editUserProfileDetailsBindingModel, UserProfileDetails.class);
 
         UserProfileDetails userProfileDetails = this.getUserProfileDetails(id);
 

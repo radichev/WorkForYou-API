@@ -1,24 +1,24 @@
-package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.educationBindingModels;
+package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editEducationDto;
 
 
 import javax.validation.constraints.NotNull;
 
-public class EducationBindingModel {
-    private CountryBindingModel country;
+public class EditEducationDto {
+    private EditCountryDto country;
     private String universityName;
-    private TitleTypeBindingModel titleType;
+    private EditTitleTypeDto titleType;
     private String educationSubject;
     private int graduationYear;
 
-    public EducationBindingModel() {
+    public EditEducationDto() {
     }
 
     @NotNull
-    public CountryBindingModel getCountry() {
+    public EditCountryDto getCountry() {
         return country;
     }
 
-    public void setCountry(CountryBindingModel country) {
+    public void setCountry(EditCountryDto country) {
         this.country = country;
     }
 
@@ -32,11 +32,11 @@ public class EducationBindingModel {
     }
 
     @NotNull
-    public TitleTypeBindingModel getTitleType() {
+    public EditTitleTypeDto getTitleType() {
         return titleType;
     }
 
-    public void setTitleType(TitleTypeBindingModel titleType) {
+    public void setTitleType(EditTitleTypeDto titleType) {
         this.titleType = titleType;
     }
 

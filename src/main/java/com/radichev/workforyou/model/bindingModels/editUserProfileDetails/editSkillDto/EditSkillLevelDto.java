@@ -1,11 +1,11 @@
-package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.SkillBindingModels;
+package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editSkillDto;
 
 import javax.validation.constraints.NotNull;
 
-public class SkillLevelBindingModel {
+public class EditSkillLevelDto {
     private String skillLevel;
 
-    public SkillLevelBindingModel() {
+    public EditSkillLevelDto() {
     }
 
     @NotNull

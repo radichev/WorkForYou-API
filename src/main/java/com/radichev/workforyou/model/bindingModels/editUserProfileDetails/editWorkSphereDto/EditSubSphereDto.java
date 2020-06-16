@@ -1,11 +1,11 @@
-package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.workSphereBindingModels;
+package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editWorkSphereDto;
 
 import javax.validation.constraints.NotNull;
 
-public class SubSphereBindingModel {
+public class EditSubSphereDto {
     private String subSphere;
 
-    public SubSphereBindingModel() {
+    public EditSubSphereDto() {
     }
 
     @NotNull

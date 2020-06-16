@@ -1,11 +1,11 @@
-package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.languageBindingModels;
+package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editLanguageDto;
 
 import javax.validation.constraints.NotNull;
 
-public class LanguageLevelBindingModel {
+public class EditLanguageLevelDto {
     private String languageLevel;
 
-    public LanguageLevelBindingModel() {
+    public EditLanguageLevelDto() {
     }
 
     @NotNull

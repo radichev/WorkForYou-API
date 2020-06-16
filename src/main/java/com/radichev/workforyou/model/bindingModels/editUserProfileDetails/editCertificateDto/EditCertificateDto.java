@@ -1,13 +1,13 @@
-package com.radichev.workforyou.model.bindingModels.userProfileDetailsBindingModels.certificateBindingModels;
+package com.radichev.workforyou.model.bindingModels.editUserProfileDetails.editCertificateDto;
 
 import javax.validation.constraints.NotNull;
 
-public class CertificateBindingModel {
+public class EditCertificateDto {
     private String certificateSubject;
     private String awardedFrom;
     private int graduationYear;
 
-    public CertificateBindingModel() {
+    public EditCertificateDto() {
     }
 
     @NotNull
