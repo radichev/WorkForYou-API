@@ -17,7 +17,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -44,7 +43,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/auth/sign-in", "/api/auth/sign-up").permitAll()
-                .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+                .antMatchers("/", "index", "/css/*", "/js/*", "/META-INF/resources/webjars/*").permitAll()
+                .mvcMatchers("/swagger-ui.html/**", "/swagger-resources/**", "/v2/api-docs","/webjars/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
