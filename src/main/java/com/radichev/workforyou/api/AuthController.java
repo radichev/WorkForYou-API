@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/authentication")
+@RequestMapping("api/auth")
 @CrossOrigin(origins = "http://localhost:4200")
-public class AuthenticationController {
+public class AuthController {
     private final UserService userService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationController(UserService userService, AuthenticationManager authenticationManager, UserProfileDetailsService userProfileDetailsService) {
+    public AuthController(UserService userService, AuthenticationManager authenticationManager, UserProfileDetailsService userProfileDetailsService) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
     }
