@@ -17,7 +17,7 @@ public class Education extends BaseEntity {
     }
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     public Country getCountry() {
         return country;
     }

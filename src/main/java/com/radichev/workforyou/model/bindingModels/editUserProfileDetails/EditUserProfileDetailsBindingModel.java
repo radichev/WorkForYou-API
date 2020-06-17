@@ -11,6 +11,7 @@ import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 import java.util.Set;
 
 public class EditUserProfileDetailsBindingModel {
+    private String id;
     private String firstName;
     private String lastName;
     private String description;
@@ -25,6 +26,14 @@ public class EditUserProfileDetailsBindingModel {
     private Set<CertificateDto> certificates;
 
     public EditUserProfileDetailsBindingModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
