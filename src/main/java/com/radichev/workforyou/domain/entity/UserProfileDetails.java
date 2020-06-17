@@ -1,7 +1,5 @@
 package com.radichev.workforyou.domain.entity;
 
-import com.radichev.workforyou.domain.entity.auth.User;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,7 +10,7 @@ public class UserProfileDetails extends BaseEntity {
     private String lastName;
     private String description;
     private String personalWebsite;
-    private Picture profilePicture;
+    private String profilePicture;
     private String country;
     private String email;
     private Set<Language> languages;
@@ -60,15 +58,13 @@ public class UserProfileDetails extends BaseEntity {
         this.personalWebsite = personalWebsite;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Picture getProfilePicture() {
+    public String getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(Picture profilePicture) {
+    public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
-
 
     public String getCountry() {
         return country;

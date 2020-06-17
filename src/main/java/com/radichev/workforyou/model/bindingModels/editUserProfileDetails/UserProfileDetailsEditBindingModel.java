@@ -1,11 +1,9 @@
 package com.radichev.workforyou.model.bindingModels.editUserProfileDetails;
 
-
 import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
-import com.radichev.workforyou.model.dtos.PictureDto.PictureDto;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
 import java.util.Set;
@@ -16,7 +14,7 @@ public class UserProfileDetailsEditBindingModel {
     private String lastName;
     private String description;
     private String personalWebsite;
-    private PictureDto profilePicture;
+    private String profilePicture;
     private String country;
     private String email;
     private Set<LanguageDto> languages;
@@ -84,11 +82,11 @@ public class UserProfileDetailsEditBindingModel {
         this.email = email;
     }
 
-    public PictureDto getProfilePicture() {
+    public String getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(PictureDto profilePicture) {
+    public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
 

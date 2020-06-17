@@ -3,18 +3,18 @@ package com.radichev.workforyou.model.viewModels.getUserProfileDetails;
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
-import com.radichev.workforyou.model.dtos.PictureDto.PictureDto;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
 import java.util.Set;
 
 public class UserProfileDetailsViewModel {
+    private String id;
     private String firstName;
     private String lastName;
     private String description;
     private String personalWebsite;
-    private PictureDto profilePicture;
+    private String profilePicture;
     private String country;
     private String email;
     private Set<LanguageDto> languages;
@@ -24,6 +24,14 @@ public class UserProfileDetailsViewModel {
     private Set<CertificateDto> certificates;
 
     public UserProfileDetailsViewModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -74,11 +82,11 @@ public class UserProfileDetailsViewModel {
         this.email = email;
     }
 
-    public PictureDto getProfilePicture() {
+    public String getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(PictureDto profilePicture) {
+    public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
 
