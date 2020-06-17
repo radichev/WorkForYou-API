@@ -84,7 +84,7 @@ public class UserProfileDetails extends BaseEntity {
     }
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     public Set<Language> getLanguages() {
         return languages;
     }
@@ -94,7 +94,7 @@ public class UserProfileDetails extends BaseEntity {
     }
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     public Set<WorkSphere> getWorkSpheres() {
         return workSpheres;
     }
@@ -103,7 +103,7 @@ public class UserProfileDetails extends BaseEntity {
         this.workSpheres = workSpheres;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     public Set<Skill> getSkills() {
         return skills;
     }
@@ -112,7 +112,7 @@ public class UserProfileDetails extends BaseEntity {
         this.skills = skills;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     public Set<Education> getEducations() {
         return educations;
     }
@@ -121,7 +121,7 @@ public class UserProfileDetails extends BaseEntity {
         this.educations = educations;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_profile_details_id", referencedColumnName = "id")
     public Set<Certificate> getCertificates() {
         return certificates;
