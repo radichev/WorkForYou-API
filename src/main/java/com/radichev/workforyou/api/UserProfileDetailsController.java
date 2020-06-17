@@ -18,12 +18,12 @@ public class UserProfileDetailsController {
         this.userProfileDetailsService = userProfileDetailsService;
     }
 
-    @GetMapping("/edit/{id}")
-    public EditUserProfileDetailsViewModel getUserProfileDetails(@PathVariable String id){
-        return this.userProfileDetailsService.getUserProfileDetails(id);
+    @GetMapping("/{id}")
+    public EditUserProfileDetailsViewModel editUserProfileDetails(@PathVariable String id){
+        return this.userProfileDetailsService.getEditUserProfileDetails(id);
     }
 
-    @PostMapping("/edit/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<Void> editUserProfileDetails(@Valid @RequestBody EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, @PathVariable String id) {
         this.userProfileDetailsService.editUserProfileDetails(editUserProfileDetailsBindingModel, id);
         return ResponseEntity.ok().build();

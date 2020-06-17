@@ -1,9 +1,6 @@
 package com.radichev.workforyou.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "certificates")
@@ -11,7 +8,7 @@ public class Certificate extends BaseEntity {
     private String certificateSubject;
     private String awardedFrom;
     private int graduationYear;
-    private UserProfileDetails userProfileDetails;
+//    private UserProfileDetails userProfileDetails;
 
     public Certificate() {
     }
@@ -43,13 +40,13 @@ public class Certificate extends BaseEntity {
         this.graduationYear = graduationYear;
     }
 
-    @ManyToOne
-    public UserProfileDetails getUserProfileDetails() {
-        return userProfileDetails;
-    }
-
-    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
-        this.userProfileDetails = userProfileDetails;
-    }
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    public UserProfileDetails getUserProfileDetails() {
+//        return userProfileDetails;
+//    }
+//
+//    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
+//        this.userProfileDetails = userProfileDetails;
+//    }
 
 }

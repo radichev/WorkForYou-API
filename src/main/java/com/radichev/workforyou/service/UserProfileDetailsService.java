@@ -10,5 +10,5 @@ public interface UserProfileDetailsService {
 
     void editUserProfileDetails(EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, String id);
 
-    EditUserProfileDetailsViewModel getUserProfileDetails(String id);
+    EditUserProfileDetailsViewModel getEditUserProfileDetails(String id);
 }

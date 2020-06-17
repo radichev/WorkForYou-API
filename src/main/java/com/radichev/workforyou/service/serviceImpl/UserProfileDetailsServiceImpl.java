@@ -43,7 +43,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
                         new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id))
                 );
 
-
+        System.out.println(userProfileDetails.getId());
         userProfileDetails.setFirstName(edited.getFirstName());
         userProfileDetails.setLastName(edited.getLastName());
         userProfileDetails.setDescription(edited.getDescription());
@@ -57,11 +57,11 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         userProfileDetails.setEducations(edited.getEducations());
         userProfileDetails.setCertificates(edited.getCertificates());
 
-        this.userProfileDetailsRepository.saveAndFlush(userProfileDetails);
+        this.userProfileDetailsRepository.save(userProfileDetails);
     }
 
     @Override
-    public EditUserProfileDetailsViewModel getUserProfileDetails(String id) {
+    public EditUserProfileDetailsViewModel getEditUserProfileDetails(String id) {
         return this.modelMapper.map(this.userRepository.findUserProfileDetails(id)
                 .orElseThrow(() ->
                         new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id))

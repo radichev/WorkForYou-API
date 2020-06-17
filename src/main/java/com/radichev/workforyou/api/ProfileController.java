@@ -16,6 +16,6 @@ public class ProfileController {
 
     @GetMapping("/user/{id}")
     public EditUserProfileDetailsViewModel getUserProfileDetails(@PathVariable String id){
-        return this.userProfileDetailsService.getUserProfileDetails(id);
+        return this.userProfileDetailsService.getEditUserProfileDetails(id);
     }
 }

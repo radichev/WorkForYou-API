@@ -1,6 +1,5 @@
 package com.radichev.workforyou.model.viewModels.getUserProfileDetails;
 
-
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
