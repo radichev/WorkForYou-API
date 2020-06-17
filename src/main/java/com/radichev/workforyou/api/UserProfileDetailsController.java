@@ -23,7 +23,7 @@ public class UserProfileDetailsController {
         return this.userProfileDetailsService.getEditUserProfileDetails(id);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Void> editUserProfileDetails(@Valid @RequestBody EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, @PathVariable String id) {
         this.userProfileDetailsService.editUserProfileDetails(editUserProfileDetailsBindingModel, id);
         return ResponseEntity.ok().build();
