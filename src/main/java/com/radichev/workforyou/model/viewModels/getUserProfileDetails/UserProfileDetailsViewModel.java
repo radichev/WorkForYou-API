@@ -1,5 +1,4 @@
-package com.radichev.workforyou.model.viewModels.editUserProfileDetails;
-
+package com.radichev.workforyou.model.viewModels.getUserProfileDetails;
 
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
@@ -10,8 +9,7 @@ import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
 import java.util.Set;
 
-public class EditUserProfileDetailsViewModel {
-    private String id;
+public class UserProfileDetailsViewModel {
     private String firstName;
     private String lastName;
     private String description;
@@ -25,15 +23,7 @@ public class EditUserProfileDetailsViewModel {
     private Set<EducationDto> educations;
     private Set<CertificateDto> certificates;
 
-    public EditUserProfileDetailsViewModel() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public UserProfileDetailsViewModel() {
     }
 
     public String getFirstName() {

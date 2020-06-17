@@ -2,8 +2,8 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.exception.InvalidEntityException;
-import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.EditUserProfileDetailsBindingModel;
-import com.radichev.workforyou.model.viewModels.editUserProfileDetails.EditUserProfileDetailsViewModel;
+import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
+import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
 import com.radichev.workforyou.service.UserProfileDetailsService;
@@ -35,23 +35,23 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
     @Override
     @Transactional
-    public void editUserProfileDetails(EditUserProfileDetailsBindingModel editUserProfileDetailsBindingModel, String id) {
+    public void editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id) {
 
         UserProfileDetails userProfileDetails = this.userRepository.findUserProfileDetails(id)
                 .orElseThrow(() ->
                         new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id))
                 );
 
-        this.modelMapper.map(editUserProfileDetailsBindingModel, userProfileDetails);
+        this.modelMapper.map(userProfileDetailsEditBindingModel, userProfileDetails);
 
         this.userProfileDetailsRepository.save(userProfileDetails);
     }
 
     @Override
-    public EditUserProfileDetailsViewModel getEditUserProfileDetails(String id) {
+    public UserProfileDetailsViewModel getEditUserProfileDetails(String id) {
         return this.modelMapper.map(this.userRepository.findUserProfileDetails(id)
                 .orElseThrow(() ->
                         new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id))
-                ), EditUserProfileDetailsViewModel.class);
+                ), UserProfileDetailsViewModel.class);
     }
 }

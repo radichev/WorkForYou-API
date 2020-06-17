@@ -1,15 +1,17 @@
-package com.radichev.workforyou.model.viewModels.getUserProfileDetails;
+package com.radichev.workforyou.model.bindingModels.editUserProfileDetails;
 
+
+import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
 import com.radichev.workforyou.model.dtos.PictureDto.PictureDto;
-import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
 import java.util.Set;
 
-public class GetUserProfileDetailsViewModel {
+public class UserProfileDetailsEditBindingModel {
+    private String id;
     private String firstName;
     private String lastName;
     private String description;
@@ -23,7 +25,15 @@ public class GetUserProfileDetailsViewModel {
     private Set<EducationDto> educations;
     private Set<CertificateDto> certificates;
 
-    public GetUserProfileDetailsViewModel() {
+    public UserProfileDetailsEditBindingModel() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
