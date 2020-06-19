@@ -18,6 +18,7 @@ public class UserProfileDetails extends BaseEntity {
     private Set<Skill> skills;
     private Set<Education> educations;
     private Set<Certificate> certificates;
+    private Set<Job> jobs;
 
     public UserProfileDetails() {
     }
@@ -129,5 +130,15 @@ public class UserProfileDetails extends BaseEntity {
 
     public void setCertificates(Set<Certificate> certificates) {
         this.certificates = certificates;
+    }
+
+    @OneToMany
+    @JoinColumn(name = "user_profile_details_id", referencedColumnName = "id")
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
     }
 }
