@@ -18,6 +18,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public void seedRolesInDB() {
         this.roleRepository.saveAndFlush(new Role("ADMIN"));
+        this.roleRepository.saveAndFlush(new Role("MODERATOR"));
         this.roleRepository.saveAndFlush(new Role("USER"));
     }
 }
