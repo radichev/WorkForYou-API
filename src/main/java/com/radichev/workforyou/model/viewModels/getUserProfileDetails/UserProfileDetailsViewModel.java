@@ -6,6 +6,7 @@ import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 public class UserProfileDetailsViewModel {
@@ -17,6 +18,7 @@ public class UserProfileDetailsViewModel {
     private String profilePicture;
     private String country;
     private String email;
+    private LocalDate createdDate;
     private Set<LanguageDto> languages;
     private Set<WorkSphereDto> workSpheres;
     private Set<SkillDto> skills;
@@ -80,6 +82,14 @@ public class UserProfileDetailsViewModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getProfilePicture() {
