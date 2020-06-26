@@ -1,7 +1,5 @@
 package com.radichev.workforyou.model.viewModels.jobViewModels;
 
-import com.radichev.workforyou.domain.entity.Picture;
-import com.radichev.workforyou.domain.entity.WorkSphere;
 import com.radichev.workforyou.model.dtos.PictureDto.PictureDto;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 

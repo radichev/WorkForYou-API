@@ -5,6 +5,7 @@ import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
+import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -24,6 +25,7 @@ public class UserProfileDetailsViewModel {
     private Set<SkillDto> skills;
     private Set<EducationDto> educations;
     private Set<CertificateDto> certificates;
+    private Set<JobViewModel> jobs;
 
     public UserProfileDetailsViewModel() {
     }
@@ -138,5 +140,13 @@ public class UserProfileDetailsViewModel {
 
     public void setCertificates(Set<CertificateDto> certificates) {
         this.certificates = certificates;
+    }
+
+    public Set<JobViewModel> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<JobViewModel> jobs) {
+        this.jobs = jobs;
     }
 }
