@@ -14,7 +14,7 @@ public class UserProfileDetails extends BaseEntity {
     private String country;
     private String email;
     private Set<Language> languages;
-    private Set<WorkSphere> workSpheres;
+//    private Set<WorkSphere> workSpheres;
     private Set<Skill> skills;
     private Set<Education> educations;
     private Set<Certificate> certificates;
@@ -95,14 +95,14 @@ public class UserProfileDetails extends BaseEntity {
     }
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    public Set<WorkSphere> getWorkSpheres() {
-        return workSpheres;
-    }
-
-    public void setWorkSpheres(Set<WorkSphere> workSpheres) {
-        this.workSpheres = workSpheres;
-    }
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    public Set<WorkSphere> getWorkSpheres() {
+//        return workSpheres;
+//    }
+//
+//    public void setWorkSpheres(Set<WorkSphere> workSpheres) {
+//        this.workSpheres = workSpheres;
+//    }
 
     @ManyToMany(cascade = CascadeType.ALL)
     public Set<Skill> getSkills() {
