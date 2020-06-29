@@ -5,9 +5,10 @@ import com.radichev.workforyou.exception.InvalidEntityException;
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
-import com.radichev.workforyou.repository.auth.UserRepository;
 import com.radichev.workforyou.service.UserProfileDetailsService;
+import com.radichev.workforyou.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,12 +17,12 @@ import javax.transaction.Transactional;
 public class UserProfileDetailsServiceImpl implements UserProfileDetailsService {
     private final UserProfileDetailsRepository userProfileDetailsRepository;
     private final ModelMapper modelMapper;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository, ModelMapper modelMapper, UserRepository userRepository) {
+    public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository, ModelMapper modelMapper, @Lazy UserService userService) {
         this.userProfileDetailsRepository = userProfileDetailsRepository;
         this.modelMapper = modelMapper;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
 
@@ -37,10 +38,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     @Transactional
     public void editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id) {
 
-        UserProfileDetails userProfileDetails = this.userRepository.findUserProfileDetails(id)
-                .orElseThrow(() ->
-                        new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id))
-                );
+        UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(id);
 
         this.modelMapper.map(userProfileDetailsEditBindingModel, userProfileDetails);
 
@@ -49,9 +47,6 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
     @Override
     public UserProfileDetailsViewModel getEditUserProfileDetails(String id) {
-        return this.modelMapper.map(this.userRepository.findUserProfileDetails(id)
-                .orElseThrow(() ->
-                        new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id))
-                ), UserProfileDetailsViewModel.class);
+        return this.modelMapper.map(this.userService.findUserProfileDetailsById(id), UserProfileDetailsViewModel.class);
     }
 }
