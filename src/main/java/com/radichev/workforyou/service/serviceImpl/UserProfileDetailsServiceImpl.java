@@ -58,23 +58,23 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     }
 
     @Override
-    public void uploadUserProfileImage(String userId, MultipartFile file, String id) {
+    public void uploadUserProfileImage(String userId, MultipartFile file) {
         if (file.isEmpty()) {
             throw new IllegalStateException("Cannot upload empty file");
         }
 
-        if (!Arrays.asList(IMAGE_JPEG, IMAGE_PNG, IMAGE_GIF).contains(file.getContentType())) {
+        if (!Arrays.asList(IMAGE_JPEG.getMimeType(), IMAGE_PNG.getMimeType(), IMAGE_GIF.getMimeType()).contains(file.getContentType())) {
             throw new IllegalStateException("File must be an image");
         }
 
-        UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(id);
+        UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(userId);
 
         Map<String, String> metadata = new HashMap<>();
         metadata.put("Content-Type", file.getContentType());
         metadata.put("Content-Length", String.valueOf(file.getSize()));
 
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), userId);
-        String fileName = String.format("%s-%s", file.getName(), UUID.randomUUID());
+        String fileName = String.format("%s-%s", file.getOriginalFilename(), UUID.randomUUID());
 
         try {
             this.fileStore.save(path, fileName, Optional.of(metadata), file.getInputStream());

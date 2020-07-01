@@ -33,14 +33,14 @@ public class UserProfileDetailsController {
     }
 
     @PostMapping(
-            params = "/{id}/image/upload",
+            value = "/{id}/image/upload",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Void> uploadUserProfileImage(@PathVariable("userId") String userId,
+    public ResponseEntity<Void> uploadUserProfileImage(@PathVariable("id") String userId,
                                                        @RequestParam("file") MultipartFile file) {
 
-        this.userProfileDetailsService.uploadUserProfileImage(userId, file, userId);
+        this.userProfileDetailsService.uploadUserProfileImage(userId, file);
 
         return ResponseEntity.ok().build();
     }

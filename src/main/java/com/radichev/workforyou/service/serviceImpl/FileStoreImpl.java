@@ -27,6 +27,7 @@ public class FileStoreImpl {
         optionalMetadata.ifPresent(map -> {
             if(!map.isEmpty()) {
                 map.forEach(metadata::addUserMetadata);
+                metadata.setContentLength(Long.parseLong(map.get("Content-Length")));
             }
         });
 

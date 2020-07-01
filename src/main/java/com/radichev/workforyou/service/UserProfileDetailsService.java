@@ -13,5 +13,5 @@ public interface UserProfileDetailsService {
 
     UserProfileDetailsViewModel getEditUserProfileDetails(String id);
 
-    void uploadUserProfileImage(String userId, MultipartFile file, String id);
+    void uploadUserProfileImage(String userId, MultipartFile file);
 }
