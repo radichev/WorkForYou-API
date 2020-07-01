@@ -40,7 +40,7 @@ public class UserProfileDetailsController {
     public ResponseEntity<Void> uploadUserProfileImage(@PathVariable("userId") String userId,
                                                        @RequestParam("file") MultipartFile file) {
 
-        this.userProfileDetailsService.uploadUserProfileImage(userId, file);
+        this.userProfileDetailsService.uploadUserProfileImage(userId, file, userId);
 
         return ResponseEntity.ok().build();
     }

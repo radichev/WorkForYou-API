@@ -1,7 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
+import com.radichev.workforyou.bucket.BucketName;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
-import com.radichev.workforyou.exception.InvalidEntityException;
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
@@ -13,17 +13,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.util.*;
+
+import static org.apache.http.entity.ContentType.*;
 
 @Service
 public class UserProfileDetailsServiceImpl implements UserProfileDetailsService {
     private final UserProfileDetailsRepository userProfileDetailsRepository;
     private final ModelMapper modelMapper;
     private final UserService userService;
+    private final FileStoreImpl fileStore;
 
-    public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository, ModelMapper modelMapper, @Lazy UserService userService) {
+    public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository, ModelMapper modelMapper, @Lazy UserService userService, FileStoreImpl fileStore) {
         this.userProfileDetailsRepository = userProfileDetailsRepository;
         this.modelMapper = modelMapper;
         this.userService = userService;
+        this.fileStore = fileStore;
     }
 
 
@@ -52,7 +58,28 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     }
 
     @Override
-    public void uploadUserProfileImage(String userId, MultipartFile file) {
+    public void uploadUserProfileImage(String userId, MultipartFile file, String id) {
+        if (file.isEmpty()) {
+            throw new IllegalStateException("Cannot upload empty file");
+        }
 
+        if (!Arrays.asList(IMAGE_JPEG, IMAGE_PNG, IMAGE_GIF).contains(file.getContentType())) {
+            throw new IllegalStateException("File must be an image");
+        }
+
+        UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(id);
+
+        Map<String, String> metadata = new HashMap<>();
+        metadata.put("Content-Type", file.getContentType());
+        metadata.put("Content-Length", String.valueOf(file.getSize()));
+
+        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), userId);
+        String fileName = String.format("%s-%s", file.getName(), UUID.randomUUID());
+
+        try {
+            this.fileStore.save(path, fileName, Optional.of(metadata), file.getInputStream());
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
