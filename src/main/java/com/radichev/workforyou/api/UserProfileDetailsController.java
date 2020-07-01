@@ -4,8 +4,10 @@ import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserPr
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -27,6 +29,19 @@ public class UserProfileDetailsController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> editUserProfileDetails(@Valid @RequestBody UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, @PathVariable String id) {
         this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsEditBindingModel, id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping(
+            params = "/{id}/image/upload",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Void> uploadUserProfileImage(@PathVariable("userId") String userId,
+                                                       @RequestParam("file") MultipartFile file) {
+
+        this.userProfileDetailsService.uploadUserProfileImage(userId, file);
+
         return ResponseEntity.ok().build();
     }
 }

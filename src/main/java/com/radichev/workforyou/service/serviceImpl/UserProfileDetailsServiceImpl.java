@@ -10,6 +10,7 @@ import com.radichev.workforyou.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 
@@ -48,5 +49,10 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     @Override
     public UserProfileDetailsViewModel getEditUserProfileDetails(String id) {
         return this.modelMapper.map(this.userService.findUserProfileDetailsById(id), UserProfileDetailsViewModel.class);
+    }
+
+    @Override
+    public void uploadUserProfileImage(String userId, MultipartFile file) {
+
     }
 }
