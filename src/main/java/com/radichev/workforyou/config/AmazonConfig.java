@@ -15,9 +15,9 @@ public class AmazonConfig {
     @Bean
     public AmazonS3 amazonS3() {
         BasicSessionCredentials basicSessionCredentials = new BasicSessionCredentials(
-                "ASIA5SN46AB7DFN62C5R",
-                "t+rFnhXfsDF9YLcf6w/Q9Lz0yj56v3OGzzSGayvf",
-                "FwoGZXIvYXdzEMD//////////wEaDCjW9BwWVdb3cLFkSyLLASrfz0p0s13bi+k6S9bNhiS7aPGf8fvAoct2qGZIs38MoapzEZJSxlY7AUW5HmlYjGTbz0AmtFkIdAclSOhlXW3KBMIbDz7A4N8TrAnx5c+0jH8ZCNYIweUCTqLX5ALL8HKrtld1ofS2xza/k6huknwG4Wu/5b/dVivvebpXlopswd00YG0uy8xDAxu4oMxEtHz31ImnTQ36O3hOVAJKucu4jv5XrVNiPapGru6bBXxLHQgymJSPKZIog6oW3CucN8zD4Wf15ohASMfyKNW28vcFMi0yl3I4sIQtZoF5gpaN+cFc2QkIRPSSqsUVEiNhQCxbeqFfJW1g0kjuuFqtVxI="
+                "ASIA5SN46AB7CVVUSSHL",
+                "njpHo2jd4tz0qq69eyEnhUJrAIvUjJ2aNSNBSpPv",
+                "FwoGZXIvYXdzEMn//////////wEaDL8Ox29Yyt7oaSW6PSLLAS4tJhFzZxcnz8xICdCKDH9dfFjhvXy4oyYoN8e3kPTLt/98dcUziFUtSCnjBStHpe/zokAej+vKP9w2xR9XBiyedSLeBRXij05aodaMf77kK4GHELvty3XGGewKK04VLqbx9nlIapMi3Ms/llXdvp0RWzquogxDuhnAU0hFdR2ryV45yK/Ivg0/wcLbC0H6iDliXfUFJM7hYvabUkA+t6vHSD4zjBisEVjVMJHxZj2eC36UgVJgnN6ktMjdv5d8NZ9SWVR7et/brQhKKJ+89PcFMi12vc1fdeo6qGhyYyVMwLDYYC+eRk1Shjmu3p2SVf+m2bprrSYNUO/Ilge5iPE="
         );
 
         return AmazonS3ClientBuilder

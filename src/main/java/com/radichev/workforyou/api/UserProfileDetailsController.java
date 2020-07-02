@@ -44,4 +44,10 @@ public class UserProfileDetailsController {
 
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/{id}/image/download")
+    public byte[] downloadUserProfileImage(@PathVariable("id") String userId) {
+        return this.userProfileDetailsService.downloadUserProfileImage(userId);
+//        return ResponseEntity.ok().build();
+    }
 }

@@ -78,8 +78,19 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
         try {
             this.fileStore.save(path, fileName, Optional.of(metadata), file.getInputStream());
+            userProfileDetails.setProfilePicture(fileName);
+
+            this.userProfileDetailsRepository.save(userProfileDetails);
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    @Override
+    public byte[] downloadUserProfileImage(String userId) {
+        UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(userId);
+        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), userId);
+
+        return this.fileStore.download(path, userProfileDetails.getProfilePicture());
     }
 }
