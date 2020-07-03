@@ -3,7 +3,6 @@ package com.radichev.workforyou.api;
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.service.UserProfileDetailsService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
