@@ -1,9 +1,12 @@
 package com.radichev.workforyou.domain.entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@DynamicUpdate
 @Table(name = "users_profile_details")
 public class UserProfileDetails extends BaseEntity {
     private String firstName;
