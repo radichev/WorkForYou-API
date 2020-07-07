@@ -30,7 +30,7 @@ public class LanguageLevelServiceImpl implements LanguageLevelService {
 
     @Override
     public void initLanguageLevels() {
-        if (this.languageLevelRepository.count() >= 0) {
+        if (this.languageLevelRepository.count() == 0) {
             this.languageLevelRepository.saveAndFlush(new LanguageLevel("Basic"));
             this.languageLevelRepository.saveAndFlush(new LanguageLevel("Conversational"));
             this.languageLevelRepository.saveAndFlush(new LanguageLevel("Fluent"));
