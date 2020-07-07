@@ -1,5 +1,6 @@
 package com.radichev.workforyou.service.serviceImpl;
 
+import com.radichev.workforyou.domain.entity.LanguageLevel;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageLevelDto;
 import com.radichev.workforyou.repository.LanguageLevelRepository;
 import com.radichev.workforyou.service.LanguageLevelService;
@@ -25,5 +26,15 @@ public class LanguageLevelServiceImpl implements LanguageLevelService {
                 .stream()
                 .map(languageLevel -> this.modelMapper.map(languageLevel, LanguageLevelDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void initLanguageLevels() {
+        if (this.languageLevelRepository.count() >= 0) {
+            this.languageLevelRepository.saveAndFlush(new LanguageLevel("Basic"));
+            this.languageLevelRepository.saveAndFlush(new LanguageLevel("Conversational"));
+            this.languageLevelRepository.saveAndFlush(new LanguageLevel("Fluent"));
+            this.languageLevelRepository.saveAndFlush(new LanguageLevel("Native/Bilingual"));
+        }
     }
 }
