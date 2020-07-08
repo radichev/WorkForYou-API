@@ -1,11 +1,11 @@
 package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
-import com.radichev.workforyou.model.dtos.SkillDto.SkillLevelDto;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.model.viewModels.lookupViewModel.LookupTablesViewModel;
 import com.radichev.workforyou.service.LanguageLevelService;
 import com.radichev.workforyou.service.SkillLevelService;
+import com.radichev.workforyou.service.TitleTypeService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/profile/details")
@@ -23,12 +22,14 @@ public class UserProfileDetailsController {
     private final UserProfileDetailsService userProfileDetailsService;
     private final SkillLevelService skillLevelService;
     private final LanguageLevelService languageLevelService;
+    private final TitleTypeService titleTypeService;
     private final ModelMapper modelMapper;
 
-    public UserProfileDetailsController(UserProfileDetailsService userProfileDetailsService, SkillLevelService skillLevelService, LanguageLevelService languageLevelService, ModelMapper modelMapper) {
+    public UserProfileDetailsController(UserProfileDetailsService userProfileDetailsService, SkillLevelService skillLevelService, LanguageLevelService languageLevelService, TitleTypeService titleTypeService, ModelMapper modelMapper) {
         this.userProfileDetailsService = userProfileDetailsService;
         this.skillLevelService = skillLevelService;
         this.languageLevelService = languageLevelService;
+        this.titleTypeService = titleTypeService;
         this.modelMapper = modelMapper;
     }
 
@@ -67,6 +68,7 @@ public class UserProfileDetailsController {
        LookupTablesViewModel lookupTablesViewModel = new LookupTablesViewModel();
        lookupTablesViewModel.setSkillLevelDtos(this.skillLevelService.findAllSkillLevels());
        lookupTablesViewModel.setLanguageLevelDtos(this.languageLevelService.findAllLanguageLevels());
+       lookupTablesViewModel.setTitleTypeDtos(this.titleTypeService.findAllTitleTypes());
 
         System.out.println();
        return ResponseEntity.ok().body(lookupTablesViewModel);
