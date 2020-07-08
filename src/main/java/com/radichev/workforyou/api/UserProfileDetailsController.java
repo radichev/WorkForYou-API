@@ -3,10 +3,7 @@ package com.radichev.workforyou.api;
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.model.viewModels.lookupViewModel.LookupTablesViewModel;
-import com.radichev.workforyou.service.LanguageLevelService;
-import com.radichev.workforyou.service.SkillLevelService;
-import com.radichev.workforyou.service.TitleTypeService;
-import com.radichev.workforyou.service.UserProfileDetailsService;
+import com.radichev.workforyou.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +20,19 @@ public class UserProfileDetailsController {
     private final SkillLevelService skillLevelService;
     private final LanguageLevelService languageLevelService;
     private final TitleTypeService titleTypeService;
-    private final ModelMapper modelMapper;
+    private final CountryService countryService;
 
-    public UserProfileDetailsController(UserProfileDetailsService userProfileDetailsService, SkillLevelService skillLevelService, LanguageLevelService languageLevelService, TitleTypeService titleTypeService, ModelMapper modelMapper) {
+    public UserProfileDetailsController(UserProfileDetailsService userProfileDetailsService,
+                                        SkillLevelService skillLevelService,
+                                        LanguageLevelService languageLevelService,
+                                        TitleTypeService titleTypeService,
+                                        CountryService countryService) {
+
         this.userProfileDetailsService = userProfileDetailsService;
         this.skillLevelService = skillLevelService;
         this.languageLevelService = languageLevelService;
         this.titleTypeService = titleTypeService;
-        this.modelMapper = modelMapper;
+        this.countryService = countryService;
     }
 
     @GetMapping("/{id}")
@@ -69,8 +71,8 @@ public class UserProfileDetailsController {
        lookupTablesViewModel.setSkillLevelDtos(this.skillLevelService.findAllSkillLevels());
        lookupTablesViewModel.setLanguageLevelDtos(this.languageLevelService.findAllLanguageLevels());
        lookupTablesViewModel.setTitleTypeDtos(this.titleTypeService.findAllTitleTypes());
+       lookupTablesViewModel.setCountryDtos(this.countryService.findAllCountries());
 
-        System.out.println();
        return ResponseEntity.ok().body(lookupTablesViewModel);
     }
 }
