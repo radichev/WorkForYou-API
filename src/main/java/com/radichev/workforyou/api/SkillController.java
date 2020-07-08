@@ -21,7 +21,7 @@ public class SkillController {
         this.skillLevelService = skillLevelService;
     }
 
-    @GetMapping("/skills/all")
+    @GetMapping("/levels/all")
     public ResponseEntity<List<SkillLevelDto>> findAllLanguageLevels(){
         return ResponseEntity.ok().body(this.skillLevelService.findAllSkillLevels());
     }

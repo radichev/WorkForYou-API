@@ -1,23 +1,35 @@
 package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
+import com.radichev.workforyou.model.dtos.SkillDto.SkillLevelDto;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
+import com.radichev.workforyou.model.viewModels.lookupViewModel.LookupTablesViewModel;
+import com.radichev.workforyou.service.LanguageLevelService;
+import com.radichev.workforyou.service.SkillLevelService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/profile/details")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserProfileDetailsController {
     private final UserProfileDetailsService userProfileDetailsService;
+    private final SkillLevelService skillLevelService;
+    private final LanguageLevelService languageLevelService;
+    private final ModelMapper modelMapper;
 
-    public UserProfileDetailsController(UserProfileDetailsService userProfileDetailsService) {
+    public UserProfileDetailsController(UserProfileDetailsService userProfileDetailsService, SkillLevelService skillLevelService, LanguageLevelService languageLevelService, ModelMapper modelMapper) {
         this.userProfileDetailsService = userProfileDetailsService;
+        this.skillLevelService = skillLevelService;
+        this.languageLevelService = languageLevelService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/{id}")
@@ -48,5 +60,15 @@ public class UserProfileDetailsController {
     public byte[] downloadUserProfileImage(@PathVariable("id") String userId) {
         return this.userProfileDetailsService.downloadUserProfileImage(userId);
 //        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/lookups")
+    public ResponseEntity<LookupTablesViewModel> getAllLookupTables() {
+       LookupTablesViewModel lookupTablesViewModel = new LookupTablesViewModel();
+       lookupTablesViewModel.setSkillLevelDtos(this.skillLevelService.findAllSkillLevels());
+       lookupTablesViewModel.setLanguageLevelDtos(this.languageLevelService.findAllLanguageLevels());
+
+        System.out.println();
+       return ResponseEntity.ok().body(lookupTablesViewModel);
     }
 }
