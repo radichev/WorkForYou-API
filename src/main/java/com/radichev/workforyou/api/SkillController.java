@@ -15,14 +15,14 @@ import java.util.List;
 @RequestMapping("api/skills")
 @CrossOrigin(origins = "http://localhost:4200")
 public class SkillController {
-    private final SkillLevelService skillLevelService;
-
-    public SkillController(SkillLevelService skillLevelService) {
-        this.skillLevelService = skillLevelService;
-    }
-
-    @GetMapping("/levels/all")
-    public ResponseEntity<List<SkillLevelDto>> findAllLanguageLevels(){
-        return ResponseEntity.ok().body(this.skillLevelService.findAllSkillLevels());
-    }
+//    private final SkillLevelService skillLevelService;
+//
+//    public SkillController(SkillLevelService skillLevelService) {
+//        this.skillLevelService = skillLevelService;
+//    }
+//
+//    @GetMapping("/levels/all")
+//    public ResponseEntity<List<SkillLevelDto>> findAllLanguageLevels(){
+//        return ResponseEntity.ok().body(this.skillLevelService.findAllSkillLevels());
+//    }
 }

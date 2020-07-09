@@ -8,43 +8,43 @@ import com.radichev.workforyou.model.dtos.SkillDto.SkillLevelDto;
 import java.util.List;
 
 public class LookupTablesViewModel {
-    private List<LanguageLevelDto> languageLevelDtos;
-    private List<SkillLevelDto> skillLevelDtos;
-    private List<TitleTypeDto> titleTypeDtos;
-    private List<CountryDto> countryDtos;
+    private List<LanguageLevelDto> languageLevels;
+    private List<SkillLevelDto> skillLevels;
+    private List<TitleTypeDto> titleTypes;
+    private List<CountryDto> countries;
 
     public LookupTablesViewModel() {
     }
 
-    public List<LanguageLevelDto> getLanguageLevelDtos() {
-        return languageLevelDtos;
+    public List<LanguageLevelDto> getLanguageLevels() {
+        return languageLevels;
     }
 
-    public void setLanguageLevelDtos(List<LanguageLevelDto> languageLevelDtos) {
-        this.languageLevelDtos = languageLevelDtos;
+    public void setLanguageLevels(List<LanguageLevelDto> languageLevels) {
+        this.languageLevels = languageLevels;
     }
 
-    public List<SkillLevelDto> getSkillLevelDtos() {
-        return skillLevelDtos;
+    public List<SkillLevelDto> getSkillLevels() {
+        return skillLevels;
     }
 
-    public void setSkillLevelDtos(List<SkillLevelDto> skillLevelDtos) {
-        this.skillLevelDtos = skillLevelDtos;
+    public void setSkillLevels(List<SkillLevelDto> skillLevels) {
+        this.skillLevels = skillLevels;
     }
 
-    public List<TitleTypeDto> getTitleTypeDtos() {
-        return titleTypeDtos;
+    public List<TitleTypeDto> getTitleTypes() {
+        return titleTypes;
     }
 
-    public void setTitleTypeDtos(List<TitleTypeDto> titleTypeDtos) {
-        this.titleTypeDtos = titleTypeDtos;
+    public void setTitleTypes(List<TitleTypeDto> titleTypes) {
+        this.titleTypes = titleTypes;
     }
 
-    public List<CountryDto> getCountryDtos() {
-        return countryDtos;
+    public List<CountryDto> getCountries() {
+        return countries;
     }
 
-    public void setCountryDtos(List<CountryDto> countryDtos) {
-        this.countryDtos = countryDtos;
+    public void setCountries(List<CountryDto> countries) {
+        this.countries = countries;
     }
 }

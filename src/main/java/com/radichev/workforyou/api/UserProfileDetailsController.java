@@ -68,10 +68,10 @@ public class UserProfileDetailsController {
     @GetMapping("/lookups")
     public ResponseEntity<LookupTablesViewModel> getAllLookupTables() {
        LookupTablesViewModel lookupTablesViewModel = new LookupTablesViewModel();
-       lookupTablesViewModel.setSkillLevelDtos(this.skillLevelService.findAllSkillLevels());
-       lookupTablesViewModel.setLanguageLevelDtos(this.languageLevelService.findAllLanguageLevels());
-       lookupTablesViewModel.setTitleTypeDtos(this.titleTypeService.findAllTitleTypes());
-       lookupTablesViewModel.setCountryDtos(this.countryService.findAllCountries());
+       lookupTablesViewModel.setSkillLevels(this.skillLevelService.findAllSkillLevels());
+       lookupTablesViewModel.setLanguageLevels(this.languageLevelService.findAllLanguageLevels());
+       lookupTablesViewModel.setTitleTypes(this.titleTypeService.findAllTitleTypes());
+       lookupTablesViewModel.setCountries(this.countryService.findAllCountries());
 
        return ResponseEntity.ok().body(lookupTablesViewModel);
     }

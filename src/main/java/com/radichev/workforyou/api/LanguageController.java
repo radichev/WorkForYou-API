@@ -14,14 +14,14 @@ import java.util.List;
 @RequestMapping("api/languages")
 @CrossOrigin(origins = "http://localhost:4200")
 public class LanguageController {
-    private final LanguageLevelService languageLevelService;
-
-    public LanguageController(LanguageLevelService languageLevelService) {
-        this.languageLevelService = languageLevelService;
-    }
-
-    @GetMapping("/levels/all")
-    public ResponseEntity<List<LanguageLevelDto>> findAllLanguageLevels(){
-        return ResponseEntity.ok().body(this.languageLevelService.findAllLanguageLevels());
-    }
+//    private final LanguageLevelService languageLevelService;
+//
+//    public LanguageController(LanguageLevelService languageLevelService) {
+//        this.languageLevelService = languageLevelService;
+//    }
+//
+//    @GetMapping("/levels/all")
+//    public ResponseEntity<List<LanguageLevelDto>> findAllLanguageLevels(){
+//        return ResponseEntity.ok().body(this.languageLevelService.findAllLanguageLevels());
+//    }
 }
