@@ -44,4 +44,9 @@ public class TitleTypeServiceImpl implements TitleTypeService {
                 .map(titleType -> this.modelMapper.map(titleType, TitleTypeDto.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public TitleType findByTitleType(String titleType) {
+        return this.titleTypeRepository.findByTitleType(titleType);
+    }
 }

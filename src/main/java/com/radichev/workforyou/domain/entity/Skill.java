@@ -24,7 +24,7 @@ public class Skill extends BaseEntity {
 
     //May have to change the Relation
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     public SkillLevel getSkillLevel() {
         return skillLevel;
     }

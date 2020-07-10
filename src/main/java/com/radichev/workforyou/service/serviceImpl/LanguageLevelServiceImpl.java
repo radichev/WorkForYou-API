@@ -29,6 +29,11 @@ public class LanguageLevelServiceImpl implements LanguageLevelService {
     }
 
     @Override
+    public LanguageLevel findByLanguageLevel(String languageLevel) {
+        return this.languageLevelRepository.findByLanguageLevel(languageLevel);
+    }
+
+    @Override
     public void initLanguageLevels() {
         if (this.languageLevelRepository.count() == 0) {
             this.languageLevelRepository.saveAndFlush(new LanguageLevel("Basic"));

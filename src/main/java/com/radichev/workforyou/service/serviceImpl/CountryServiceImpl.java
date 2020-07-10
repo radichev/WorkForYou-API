@@ -60,4 +60,9 @@ public class CountryServiceImpl implements CountryService {
                 .map(country -> this.modelMapper.map(country, CountryDto.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Country findByCountryName(String countryName) {
+        return this.countryRepository.findByCountry(countryName);
+    }
 }

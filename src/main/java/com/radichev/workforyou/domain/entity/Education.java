@@ -17,7 +17,7 @@ public class Education extends BaseEntity {
     }
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     public Country getCountry() {
         return country;
     }
@@ -36,7 +36,7 @@ public class Education extends BaseEntity {
     }
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     public TitleType getTitleType() {
         return titleType;
     }

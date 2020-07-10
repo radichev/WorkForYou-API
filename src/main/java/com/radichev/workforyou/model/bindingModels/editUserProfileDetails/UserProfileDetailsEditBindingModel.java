@@ -4,7 +4,6 @@ import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
-import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
 import java.util.Set;
 
@@ -18,7 +17,6 @@ public class UserProfileDetailsEditBindingModel {
     private String country;
     private String email;
     private Set<LanguageDto> languages;
-    private Set<WorkSphereDto> workSpheres;
     private Set<SkillDto> skills;
     private Set<EducationDto> educations;
     private Set<CertificateDto> certificates;
@@ -96,14 +94,6 @@ public class UserProfileDetailsEditBindingModel {
 
     public void setLanguages(Set<LanguageDto> languages) {
         this.languages = languages;
-    }
-
-    public Set<WorkSphereDto> getWorkSpheres() {
-        return workSpheres;
-    }
-
-    public void setWorkSpheres(Set<WorkSphereDto> workSpheres) {
-        this.workSpheres = workSpheres;
     }
 
     public Set<SkillDto> getSkills() {

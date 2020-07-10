@@ -23,7 +23,7 @@ public class Language extends BaseEntity {
 
     //May have to change the Relation
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     public LanguageLevel getLanguageLevel() {
         return languageLevel;
     }

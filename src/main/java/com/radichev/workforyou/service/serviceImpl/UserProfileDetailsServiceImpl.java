@@ -1,12 +1,14 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.bucket.BucketName;
+import com.radichev.workforyou.domain.entity.Language;
+import com.radichev.workforyou.domain.entity.Skill;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
+import com.radichev.workforyou.repository.SkillLevelRepository;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
-import com.radichev.workforyou.service.UserProfileDetailsService;
-import com.radichev.workforyou.service.UserService;
+import com.radichev.workforyou.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.apache.http.entity.ContentType.*;
 
@@ -24,12 +27,29 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     private final ModelMapper modelMapper;
     private final UserService userService;
     private final FileStoreImpl fileStore;
+    private final CountryService countryService;
+    private final LanguageLevelService languageLevelService;
+    private final SkillLevelService skillLevelService;
+    private final SkillLevelRepository skillLevelRepository;
+    private final TitleTypeService titleTypeService;
 
-    public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository, ModelMapper modelMapper, @Lazy UserService userService, FileStoreImpl fileStore) {
+    public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository,
+                                         ModelMapper modelMapper,
+                                         @Lazy UserService userService,
+                                         FileStoreImpl fileStore,
+                                         CountryService countryService,
+                                         LanguageLevelService languageLevelService,
+                                         SkillLevelService skillLevelService,
+                                         SkillLevelRepository skillLevelRepository, TitleTypeService titleTypeService) {
         this.userProfileDetailsRepository = userProfileDetailsRepository;
         this.modelMapper = modelMapper;
         this.userService = userService;
         this.fileStore = fileStore;
+        this.countryService = countryService;
+        this.languageLevelService = languageLevelService;
+        this.skillLevelService = skillLevelService;
+        this.skillLevelRepository = skillLevelRepository;
+        this.titleTypeService = titleTypeService;
     }
 
 
@@ -49,7 +69,39 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
         this.modelMapper.map(userProfileDetailsEditBindingModel, userProfileDetails);
 
+//        Set<Education> educations = userProfileDetails.getEducations();
+////
+//        educations
+//                .forEach(education -> {
+//                    education.setCountry(this.countryService.findByCountryName(education.getCountry().getCountry()));
+//                    education.setTitleType(this.titleTypeService.findByTitleType(education.getTitleType().getTitleType()));
+//                    System.out.println();
+//                });
+////
+//        userProfileDetails.setEducations(educations);
+        System.out.println();
+//
+        Set<Language> languages = userProfileDetails.getLanguages();
 
+        languages
+                .forEach(language -> {
+                    language.setLanguageLevel(this.languageLevelService.findByLanguageLevel(language.getLanguage()));
+
+                });
+
+        userProfileDetails.setLanguages(languages);
+//
+        Set<Skill> skills = userProfileDetails
+                .getSkills()
+                .stream()
+                .peek(skill -> {
+                    skill.setSkillLevel(this.skillLevelService.findBySkillLevel(skill.getSkill()));
+
+                }).collect(Collectors.toSet());
+//
+        userProfileDetails.setSkills(skills);
+
+        System.out.println();
 
         this.userProfileDetailsRepository.save(userProfileDetails);
     }

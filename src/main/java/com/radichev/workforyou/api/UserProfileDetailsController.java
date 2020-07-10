@@ -36,10 +36,11 @@ public class UserProfileDetailsController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserProfileDetailsViewModel> getUserProfileDetails(@PathVariable String id){
+        System.out.println("user controller called");
         return ResponseEntity.ok(this.userProfileDetailsService.getEditUserProfileDetails(id));
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<Void> editUserProfileDetails(@Valid @RequestBody UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, @PathVariable String id) {
         this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsEditBindingModel, id);
         return ResponseEntity.ok().build();

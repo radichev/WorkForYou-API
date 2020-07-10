@@ -31,6 +31,11 @@ public class SkillLevelServiceImpl implements SkillLevelService {
     }
 
     @Override
+    public SkillLevel findBySkillLevel(String skillLevel) {
+        return this.skillLevelRepository.findBySkillLevel(skillLevel);
+    }
+
+    @Override
     public void initSkillLevels() {
         if (this.skillLevelRepository.count() == 0) {
             this.skillLevelRepository.saveAndFlush(new SkillLevel("Beginner"));
