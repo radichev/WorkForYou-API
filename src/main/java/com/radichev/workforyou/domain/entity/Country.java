@@ -16,7 +16,7 @@ public class Country extends BaseEntity {
         this.country = country;
     }
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     public String getCountry() {
         return country;
     }

@@ -4,7 +4,6 @@ import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserPr
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.model.viewModels.lookupViewModel.LookupTablesViewModel;
 import com.radichev.workforyou.service.*;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

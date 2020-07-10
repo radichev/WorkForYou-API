@@ -49,6 +49,8 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
         this.modelMapper.map(userProfileDetailsEditBindingModel, userProfileDetails);
 
+
+
         this.userProfileDetailsRepository.save(userProfileDetails);
     }
 
