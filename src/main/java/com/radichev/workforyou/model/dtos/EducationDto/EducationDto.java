@@ -4,6 +4,7 @@ package com.radichev.workforyou.model.dtos.EducationDto;
 import javax.validation.constraints.NotNull;
 
 public class EducationDto {
+    private String id;
     private CountryDto country;
     private String universityName;
     private TitleTypeDto titleType;
@@ -11,6 +12,14 @@ public class EducationDto {
     private int graduationYear;
 
     public EducationDto() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @NotNull
