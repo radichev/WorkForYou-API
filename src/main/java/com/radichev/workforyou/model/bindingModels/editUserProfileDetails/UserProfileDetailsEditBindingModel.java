@@ -1,12 +1,14 @@
 package com.radichev.workforyou.model.bindingModels.editUserProfileDetails;
 
+import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
+
 public class UserProfileDetailsEditBindingModel {
     private String id;
     private String firstName;
     private String lastName;
     private String description;
     private String personalWebsite;
-    private String country;
+    private CountryDto country;
     private String email;
 
     public UserProfileDetailsEditBindingModel() {
@@ -52,11 +54,11 @@ public class UserProfileDetailsEditBindingModel {
         this.personalWebsite = personalWebsite;
     }
 
-    public String getCountry() {
+    public CountryDto getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(CountryDto country) {
         this.country = country;
     }
 

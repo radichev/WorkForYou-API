@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.bucket.BucketName;
+import com.radichev.workforyou.domain.entity.Country;
 import com.radichev.workforyou.domain.entity.Language;
 import com.radichev.workforyou.domain.entity.Skill;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
@@ -28,28 +29,17 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     private final UserService userService;
     private final FileStoreImpl fileStore;
     private final CountryService countryService;
-    private final LanguageLevelService languageLevelService;
-    private final SkillLevelService skillLevelService;
-    private final SkillLevelRepository skillLevelRepository;
-    private final TitleTypeService titleTypeService;
 
     public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository,
                                          ModelMapper modelMapper,
                                          @Lazy UserService userService,
                                          FileStoreImpl fileStore,
-                                         CountryService countryService,
-                                         LanguageLevelService languageLevelService,
-                                         SkillLevelService skillLevelService,
-                                         SkillLevelRepository skillLevelRepository, TitleTypeService titleTypeService) {
+                                         CountryService countryService) {
         this.userProfileDetailsRepository = userProfileDetailsRepository;
         this.modelMapper = modelMapper;
         this.userService = userService;
         this.fileStore = fileStore;
         this.countryService = countryService;
-        this.languageLevelService = languageLevelService;
-        this.skillLevelService = skillLevelService;
-        this.skillLevelRepository = skillLevelRepository;
-        this.titleTypeService = titleTypeService;
     }
 
 
@@ -67,6 +57,9 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(id);
 
         this.modelMapper.map(userProfileDetailsEditBindingModel, userProfileDetails);
+
+        Country country = this.countryService.findCountryById(userProfileDetailsEditBindingModel.getCountry().getId());
+        userProfileDetails.setCountry(country);
 
         this.userProfileDetailsRepository.save(userProfileDetails);
     }

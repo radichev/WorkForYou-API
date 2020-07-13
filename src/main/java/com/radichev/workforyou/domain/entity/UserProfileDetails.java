@@ -14,8 +14,8 @@ public class UserProfileDetails extends BaseEntity {
     private String description;
     private String personalWebsite;
     private String profilePicture;
-    private String country;
     private String email;
+    private Country country;
     private Set<Language> languages;
     private Set<Skill> skills;
     private Set<Education> educations;
@@ -67,14 +67,6 @@ public class UserProfileDetails extends BaseEntity {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     @Column(nullable = false, unique = true)
@@ -131,5 +123,14 @@ public class UserProfileDetails extends BaseEntity {
 
     public void setJobs(Set<Job> jobs) {
         this.jobs = jobs;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

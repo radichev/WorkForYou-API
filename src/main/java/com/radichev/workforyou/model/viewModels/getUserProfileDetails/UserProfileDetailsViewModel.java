@@ -1,6 +1,7 @@
 package com.radichev.workforyou.model.viewModels.getUserProfileDetails;
 
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
+import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
@@ -17,7 +18,7 @@ public class UserProfileDetailsViewModel {
     private String description;
     private String personalWebsite;
     private String profilePicture;
-    private String country;
+    private CountryDto country;
     private String email;
     private LocalDate createdDate;
     private Set<LanguageDto> languages;
@@ -70,11 +71,11 @@ public class UserProfileDetailsViewModel {
         this.personalWebsite = personalWebsite;
     }
 
-    public String getCountry() {
+    public CountryDto getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(CountryDto country) {
         this.country = country;
     }
 
