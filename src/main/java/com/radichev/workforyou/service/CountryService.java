@@ -11,4 +11,6 @@ public interface CountryService {
     List<CountryDto> findAllCountries();
 
     Country findByCountryName(String countryName);
+
+    Country findCountryById(String countryId);
 }

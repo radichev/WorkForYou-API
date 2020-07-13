@@ -65,4 +65,9 @@ public class CountryServiceImpl implements CountryService {
     public Country findByCountryName(String countryName) {
         return this.countryRepository.findByCountry(countryName);
     }
+
+    @Override
+    public Country findCountryById(String countryId) {
+        return this.countryRepository.findById(countryId).get();
+    }
 }

@@ -49,4 +49,9 @@ public class TitleTypeServiceImpl implements TitleTypeService {
     public TitleType findByTitleType(String titleType) {
         return this.titleTypeRepository.findByTitleType(titleType);
     }
+
+    @Override
+    public TitleType findTitleTypeById(String titleTypeId) {
+        return this.titleTypeRepository.findById(titleTypeId).get();
+    }
 }
