@@ -41,10 +41,7 @@ public class EducationServiceImpl implements EducationService {
 
         Education education = this.modelMapper.map(educationBindingModel, Education.class);
 
-        if (education.getUserProfileDetails() != null) {
-            education.setUserProfileDetails(userProfileDetails);
-        }
-
+        education.setUserProfileDetails(userProfileDetails);
         education.setCountry(country);
         education.setTitleType(titleType);
 

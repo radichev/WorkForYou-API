@@ -18,7 +18,7 @@ public class CertificateController {
     }
 
     @PostMapping("/add/{userId}")
-    public ResponseEntity<Void> addLanguage(@PathVariable String userId, @Valid @RequestBody CertificateBindingModel certificateBindingModel){
+    public ResponseEntity<Void> addCertificate(@PathVariable String userId, @Valid @RequestBody CertificateBindingModel certificateBindingModel){
         this.certificateService.addCertificate(certificateBindingModel, userId);
         return ResponseEntity.ok().build();
     }
