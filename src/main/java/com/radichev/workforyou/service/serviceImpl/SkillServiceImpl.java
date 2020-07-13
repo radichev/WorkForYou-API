@@ -1,7 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.*;
-import com.radichev.workforyou.model.bindingModels.SkillBindingModel.SkillBindingModel;
+import com.radichev.workforyou.model.bindingModels.skillBindingModel.SkillBindingModel;
 import com.radichev.workforyou.repository.SkillRepository;
 import com.radichev.workforyou.service.SkillLevelService;
 import com.radichev.workforyou.service.SkillService;

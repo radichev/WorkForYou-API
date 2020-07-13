@@ -1,6 +1,6 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.model.bindingModels.SkillBindingModel.SkillBindingModel;
+import com.radichev.workforyou.model.bindingModels.skillBindingModel.SkillBindingModel;
 import com.radichev.workforyou.service.SkillService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
