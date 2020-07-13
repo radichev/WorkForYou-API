@@ -114,8 +114,7 @@ public class UserProfileDetails extends BaseEntity {
         this.educations = educations;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_profile_details_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userProfileDetails")
     public Set<Certificate> getCertificates() {
         return certificates;
     }

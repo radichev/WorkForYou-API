@@ -8,7 +8,7 @@ public class Certificate extends BaseEntity {
     private String certificateSubject;
     private String awardedFrom;
     private int graduationYear;
-//    private UserProfileDetails userProfileDetails;
+    private UserProfileDetails userProfileDetails;
 
     public Certificate() {
     }
@@ -40,13 +40,13 @@ public class Certificate extends BaseEntity {
         this.graduationYear = graduationYear;
     }
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    public UserProfileDetails getUserProfileDetails() {
-//        return userProfileDetails;
-//    }
-//
-//    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
-//        this.userProfileDetails = userProfileDetails;
-//    }
+    @ManyToOne
+    public UserProfileDetails getUserProfileDetails() {
+        return userProfileDetails;
+    }
+
+    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
+        this.userProfileDetails = userProfileDetails;
+    }
 
 }
