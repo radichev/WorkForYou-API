@@ -105,7 +105,7 @@ public class UserProfileDetails extends BaseEntity {
         this.skills = skills;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userProfileDetails")
     public Set<Education> getEducations() {
         return educations;
     }

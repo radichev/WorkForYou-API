@@ -12,6 +12,7 @@ public class Education extends BaseEntity {
     private TitleType titleType;
     private String educationSubject;
     private int graduationYear;
+    private UserProfileDetails userProfileDetails;
 
     public Education() {
     }
@@ -61,5 +62,14 @@ public class Education extends BaseEntity {
 
     public void setGraduationYear(int graduationYear) {
         this.graduationYear = graduationYear;
+    }
+
+    @ManyToOne
+    public UserProfileDetails getUserProfileDetails() {
+        return userProfileDetails;
+    }
+
+    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
+        this.userProfileDetails = userProfileDetails;
     }
 }
