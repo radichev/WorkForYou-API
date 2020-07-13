@@ -1,28 +1,26 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.model.dtos.LanguageDto.LanguageLevelDto;
-import com.radichev.workforyou.model.dtos.SkillDto.SkillLevelDto;
-import com.radichev.workforyou.service.SkillLevelService;
+import com.radichev.workforyou.model.bindingModels.SkillBindingModel.SkillBindingModel;
+import com.radichev.workforyou.service.SkillService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/skills")
 @CrossOrigin(origins = "http://localhost:4200")
 public class SkillController {
-//    private final SkillLevelService skillLevelService;
-//
-//    public SkillController(SkillLevelService skillLevelService) {
-//        this.skillLevelService = skillLevelService;
-//    }
-//
-//    @GetMapping("/levels/all")
-//    public ResponseEntity<List<SkillLevelDto>> findAllLanguageLevels(){
-//        return ResponseEntity.ok().body(this.skillLevelService.findAllSkillLevels());
-//    }
+    private final SkillService skillService;
+
+    public SkillController(SkillService skillService) {
+        this.skillService = skillService;
+
+    }
+
+    @PostMapping("/add/{userId}")
+    public ResponseEntity<Void> addSkill(@PathVariable String userId, @Valid @RequestBody SkillBindingModel skillBindingModel){
+        this.skillService.addSkill(skillBindingModel, userId);
+        return ResponseEntity.ok().build();
+    }
 }

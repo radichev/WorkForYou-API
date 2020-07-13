@@ -11,4 +11,6 @@ public interface SkillLevelService {
     List<SkillLevelDto> findAllSkillLevels();
 
     SkillLevel findBySkillLevel(String skillLevel);
+
+    SkillLevel findSkillLevelById(String skillLevelId);
 }

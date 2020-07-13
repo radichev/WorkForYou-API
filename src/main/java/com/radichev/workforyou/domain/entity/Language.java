@@ -2,17 +2,19 @@ package com.radichev.workforyou.domain.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name = "languages")
 public class Language extends BaseEntity {
     private String language;
     LanguageLevel languageLevel;
+    private Set<UserProfileDetails> userProfileDetails;
 
     public Language() {
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     public String getLanguage() {
         return language;
     }
@@ -30,5 +32,14 @@ public class Language extends BaseEntity {
 
     public void setLanguageLevel(LanguageLevel languageLevel) {
         this.languageLevel = languageLevel;
+    }
+
+    @ManyToMany
+    public Set<UserProfileDetails> getUserProfileDetails() {
+        return userProfileDetails;
+    }
+
+    public void setUserProfileDetails(Set<UserProfileDetails> userProfileDetails) {
+        this.userProfileDetails = userProfileDetails;
     }
 }

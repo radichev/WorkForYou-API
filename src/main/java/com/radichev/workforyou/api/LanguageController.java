@@ -1,27 +1,25 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.model.dtos.LanguageDto.LanguageLevelDto;
-import com.radichev.workforyou.service.LanguageLevelService;
+import com.radichev.workforyou.model.bindingModels.languageBindingModel.LanguageBindingModel;
+import com.radichev.workforyou.service.LanguageService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/languages")
 @CrossOrigin(origins = "http://localhost:4200")
 public class LanguageController {
-//    private final LanguageLevelService languageLevelService;
-//
-//    public LanguageController(LanguageLevelService languageLevelService) {
-//        this.languageLevelService = languageLevelService;
-//    }
-//
-//    @GetMapping("/levels/all")
-//    public ResponseEntity<List<LanguageLevelDto>> findAllLanguageLevels(){
-//        return ResponseEntity.ok().body(this.languageLevelService.findAllLanguageLevels());
-//    }
+    private final LanguageService languageService;
+
+    public LanguageController(LanguageService languageService) {
+        this.languageService = languageService;
+    }
+
+    @PostMapping("/add/{userId}")
+    public ResponseEntity<Void> addLanguage(@PathVariable String userId, @Valid @RequestBody LanguageBindingModel languageBindingModel){
+        this.languageService.addLanguage(languageBindingModel, userId);
+        return ResponseEntity.ok().build();
+    }
 }

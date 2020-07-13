@@ -13,6 +13,8 @@ public interface UserProfileDetailsService {
 
     UserProfileDetailsViewModel getEditUserProfileDetails(String id);
 
+    UserProfileDetails findUserProfileDetailsById(String userId);
+
     void uploadUserProfileImage(String userId, MultipartFile file);
 
     byte[] downloadUserProfileImage(String userId);

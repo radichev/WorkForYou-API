@@ -112,6 +112,11 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     }
 
     @Override
+    public UserProfileDetails findUserProfileDetailsById(String userId) {
+        return this.userService.findUserProfileDetailsById(userId);
+    }
+
+    @Override
     public void uploadUserProfileImage(String userId, MultipartFile file) {
         if (file.isEmpty()) {
             throw new IllegalStateException("Cannot upload empty file");
