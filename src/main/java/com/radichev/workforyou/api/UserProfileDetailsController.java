@@ -36,7 +36,6 @@ public class UserProfileDetailsController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserProfileDetailsViewModel> getUserProfileDetails(@PathVariable String id){
-        System.out.println("user controller called");
         return ResponseEntity.ok(this.userProfileDetailsService.getEditUserProfileDetails(id));
     }
 

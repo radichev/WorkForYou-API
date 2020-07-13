@@ -108,7 +108,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserProfileDetails findUserProfileDetailsById(String id) {
-        System.out.println("User service called");
         return this.userRepository.findUserProfileDetails(id)
                 .orElseThrow(() ->
                         new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id)));

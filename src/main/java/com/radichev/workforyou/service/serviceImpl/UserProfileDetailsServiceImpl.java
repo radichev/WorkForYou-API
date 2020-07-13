@@ -64,44 +64,9 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     @Override
     @Transactional
     public void editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id) {
-
         UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(id);
 
         this.modelMapper.map(userProfileDetailsEditBindingModel, userProfileDetails);
-
-//        Set<Education> educations = userProfileDetails.getEducations();
-////
-//        educations
-//                .forEach(education -> {
-//                    education.setCountry(this.countryService.findByCountryName(education.getCountry().getCountry()));
-//                    education.setTitleType(this.titleTypeService.findByTitleType(education.getTitleType().getTitleType()));
-//                    System.out.println();
-//                });
-////
-//        userProfileDetails.setEducations(educations);
-        System.out.println();
-//
-        Set<Language> languages = userProfileDetails.getLanguages();
-
-        languages
-                .forEach(language -> {
-                    language.setLanguageLevel(this.languageLevelService.findByLanguageLevel(language.getLanguage()));
-
-                });
-
-        userProfileDetails.setLanguages(languages);
-//
-        Set<Skill> skills = userProfileDetails
-                .getSkills()
-                .stream()
-                .peek(skill -> {
-                    skill.setSkillLevel(this.skillLevelService.findBySkillLevel(skill.getSkill()));
-
-                }).collect(Collectors.toSet());
-//
-        userProfileDetails.setSkills(skills);
-
-        System.out.println();
 
         this.userProfileDetailsRepository.save(userProfileDetails);
     }
