@@ -8,6 +8,7 @@ import com.radichev.workforyou.service.CountryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +59,7 @@ public class CountryServiceImpl implements CountryService {
         return this.countryRepository.findAll()
                 .stream()
                 .map(country -> this.modelMapper.map(country, CountryDto.class))
+                .sorted(Comparator.comparing(CountryDto::getCountry))
                 .collect(Collectors.toList());
     }
 
