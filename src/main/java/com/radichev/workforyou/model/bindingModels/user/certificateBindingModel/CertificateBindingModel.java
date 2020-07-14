@@ -1,4 +1,4 @@
-package com.radichev.workforyou.model.bindingModels.certificateBindingModel;
+package com.radichev.workforyou.model.bindingModels.user.certificateBindingModel;
 
 public class CertificateBindingModel {
     private String certificateSubject;

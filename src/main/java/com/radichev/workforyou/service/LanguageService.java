@@ -1,6 +1,6 @@
 package com.radichev.workforyou.service;
 
-import com.radichev.workforyou.model.bindingModels.languageBindingModel.LanguageBindingModel;
+import com.radichev.workforyou.model.bindingModels.user.languageBindingModel.LanguageBindingModel;
 
 public interface LanguageService {
 

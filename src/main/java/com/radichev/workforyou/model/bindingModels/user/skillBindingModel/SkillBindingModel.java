@@ -1,4 +1,4 @@
-package com.radichev.workforyou.model.bindingModels.skillBindingModel;
+package com.radichev.workforyou.model.bindingModels.user.skillBindingModel;
 
 import com.radichev.workforyou.model.dtos.SkillDto.SkillLevelDto;
 

@@ -1,4 +1,4 @@
-package com.radichev.workforyou.model.bindingModels.languageBindingModel;
+package com.radichev.workforyou.model.bindingModels.user.languageBindingModel;
 
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageLevelDto;
 

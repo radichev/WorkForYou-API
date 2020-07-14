@@ -1,6 +1,6 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.model.bindingModels.educationBindingModel.EducationBindingModel;
+import com.radichev.workforyou.model.bindingModels.user.educationBindingModel.EducationBindingModel;
 import com.radichev.workforyou.service.EducationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

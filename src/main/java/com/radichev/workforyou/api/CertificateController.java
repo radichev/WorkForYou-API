@@ -1,6 +1,6 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.model.bindingModels.certificateBindingModel.CertificateBindingModel;
+import com.radichev.workforyou.model.bindingModels.user.certificateBindingModel.CertificateBindingModel;
 import com.radichev.workforyou.service.CertificateService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

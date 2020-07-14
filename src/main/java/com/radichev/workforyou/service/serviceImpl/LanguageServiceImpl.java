@@ -3,7 +3,7 @@ package com.radichev.workforyou.service.serviceImpl;
 import com.radichev.workforyou.domain.entity.Language;
 import com.radichev.workforyou.domain.entity.LanguageLevel;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
-import com.radichev.workforyou.model.bindingModels.languageBindingModel.LanguageBindingModel;
+import com.radichev.workforyou.model.bindingModels.user.languageBindingModel.LanguageBindingModel;
 import com.radichev.workforyou.repository.LanguageRepository;
 import com.radichev.workforyou.service.LanguageLevelService;
 import com.radichev.workforyou.service.LanguageService;

@@ -1,6 +1,6 @@
 package com.radichev.workforyou.service;
 
-import com.radichev.workforyou.model.bindingModels.certificateBindingModel.CertificateBindingModel;
+import com.radichev.workforyou.model.bindingModels.user.certificateBindingModel.CertificateBindingModel;
 
 public interface CertificateService {
 

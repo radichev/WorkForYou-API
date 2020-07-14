@@ -2,12 +2,9 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.bucket.BucketName;
 import com.radichev.workforyou.domain.entity.Country;
-import com.radichev.workforyou.domain.entity.Language;
-import com.radichev.workforyou.domain.entity.Skill;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
-import com.radichev.workforyou.model.bindingModels.editUserProfileDetails.UserProfileDetailsEditBindingModel;
+import com.radichev.workforyou.model.bindingModels.user.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
-import com.radichev.workforyou.repository.SkillLevelRepository;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.service.*;
 import org.modelmapper.ModelMapper;
@@ -18,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.apache.http.entity.ContentType.*;
 

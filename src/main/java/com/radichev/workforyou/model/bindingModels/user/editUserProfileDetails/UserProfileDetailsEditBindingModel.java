@@ -1,4 +1,4 @@
-package com.radichev.workforyou.model.bindingModels.editUserProfileDetails;
+package com.radichev.workforyou.model.bindingModels.user.editUserProfileDetails;
 
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 

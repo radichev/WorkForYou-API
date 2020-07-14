@@ -1,6 +1,6 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.model.bindingModels.languageBindingModel.LanguageBindingModel;
+import com.radichev.workforyou.model.bindingModels.user.languageBindingModel.LanguageBindingModel;
 import com.radichev.workforyou.service.LanguageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

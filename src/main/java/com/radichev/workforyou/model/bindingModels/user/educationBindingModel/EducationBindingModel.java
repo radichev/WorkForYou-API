@@ -1,4 +1,4 @@
-package com.radichev.workforyou.model.bindingModels.educationBindingModel;
+package com.radichev.workforyou.model.bindingModels.user.educationBindingModel;
 
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import com.radichev.workforyou.model.dtos.EducationDto.TitleTypeDto;

@@ -4,7 +4,7 @@ import com.radichev.workforyou.domain.entity.Country;
 import com.radichev.workforyou.domain.entity.Education;
 import com.radichev.workforyou.domain.entity.TitleType;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
-import com.radichev.workforyou.model.bindingModels.educationBindingModel.EducationBindingModel;
+import com.radichev.workforyou.model.bindingModels.user.educationBindingModel.EducationBindingModel;
 import com.radichev.workforyou.repository.EducationRepository;
 import com.radichev.workforyou.service.CountryService;
 import com.radichev.workforyou.service.EducationService;
@@ -12,8 +12,6 @@ import com.radichev.workforyou.service.TitleTypeService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
 
 @Service
 public class EducationServiceImpl implements EducationService {
