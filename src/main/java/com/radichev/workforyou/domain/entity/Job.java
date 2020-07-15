@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "jobs")
 public class Job extends BaseEntity {
     private String jobTitle;
-    private Set<WorkSphere> workSpheres;
+    private WorkSphere workSphere;
     //TODO to add search tags
     //TODO to fix delivery times
     private int deliveryTime;
@@ -31,13 +31,13 @@ public class Job extends BaseEntity {
     }
 
     @NotNull
-    @ManyToMany
-    public Set<WorkSphere> getWorkSpheres() {
-        return workSpheres;
+    @ManyToOne
+    public WorkSphere getWorkSphere() {
+        return workSphere;
     }
 
-    public void setWorkSpheres(Set<WorkSphere> workSpheres) {
-        this.workSpheres = workSpheres;
+    public void setWorkSphere(WorkSphere workSphere) {
+        this.workSphere = workSphere;
     }
 
     @Column(name = "delivery_time", nullable = false)

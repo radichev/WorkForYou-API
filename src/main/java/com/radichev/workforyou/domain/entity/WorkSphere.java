@@ -6,8 +6,9 @@ import java.util.Set;
 @Entity
 @Table(name = "work_spheres")
 public class WorkSphere extends BaseEntity {
-    String workSphere;
-    Set<SubSphere> subSpheres;
+    private String workSphere;
+    private Set<SubSphere> subSpheres;
+    private Set<Job> jobs;
 
     public WorkSphere() {
     }
@@ -29,5 +30,14 @@ public class WorkSphere extends BaseEntity {
 
     public void setSubSpheres(Set<SubSphere> subSpheres) {
         this.subSpheres = subSpheres;
+    }
+
+    @OneToMany(mappedBy = "workSphere")
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
     }
 }
