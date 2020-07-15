@@ -115,8 +115,7 @@ public class UserProfileDetails extends BaseEntity {
         this.certificates = certificates;
     }
 
-    @OneToMany
-    @JoinColumn(name = "user_profile_details_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "userProfileDetails")
     public Set<Job> getJobs() {
         return jobs;
     }

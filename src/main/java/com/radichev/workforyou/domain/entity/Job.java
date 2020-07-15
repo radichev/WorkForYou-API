@@ -16,6 +16,7 @@ public class Job extends BaseEntity {
     private BigDecimal price;
     private String description;
     private Set<Picture> pictures;
+    private UserProfileDetails userProfileDetails;
 
     public Job() {
     }
@@ -74,5 +75,15 @@ public class Job extends BaseEntity {
 
     public void setPictures(Set<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    @NotNull
+    @ManyToOne
+    public UserProfileDetails getUserProfileDetails() {
+        return userProfileDetails;
+    }
+
+    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
+        this.userProfileDetails = userProfileDetails;
     }
 }
