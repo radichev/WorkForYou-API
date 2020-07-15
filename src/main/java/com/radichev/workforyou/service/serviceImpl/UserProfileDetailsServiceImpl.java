@@ -23,13 +23,13 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     private final UserProfileDetailsRepository userProfileDetailsRepository;
     private final ModelMapper modelMapper;
     private final UserService userService;
-    private final FileStoreImpl fileStore;
+    private final FileStoreServiceImpl fileStore;
     private final CountryService countryService;
 
     public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository,
                                          ModelMapper modelMapper,
                                          @Lazy UserService userService,
-                                         FileStoreImpl fileStore,
+                                         FileStoreServiceImpl fileStore,
                                          CountryService countryService) {
         this.userProfileDetailsRepository = userProfileDetailsRepository;
         this.modelMapper = modelMapper;
