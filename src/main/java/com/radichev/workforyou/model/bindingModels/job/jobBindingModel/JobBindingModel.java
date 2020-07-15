@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class JobBindingModel {
     private String jobTitle;
-    private Set<WorkSphereDto> workSpheres;
+    private WorkSphereDto workSphere;
     private int deliveryTime;
     private BigDecimal price;
     private String description;
@@ -25,12 +25,12 @@ public class JobBindingModel {
         this.jobTitle = jobTitle;
     }
 
-    public Set<WorkSphereDto> getWorkSpheres() {
-        return workSpheres;
+    public WorkSphereDto getWorkSphere() {
+        return workSphere;
     }
 
-    public void setWorkSpheres(Set<WorkSphereDto> workSpheres) {
-        this.workSpheres = workSpheres;
+    public void setWorkSphere(WorkSphereDto workSphere) {
+        this.workSphere = workSphere;
     }
 
     public int getDeliveryTime() {

@@ -30,7 +30,7 @@ public class JobServiceImpl implements JobService {
     public void addJob(JobBindingModel jobBindingModel, String userId) {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
-        WorkSphere workSphere = this.workSphereService.findWorkSphereById(jobBindingModel.getWorkSpheres())
+        WorkSphere workSphere = this.workSphereService.findWorkSphereById(jobBindingMode)
 
         Job job = this.modelMapper.map(jobBindingModel, Job.class);
     }
