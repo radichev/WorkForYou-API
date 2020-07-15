@@ -4,8 +4,8 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
+import com.radichev.workforyou.service.FileStore;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class FileStoreImpl {
+public class FileStoreImpl implements FileStore {
 
     private final AmazonS3 amazonS3;
 
