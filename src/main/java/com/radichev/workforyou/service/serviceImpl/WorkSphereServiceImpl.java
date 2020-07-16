@@ -14,6 +14,11 @@ public class WorkSphereServiceImpl implements WorkSphereService {
     }
 
     @Override
+    public void initWorkSpheres() {
+
+    }
+
+    @Override
     public WorkSphere findWorkSphereById(String workSphereId) {
         return this.workSphereRepository.findById(workSphereId).get();
     }

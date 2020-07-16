@@ -13,6 +13,10 @@ public class SubSphere extends BaseEntity {
     public SubSphere() {
     }
 
+    public SubSphere(String subSphere) {
+        this.subSphere = subSphere;
+    }
+
     @Column(name = "display_name", nullable = false, unique = true)
     public String getSubSphere() {
         return subSphere;
