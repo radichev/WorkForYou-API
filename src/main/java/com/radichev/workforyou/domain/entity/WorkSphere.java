@@ -13,6 +13,11 @@ public class WorkSphere extends BaseEntity {
     public WorkSphere() {
     }
 
+    public WorkSphere(String workSphere, Set<SubSphere> subSpheres) {
+        this.workSphere = workSphere;
+        this.subSpheres = subSpheres;
+    }
+
     @Column(name = "work_sphere", nullable = false)
     public String getWorkSphere() {
         return workSphere;
