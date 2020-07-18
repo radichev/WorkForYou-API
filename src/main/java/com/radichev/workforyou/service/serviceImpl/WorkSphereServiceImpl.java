@@ -2,18 +2,25 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.SubSphere;
 import com.radichev.workforyou.domain.entity.WorkSphere;
+import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
+import com.radichev.workforyou.model.viewModels.lookupViewModel.WorkSphereLookupViewModel;
 import com.radichev.workforyou.repository.WorkSphereRepository;
 import com.radichev.workforyou.service.WorkSphereService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class WorkSphereServiceImpl implements WorkSphereService {
     private final WorkSphereRepository workSphereRepository;
+    private final ModelMapper modelMapper;
 
-    public WorkSphereServiceImpl(WorkSphereRepository workSphereRepository) {
+    public WorkSphereServiceImpl(WorkSphereRepository workSphereRepository, ModelMapper modelMapper) {
         this.workSphereRepository = workSphereRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -28,8 +35,7 @@ public class WorkSphereServiceImpl implements WorkSphereService {
                     new SubSphere("QA"),
                     new SubSphere("Databases"),
                     new SubSphere("Cybersecurity & Data Protection"),
-                    new SubSphere("Desktop Applications"),
-                    new SubSphere("Other"))));
+                    new SubSphere("Desktop Applications"))));
 
             this.workSphereRepository.saveAndFlush(new WorkSphere("Graphics & Design", Set.of(
                     new SubSphere("Logo & Brand Identity"),
@@ -37,8 +43,7 @@ public class WorkSphereServiceImpl implements WorkSphereService {
                     new SubSphere("Art & Illustration"),
                     new SubSphere("Visual Design"),
                     new SubSphere("Web & Mobile"),
-                    new SubSphere("Merchandise"),
-                    new SubSphere("Other"))));
+                    new SubSphere("Merchandise"))));
 
             this.workSphereRepository.saveAndFlush(new WorkSphere("Video & Animation", Set.of(
                     new SubSphere("Video Editing"),
@@ -47,8 +52,7 @@ public class WorkSphereServiceImpl implements WorkSphereService {
                     new SubSphere("Logo Animation"),
                     new SubSphere("3D Product Animation"),
                     new SubSphere("Visual Effects"),
-                    new SubSphere("Intros & Outros"),
-                    new SubSphere("Other"))));
+                    new SubSphere("Intros & Outros"))));
 
             this.workSphereRepository.saveAndFlush(new WorkSphere("Digital Marketing", Set.of(
                     new SubSphere("Social Media Marketing"),
@@ -58,8 +62,7 @@ public class WorkSphereServiceImpl implements WorkSphereService {
                     new SubSphere("Web Analytics"),
                     new SubSphere("Social Media Advertising"),
                     new SubSphere("Influencer Marketing"),
-                    new SubSphere("Mobile Marketing & Advertising"),
-                    new SubSphere("Other"))));
+                    new SubSphere("Mobile Marketing & Advertising"))));
 
             this.workSphereRepository.saveAndFlush(new WorkSphere("Music & Audio", Set.of(
                     new SubSphere("Songwriters"),
@@ -67,13 +70,20 @@ public class WorkSphereServiceImpl implements WorkSphereService {
                     new SubSphere("Producers & Composers"),
                     new SubSphere("Singers & Vocalists"),
                     new SubSphere("Mixing & Mastering"),
-                    new SubSphere("Sound Effects"),
-                    new SubSphere("Other"))));
+                    new SubSphere("Sound Effects"))));
         }
     }
 
     @Override
     public WorkSphere findWorkSphereById(String workSphereId) {
         return this.workSphereRepository.findById(workSphereId).get();
+    }
+
+    @Override
+    public Set<WorkSphereDto> findAllWorkSpheres() {
+        return this.workSphereRepository.findAll()
+                .stream()
+                .map(workSphere -> this.modelMapper.map(workSphere, WorkSphereDto.class))
+                .collect(Collectors.toSet());
     }
 }

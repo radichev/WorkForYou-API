@@ -2,7 +2,7 @@ package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.model.bindingModels.user.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
-import com.radichev.workforyou.model.viewModels.lookupViewModel.LookupTablesViewModel;
+import com.radichev.workforyou.model.viewModels.lookupViewModel.UserLookupTablesViewModel;
 import com.radichev.workforyou.service.*;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -65,13 +65,13 @@ public class UserProfileDetailsController {
     }
 
     @GetMapping("/lookups")
-    public ResponseEntity<LookupTablesViewModel> getAllLookupTables() {
-       LookupTablesViewModel lookupTablesViewModel = new LookupTablesViewModel();
-       lookupTablesViewModel.setSkillLevels(this.skillLevelService.findAllSkillLevels());
-       lookupTablesViewModel.setLanguageLevels(this.languageLevelService.findAllLanguageLevels());
-       lookupTablesViewModel.setTitleTypes(this.titleTypeService.findAllTitleTypes());
-       lookupTablesViewModel.setCountries(this.countryService.findAllCountries());
+    public ResponseEntity<UserLookupTablesViewModel> getAllLookupTables() {
+       UserLookupTablesViewModel userLookupTablesViewModel = new UserLookupTablesViewModel();
+       userLookupTablesViewModel.setSkillLevels(this.skillLevelService.findAllSkillLevels());
+       userLookupTablesViewModel.setLanguageLevels(this.languageLevelService.findAllLanguageLevels());
+       userLookupTablesViewModel.setTitleTypes(this.titleTypeService.findAllTitleTypes());
+       userLookupTablesViewModel.setCountries(this.countryService.findAllCountries());
 
-       return ResponseEntity.ok().body(lookupTablesViewModel);
+       return ResponseEntity.ok().body(userLookupTablesViewModel);
     }
 }

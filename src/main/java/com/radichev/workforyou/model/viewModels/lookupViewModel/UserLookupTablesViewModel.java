@@ -7,13 +7,13 @@ import com.radichev.workforyou.model.dtos.SkillDto.SkillLevelDto;
 
 import java.util.List;
 
-public class LookupTablesViewModel {
+public class UserLookupTablesViewModel {
     private List<LanguageLevelDto> languageLevels;
     private List<SkillLevelDto> skillLevels;
     private List<TitleTypeDto> titleTypes;
     private List<CountryDto> countries;
 
-    public LookupTablesViewModel() {
+    public UserLookupTablesViewModel() {
     }
 
     public List<LanguageLevelDto> getLanguageLevels() {
