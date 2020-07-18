@@ -32,6 +32,7 @@ public class JobServiceImpl implements JobService {
 
         WorkSphere workSphere = this.workSphereService.findWorkSphereById(jobBindingModel.getWorkSphere().getId());
 
+
         Job job = this.modelMapper.map(jobBindingModel, Job.class);
         job.setUserProfileDetails(userProfileDetails);
         job.setWorkSphere(workSphere);

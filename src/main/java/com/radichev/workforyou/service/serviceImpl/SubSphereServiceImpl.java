@@ -1,5 +1,6 @@
 package com.radichev.workforyou.service.serviceImpl;
 
+import com.radichev.workforyou.domain.entity.SubSphere;
 import com.radichev.workforyou.repository.SubSphereRepository;
 import com.radichev.workforyou.service.SubSphereService;
 import org.modelmapper.ModelMapper;
@@ -18,5 +19,10 @@ public class SubSphereServiceImpl implements SubSphereService {
     @Override
     public void initSubSpheres() {
         
+    }
+
+    @Override
+    public SubSphere findSubSphereById(String subSphereId) {
+        return this.subSphereRepository.findById(subSphereId).get();
     }
 }

@@ -20,7 +20,7 @@ public class WorkSphereController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<WorkSphereLookupViewModel> getAllLookupTables() {
+    public ResponseEntity<WorkSphereLookupViewModel> getAllWorkSpheres() {
         WorkSphereLookupViewModel workSphereLookupViewModel = new WorkSphereLookupViewModel();
         workSphereLookupViewModel.setWorkSpheres(this.workSphereService.findAllWorkSpheres());
 
