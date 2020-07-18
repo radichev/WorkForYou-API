@@ -1,22 +1,21 @@
 package com.radichev.workforyou.model.bindingModels.job.jobBindingModel;
 
-import com.radichev.workforyou.model.dtos.PictureDto.PictureDto;
-import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
+import com.radichev.workforyou.model.bindingModels.WorkSphereBindingModel;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Set;
 
 public class JobBindingModel {
     private String jobTitle;
-    private WorkSphereDto workSphere;
+    private WorkSphereBindingModel workSphere;
     private int deliveryTime;
     private BigDecimal price;
     private String description;
-    private Set<PictureDto> pictures;
 
     public JobBindingModel() {
     }
 
+    @NotNull
     public String getJobTitle() {
         return jobTitle;
     }
@@ -25,14 +24,16 @@ public class JobBindingModel {
         this.jobTitle = jobTitle;
     }
 
-    public WorkSphereDto getWorkSphere() {
+    @NotNull
+    public WorkSphereBindingModel getWorkSphere() {
         return workSphere;
     }
 
-    public void setWorkSphere(WorkSphereDto workSphere) {
+    public void setWorkSphere(WorkSphereBindingModel workSphere) {
         this.workSphere = workSphere;
     }
 
+    @NotNull
     public int getDeliveryTime() {
         return deliveryTime;
     }
@@ -41,6 +42,7 @@ public class JobBindingModel {
         this.deliveryTime = deliveryTime;
     }
 
+    @NotNull
     public BigDecimal getPrice() {
         return price;
     }
@@ -49,19 +51,12 @@ public class JobBindingModel {
         this.price = price;
     }
 
+    @NotNull
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Set<PictureDto> getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(Set<PictureDto> pictures) {
-        this.pictures = pictures;
     }
 }

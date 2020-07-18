@@ -1,11 +1,13 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.Job;
+import com.radichev.workforyou.domain.entity.SubSphere;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.WorkSphere;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.repository.JobRepository;
 import com.radichev.workforyou.service.JobService;
+import com.radichev.workforyou.service.SubSphereService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import com.radichev.workforyou.service.WorkSphereService;
 import org.modelmapper.ModelMapper;
@@ -17,12 +19,14 @@ public class JobServiceImpl implements JobService {
     private final ModelMapper modelMapper;
     private final UserProfileDetailsService userProfileDetailsService;
     private final WorkSphereService workSphereService;
+    private final SubSphereService subSphereService;
 
-    public JobServiceImpl(JobRepository jobRepository, ModelMapper modelMapper, UserProfileDetailsService userProfileDetailsService, WorkSphereService workSphereService) {
+    public JobServiceImpl(JobRepository jobRepository, ModelMapper modelMapper, UserProfileDetailsService userProfileDetailsService, WorkSphereService workSphereService, SubSphereService subSphereService) {
         this.jobRepository = jobRepository;
         this.modelMapper = modelMapper;
         this.userProfileDetailsService = userProfileDetailsService;
         this.workSphereService = workSphereService;
+        this.subSphereService = subSphereService;
     }
 
 
@@ -31,7 +35,7 @@ public class JobServiceImpl implements JobService {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         WorkSphere workSphere = this.workSphereService.findWorkSphereById(jobBindingModel.getWorkSphere().getId());
-
+        SubSphere subSphere = this.subSphereService.findSubSphereById(jobBindingModel.getWorkSphere().)//TODO
 
         Job job = this.modelMapper.map(jobBindingModel, Job.class);
         job.setUserProfileDetails(userProfileDetails);
