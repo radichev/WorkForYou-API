@@ -9,6 +9,7 @@ import com.radichev.workforyou.service.WorkSphereService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -80,10 +81,11 @@ public class WorkSphereServiceImpl implements WorkSphereService {
     }
 
     @Override
-    public Set<WorkSphereDto> findAllWorkSpheres() {
+    public List<WorkSphereDto> findAllWorkSpheres() {
         return this.workSphereRepository.findAll()
                 .stream()
                 .map(workSphere -> this.modelMapper.map(workSphere, WorkSphereDto.class))
-                .collect(Collectors.toSet());
+                .sorted(Comparator.comparing(WorkSphereDto::getWorkSphere))
+                .collect(Collectors.toList());
     }
 }

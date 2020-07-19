@@ -2,19 +2,19 @@ package com.radichev.workforyou.model.viewModels.lookupViewModel;
 
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
-import java.util.Set;
+import java.util.List;
 
 public class WorkSphereLookupViewModel {
-    private Set<WorkSphereDto> workSpheres;
+    private List<WorkSphereDto> workSpheres;
 
     public WorkSphereLookupViewModel() {
     }
 
-    public Set<WorkSphereDto> getWorkSpheres() {
+    public List<WorkSphereDto> getWorkSpheres() {
         return workSpheres;
     }
 
-    public void setWorkSpheres(Set<WorkSphereDto> workSpheres) {
+    public void setWorkSpheres(List<WorkSphereDto> workSpheres) {
         this.workSpheres = workSpheres;
     }
 }

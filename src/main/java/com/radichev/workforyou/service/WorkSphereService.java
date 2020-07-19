@@ -3,7 +3,7 @@ package com.radichev.workforyou.service;
 import com.radichev.workforyou.domain.entity.WorkSphere;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
-import java.util.Set;
+import java.util.List;
 
 public interface WorkSphereService {
 
@@ -11,5 +11,5 @@ public interface WorkSphereService {
 
     WorkSphere findWorkSphereById(String workSphereId);
 
-    Set<WorkSphereDto> findAllWorkSpheres();
+    List<WorkSphereDto> findAllWorkSpheres();
 }
