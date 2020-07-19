@@ -1,5 +1,6 @@
 package com.radichev.workforyou.domain.entity;
 
+import com.radichev.workforyou.domain.entity.auth.User;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class UserProfileDetails extends BaseEntity {
     private Set<Education> educations;
     private Set<Certificate> certificates;
     private Set<Job> jobs;
+    private User user;
 
     public UserProfileDetails() {
     }
@@ -131,5 +133,14 @@ public class UserProfileDetails extends BaseEntity {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    @OneToOne(mappedBy = "userProfileDetails")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

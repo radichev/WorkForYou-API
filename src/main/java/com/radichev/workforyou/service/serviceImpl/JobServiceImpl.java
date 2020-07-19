@@ -5,6 +5,7 @@ import com.radichev.workforyou.domain.entity.SubSphere;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.WorkSphere;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
+import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.repository.JobRepository;
 import com.radichev.workforyou.service.JobService;
 import com.radichev.workforyou.service.SubSphereService;
@@ -12,6 +13,9 @@ import com.radichev.workforyou.service.UserProfileDetailsService;
 import com.radichev.workforyou.service.WorkSphereService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobServiceImpl implements JobService {
@@ -43,5 +47,13 @@ public class JobServiceImpl implements JobService {
         job.setWorkSphere(workSphere);
 
         this.jobRepository.save(job);
+    }
+
+    @Override
+    public List<JobViewModel> findAllJobsByUserId(String userId) {
+        return this.jobRepository.findAllByUserId(userId)
+                .stream()
+                .map(job -> this.modelMapper.map(job, JobViewModel.class))
+                .collect(Collectors.toList());
     }
 }
