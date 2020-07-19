@@ -4,7 +4,6 @@ import javax.validation.constraints.NotNull;
 
 public class WorkSphereBindingModel {
     private String id;
-    private String workSphere;
     private SubSphereBindingModel subSphere;
 
     public WorkSphereBindingModel() {
@@ -17,15 +16,6 @@ public class WorkSphereBindingModel {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    @NotNull
-    public String getWorkSphere() {
-        return workSphere;
-    }
-
-    public void setWorkSphere(String workSphere) {
-        this.workSphere = workSphere;
     }
 
     @NotNull

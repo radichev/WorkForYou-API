@@ -35,10 +35,13 @@ public class JobServiceImpl implements JobService {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         WorkSphere workSphere = this.workSphereService.findWorkSphereById(jobBindingModel.getWorkSphere().getId());
-        SubSphere subSphere = this.subSphereService.findSubSphereById(jobBindingModel.getWorkSphere().)//TODO
+        SubSphere subSphere = this.subSphereService.findSubSphereById(jobBindingModel.getWorkSphere().getSubSphere().getId());
+        workSphere.getSubSpheres().add(subSphere);
 
         Job job = this.modelMapper.map(jobBindingModel, Job.class);
         job.setUserProfileDetails(userProfileDetails);
         job.setWorkSphere(workSphere);
+
+        this.jobRepository.save(job);
     }
 }
