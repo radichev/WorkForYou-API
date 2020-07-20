@@ -1,6 +1,7 @@
 package com.radichev.workforyou.model.viewModels.jobViewModels;
 
 import com.radichev.workforyou.model.dtos.PictureDto.PictureDto;
+import com.radichev.workforyou.model.dtos.WorkSphereDto.SubSphereDto;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 
 import java.math.BigDecimal;
@@ -9,7 +10,8 @@ import java.util.Set;
 public class JobViewModel {
     private String id;
     private String jobTitle;
-    private Set<WorkSphereDto> workSpheres;
+    private WorkSphereDto workSphere;
+    private SubSphereDto subSphere;
     private int deliveryTime;
     private BigDecimal price;
     private String description;
@@ -34,12 +36,20 @@ public class JobViewModel {
         this.jobTitle = jobTitle;
     }
 
-    public Set<WorkSphereDto> getWorkSpheres() {
-        return workSpheres;
+    public WorkSphereDto getWorkSphere() {
+        return workSphere;
     }
 
-    public void setWorkSpheres(Set<WorkSphereDto> workSpheres) {
-        this.workSpheres = workSpheres;
+    public void setWorkSphere(WorkSphereDto workSphere) {
+        this.workSphere = workSphere;
+    }
+
+    public SubSphereDto getSubSphere() {
+        return subSphere;
+    }
+
+    public void setSubSphere(SubSphereDto subSphere) {
+        this.subSphere = subSphere;
     }
 
     public int getDeliveryTime() {

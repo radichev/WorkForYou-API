@@ -5,8 +5,8 @@ import java.util.Set;
 
 public class WorkSphereDto {
     private String id;
-    String workSphere;
-    Set<SubSphereDto> subSpheres;
+    private String workSphere;
+    private Set<SubSphereDto> subSpheres;
 
     public WorkSphereDto() {
     }

@@ -10,6 +10,7 @@ import java.util.Set;
 public class Job extends BaseEntity {
     private String jobTitle;
     private WorkSphere workSphere;
+    private SubSphere subSphere;
     //TODO to add search tags
     //TODO to fix delivery times
     private int deliveryTime;
@@ -38,6 +39,15 @@ public class Job extends BaseEntity {
 
     public void setWorkSphere(WorkSphere workSphere) {
         this.workSphere = workSphere;
+    }
+
+    @ManyToOne
+    public SubSphere getSubSphere() {
+        return subSphere;
+    }
+
+    public void setSubSphere(SubSphere subSphere) {
+        this.subSphere = subSphere;
     }
 
     @Column(name = "delivery_time", nullable = false)

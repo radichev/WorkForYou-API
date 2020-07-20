@@ -9,6 +9,7 @@ import javax.persistence.Table;
 @Table(name = "sub_spheres")
 public class SubSphere extends BaseEntity {
     private String subSphere;
+    private WorkSphere workSphere;
 
     public SubSphere() {
     }
@@ -26,4 +27,12 @@ public class SubSphere extends BaseEntity {
         this.subSphere = subSphere;
     }
 
+    @ManyToOne
+    public WorkSphere getWorkSphere() {
+        return workSphere;
+    }
+
+    public void setWorkSphere(WorkSphere workSphere) {
+        this.workSphere = workSphere;
+    }
 }
