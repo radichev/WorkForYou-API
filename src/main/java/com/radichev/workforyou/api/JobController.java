@@ -20,8 +20,13 @@ public class JobController {
     }
 
     @GetMapping("/all/{userId}")
-    public ResponseEntity<List<JobViewModel>> addJob(@PathVariable String userId){
+    public ResponseEntity<List<JobViewModel>> getAllJobs(@PathVariable String userId){
         return ResponseEntity.ok().body(this.jobService.findAllJobsByUserId(userId));
+    }
+
+    @GetMapping("/{jobId}")
+    public ResponseEntity<JobViewModel> getJobById(@PathVariable String jobId){
+        return ResponseEntity.ok().body(this.jobService.findJobById(jobId));
     }
 
     @PostMapping("/add/{userId}")

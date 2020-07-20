@@ -10,4 +10,6 @@ public interface JobService {
     void addJob(JobBindingModel jobBindingModel, String userId);
 
     List<JobViewModel> findAllJobsByUserId(String userId);
+
+    JobViewModel findJobById(String jobId);
 }
