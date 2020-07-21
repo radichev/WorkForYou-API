@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class UserProfileDetailsJobViewModel {
     private String id;
+    private String userId;
     private String description;
     private LocalDate createdDate;
     private String country;
@@ -18,6 +19,14 @@ public class UserProfileDetailsJobViewModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getDescription() {

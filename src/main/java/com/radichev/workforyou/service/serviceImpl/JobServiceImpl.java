@@ -56,6 +56,7 @@ public class JobServiceImpl implements JobService {
                     JobViewModel jobViewModel = this.modelMapper.map(job, JobViewModel.class);
                     jobViewModel.getUserProfileDetails().setCountry(job.getUserProfileDetails().getCountry().getCountry());
                     jobViewModel.getUserProfileDetails().setUsername(job.getUserProfileDetails().getUser().getUsername());
+                    jobViewModel.getUserProfileDetails().setUserId(job.getUserProfileDetails().getUser().getId());
 
                     return jobViewModel;
                 })
