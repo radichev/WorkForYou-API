@@ -15,7 +15,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,9 +51,14 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<JobViewModel> findAllJobsByUserId(String userId) {
-        return this.jobRepository.findAllByUserId(userId)
-                .stream()
-                .map(job -> this.modelMapper.map(job, JobViewModel.class))
+        return this.jobRepository.findAllByUserId(userId).stream()
+                .map(job -> {
+                    JobViewModel jobViewModel = this.modelMapper.map(job, JobViewModel.class);
+                    jobViewModel.getUserProfileDetails().setCountry(job.getUserProfileDetails().getCountry().getCountry());
+                    jobViewModel.getUserProfileDetails().setUsername(job.getUserProfileDetails().getUser().getUsername());
+
+                    return jobViewModel;
+                })
                 .collect(Collectors.toList());
     }
 

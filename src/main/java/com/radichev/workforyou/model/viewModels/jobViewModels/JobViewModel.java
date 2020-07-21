@@ -16,6 +16,7 @@ public class JobViewModel {
     private BigDecimal price;
     private String description;
     private Set<PictureDto> pictures;
+    private UserProfileDetailsJobViewModel userProfileDetails;
 
     public JobViewModel() {
     }
@@ -82,5 +83,13 @@ public class JobViewModel {
 
     public void setPictures(Set<PictureDto> pictures) {
         this.pictures = pictures;
+    }
+
+    public UserProfileDetailsJobViewModel getUserProfileDetails() {
+        return userProfileDetails;
+    }
+
+    public void setUserProfileDetails(UserProfileDetailsJobViewModel userProfileDetails) {
+        this.userProfileDetails = userProfileDetails;
     }
 }
