@@ -2,6 +2,7 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.Country;
 import com.radichev.workforyou.domain.entity.LanguageLevel;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import com.radichev.workforyou.repository.CountryRepository;
 import com.radichev.workforyou.service.CountryService;
@@ -70,6 +71,8 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country findCountryById(String countryId) {
-        return this.countryRepository.findById(countryId).get();
+        return this.countryRepository.findById(countryId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Country not found with %s id.", countryId)));
     }
 }

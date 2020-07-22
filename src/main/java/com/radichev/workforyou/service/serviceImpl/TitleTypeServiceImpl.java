@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.TitleType;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.dtos.EducationDto.TitleTypeDto;
 import com.radichev.workforyou.repository.TitleTypeRepository;
 import com.radichev.workforyou.service.TitleTypeService;
@@ -52,6 +53,8 @@ public class TitleTypeServiceImpl implements TitleTypeService {
 
     @Override
     public TitleType findTitleTypeById(String titleTypeId) {
-        return this.titleTypeRepository.findById(titleTypeId).get();
+        return this.titleTypeRepository.findById(titleTypeId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("TitleType not found with %s id.", titleTypeId)));
     }
 }

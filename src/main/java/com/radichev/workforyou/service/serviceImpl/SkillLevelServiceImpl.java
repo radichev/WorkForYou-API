@@ -2,6 +2,7 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.LanguageLevel;
 import com.radichev.workforyou.domain.entity.SkillLevel;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillLevelDto;
 import com.radichev.workforyou.repository.SkillLevelRepository;
@@ -37,7 +38,9 @@ public class SkillLevelServiceImpl implements SkillLevelService {
 
     @Override
     public SkillLevel findSkillLevelById(String skillLevelId) {
-        return this.skillLevelRepository.findById(skillLevelId).get();
+        return this.skillLevelRepository.findById(skillLevelId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("SkillLevel not found with %s id.", skillLevelId)));
     }
 
     @Override

@@ -2,8 +2,8 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.SubSphere;
 import com.radichev.workforyou.domain.entity.WorkSphere;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
-import com.radichev.workforyou.model.viewModels.lookupViewModel.WorkSphereLookupViewModel;
 import com.radichev.workforyou.repository.WorkSphereRepository;
 import com.radichev.workforyou.service.WorkSphereService;
 import org.modelmapper.ModelMapper;
@@ -77,7 +77,9 @@ public class WorkSphereServiceImpl implements WorkSphereService {
 
     @Override
     public WorkSphere findWorkSphereById(String workSphereId) {
-        return this.workSphereRepository.findById(workSphereId).get();
+        return this.workSphereRepository.findById(workSphereId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("WorkSphere not found with %s id.", workSphereId)));
     }
 
     @Override

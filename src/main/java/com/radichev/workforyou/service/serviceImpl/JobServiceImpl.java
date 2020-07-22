@@ -4,6 +4,7 @@ import com.radichev.workforyou.domain.entity.Job;
 import com.radichev.workforyou.domain.entity.SubSphere;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.WorkSphere;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.repository.JobRepository;
@@ -65,6 +66,9 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public JobViewModel findJobById(String jobId) {
-        return this.modelMapper.map(this.jobRepository.findById(jobId).get(), JobViewModel.class);
+        return this.modelMapper.map(this.jobRepository.findById(jobId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Job not found with %s id.", jobId))),
+                JobViewModel.class);
     }
 }

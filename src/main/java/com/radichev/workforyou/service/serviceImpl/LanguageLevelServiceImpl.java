@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.LanguageLevel;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageLevelDto;
 import com.radichev.workforyou.repository.LanguageLevelRepository;
 import com.radichev.workforyou.service.LanguageLevelService;
@@ -35,7 +36,9 @@ public class LanguageLevelServiceImpl implements LanguageLevelService {
 
     @Override
     public LanguageLevel findLanguageLevelById(String languageLevelId) {
-        return this.languageLevelRepository.findById(languageLevelId).get();
+        return this.languageLevelRepository.findById(languageLevelId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("LanguageLevel not found with %s id.", languageLevelId)));
     }
 
     @Override

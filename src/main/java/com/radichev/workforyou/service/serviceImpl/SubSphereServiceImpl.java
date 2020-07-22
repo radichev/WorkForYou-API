@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.SubSphere;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.repository.SubSphereRepository;
 import com.radichev.workforyou.service.SubSphereService;
 import org.modelmapper.ModelMapper;
@@ -23,6 +24,8 @@ public class SubSphereServiceImpl implements SubSphereService {
 
     @Override
     public SubSphere findSubSphereById(String subSphereId) {
-        return this.subSphereRepository.findById(subSphereId).get();
+        return this.subSphereRepository.findById(subSphereId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("SubSphere not found with %s id.", subSphereId)));
     }
 }

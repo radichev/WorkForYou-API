@@ -3,6 +3,7 @@ package com.radichev.workforyou.service.serviceImpl;
 import com.google.common.collect.Sets;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.auth.User;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.auth.SignInBindingModel;
 import com.radichev.workforyou.model.bindingModels.auth.SignUpBindingModel;
 import com.radichev.workforyou.model.viewModels.auth.SignInViewModel;
@@ -110,7 +111,7 @@ public class UserServiceImpl implements UserService {
     public UserProfileDetails findUserProfileDetailsById(String id) {
         return this.userRepository.findUserProfileDetails(id)
                 .orElseThrow(() ->
-                        new InvalidEntityException(String.format("UserProfileDetails not found with %s id.", id)));
+                        new EntityNotFoundException(String.format("UserProfileDetails not found with %s id.", id)));
     }
 
 }
