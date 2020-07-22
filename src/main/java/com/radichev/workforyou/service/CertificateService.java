@@ -1,8 +1,9 @@
 package com.radichev.workforyou.service;
 
 import com.radichev.workforyou.model.bindingModels.user.certificateBindingModel.CertificateBindingModel;
+import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 
 public interface CertificateService {
 
-    void addCertificate(CertificateBindingModel certificateBindingModel, String userId);
+    CertificateDto addCertificate(CertificateBindingModel certificateBindingModel, String userId);
 }

@@ -1,9 +1,11 @@
 package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.model.bindingModels.user.educationBindingModel.EducationBindingModel;
+import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.service.EducationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 
@@ -18,8 +20,16 @@ public class EducationController {
     }
 
     @PostMapping("/add/{userId}")
-    public ResponseEntity<Void> addEducations(@PathVariable String userId, @Valid @RequestBody EducationBindingModel educationBindingModel){
-        this.educationService.addEducation(educationBindingModel, userId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> addEducations(@PathVariable String userId,
+                                              @Valid @RequestBody EducationBindingModel educationBindingModel,
+                                              UriComponentsBuilder ucBuilder){
+
+        EducationDto educationDto = this.educationService.addEducation(educationBindingModel, userId);
+
+        return ResponseEntity
+                .created(ucBuilder.path("/educations/{educationId}")
+                        .buildAndExpand(educationDto.getId())
+                        .toUri())
+                        .build();
     }
 }

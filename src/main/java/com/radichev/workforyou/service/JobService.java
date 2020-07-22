@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface JobService {
 
-    void addJob(JobBindingModel jobBindingModel, String userId);
+    JobViewModel addJob(JobBindingModel jobBindingModel, String userId);
 
     List<JobViewModel> findAllJobsByUserId(String userId);
 

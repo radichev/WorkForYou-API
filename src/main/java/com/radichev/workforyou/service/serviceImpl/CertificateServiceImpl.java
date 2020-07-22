@@ -3,6 +3,7 @@ package com.radichev.workforyou.service.serviceImpl;
 import com.radichev.workforyou.domain.entity.Certificate;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.model.bindingModels.user.certificateBindingModel.CertificateBindingModel;
+import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.repository.CertificateRepository;
 import com.radichev.workforyou.service.CertificateService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
@@ -22,12 +23,12 @@ public class CertificateServiceImpl implements CertificateService {
     }
 
     @Override
-    public void addCertificate(CertificateBindingModel certificateBindingModel, String userId) {
+    public CertificateDto addCertificate(CertificateBindingModel certificateBindingModel, String userId) {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         Certificate certificate = this.modelMapper.map(certificateBindingModel, Certificate.class);
         certificate.setUserProfileDetails(userProfileDetails);
 
-        this.certificateRepository.saveAndFlush(certificate);
+        return this.modelMapper.map(this.certificateRepository.saveAndFlush(certificate), CertificateDto.class);
     }
 }

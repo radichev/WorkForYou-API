@@ -36,7 +36,7 @@ public class JobServiceImpl implements JobService {
 
 
     @Override
-    public void addJob(JobBindingModel jobBindingModel, String userId) {
+    public JobViewModel addJob(JobBindingModel jobBindingModel, String userId) {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         WorkSphere workSphere = this.workSphereService.findWorkSphereById(jobBindingModel.getWorkSphere().getId());
@@ -47,7 +47,7 @@ public class JobServiceImpl implements JobService {
         job.setWorkSphere(workSphere);
         job.setSubSphere(subSphere);
 
-        this.jobRepository.save(job);
+        return this.modelMapper.map(this.jobRepository.save(job), JobViewModel.class);
     }
 
     @Override

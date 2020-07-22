@@ -5,6 +5,7 @@ import com.radichev.workforyou.domain.entity.Education;
 import com.radichev.workforyou.domain.entity.TitleType;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.model.bindingModels.user.educationBindingModel.EducationBindingModel;
+import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.repository.EducationRepository;
 import com.radichev.workforyou.service.CountryService;
 import com.radichev.workforyou.service.EducationService;
@@ -30,7 +31,7 @@ public class EducationServiceImpl implements EducationService {
     }
 
     @Override
-    public void addEducation(EducationBindingModel educationBindingModel, String userId) {
+    public EducationDto addEducation(EducationBindingModel educationBindingModel, String userId) {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         Country country = this.countryService.findCountryById(educationBindingModel.getCountry().getId());
@@ -43,6 +44,6 @@ public class EducationServiceImpl implements EducationService {
         education.setCountry(country);
         education.setTitleType(titleType);
 
-        this.educationRepository.saveAndFlush(education);
+        return this.modelMapper.map(this.educationRepository.saveAndFlush(education), EducationDto.class);
     }
 }

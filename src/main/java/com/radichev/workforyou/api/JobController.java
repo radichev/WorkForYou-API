@@ -5,6 +5,7 @@ import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.service.JobService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -30,8 +31,16 @@ public class JobController {
     }
 
     @PostMapping("/add/{userId}")
-    public ResponseEntity<Void> addJob(@PathVariable String userId, @Valid @RequestBody JobBindingModel jobBindingModel){
-        this.jobService.addJob(jobBindingModel, userId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> addJob(@PathVariable String userId,
+                                       @Valid @RequestBody JobBindingModel jobBindingModel,
+                                       UriComponentsBuilder ucBuilder){
+
+        JobViewModel jobViewModel = this.jobService.addJob(jobBindingModel, userId);
+
+        return ResponseEntity
+                .created(ucBuilder.path("/jobs/{jobId}")
+                        .buildAndExpand(jobViewModel.getId())
+                        .toUri())
+                        .build();
     }
 }
