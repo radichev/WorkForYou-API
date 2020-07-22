@@ -18,11 +18,6 @@ public class SubSphereServiceImpl implements SubSphereService {
     }
 
     @Override
-    public void initSubSpheres() {
-        
-    }
-
-    @Override
     public SubSphere findSubSphereById(String subSphereId) {
         return this.subSphereRepository.findById(subSphereId)
                 .orElseThrow(() ->

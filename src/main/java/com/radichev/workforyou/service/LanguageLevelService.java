@@ -10,7 +10,5 @@ public interface LanguageLevelService {
 
     List<LanguageLevelDto> findAllLanguageLevels();
 
-    LanguageLevel findByLanguageLevel(String languageLevel);
-
     LanguageLevel findLanguageLevelById(String languageLevelId);
 }

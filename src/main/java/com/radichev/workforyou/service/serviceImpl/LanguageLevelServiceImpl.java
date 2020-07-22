@@ -30,11 +30,6 @@ public class LanguageLevelServiceImpl implements LanguageLevelService {
     }
 
     @Override
-    public LanguageLevel findByLanguageLevel(String languageLevel) {
-        return this.languageLevelRepository.findByLanguageLevel(languageLevel);
-    }
-
-    @Override
     public LanguageLevel findLanguageLevelById(String languageLevelId) {
         return this.languageLevelRepository.findById(languageLevelId)
                 .orElseThrow(() ->

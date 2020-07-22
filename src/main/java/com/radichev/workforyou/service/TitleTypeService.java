@@ -10,7 +10,5 @@ public interface TitleTypeService {
 
     List<TitleTypeDto> findAllTitleTypes();
 
-    TitleType findByTitleType(String titleType);
-
     TitleType findTitleTypeById(String titleTypeId);
 }

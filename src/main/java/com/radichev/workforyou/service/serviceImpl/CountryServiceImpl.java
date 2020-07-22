@@ -1,7 +1,6 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.Country;
-import com.radichev.workforyou.domain.entity.LanguageLevel;
 import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import com.radichev.workforyou.repository.CountryRepository;
@@ -62,11 +61,6 @@ public class CountryServiceImpl implements CountryService {
                 .map(country -> this.modelMapper.map(country, CountryDto.class))
                 .sorted(Comparator.comparing(CountryDto::getCountry))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public Country findByCountryName(String countryName) {
-        return this.countryRepository.findByCountry(countryName);
     }
 
     @Override

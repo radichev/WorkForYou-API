@@ -1,9 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
-import com.radichev.workforyou.domain.entity.LanguageLevel;
 import com.radichev.workforyou.domain.entity.SkillLevel;
 import com.radichev.workforyou.exception.EntityNotFoundException;
-import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillLevelDto;
 import com.radichev.workforyou.repository.SkillLevelRepository;
 import com.radichev.workforyou.service.SkillLevelService;
@@ -29,11 +27,6 @@ public class SkillLevelServiceImpl implements SkillLevelService {
                 .stream()
                 .map(skillLevel -> this.modelMapper.map(skillLevel, SkillLevelDto.class))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public SkillLevel findBySkillLevel(String skillLevel) {
-        return this.skillLevelRepository.findBySkillLevel(skillLevel);
     }
 
     @Override
