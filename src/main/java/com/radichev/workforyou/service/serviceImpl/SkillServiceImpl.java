@@ -2,6 +2,7 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.*;
 import com.radichev.workforyou.model.bindingModels.user.skillBindingModel.SkillBindingModel;
+import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.repository.SkillRepository;
 import com.radichev.workforyou.service.SkillLevelService;
 import com.radichev.workforyou.service.SkillService;
@@ -26,7 +27,7 @@ public class SkillServiceImpl implements SkillService {
     }
 
     @Override
-    public void addSkill(SkillBindingModel skillBindingModel, String userId) {
+    public SkillDto addSkill(SkillBindingModel skillBindingModel, String userId) {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         SkillLevel skillLevel = this.skillLevelService.findSkillLevelById(skillBindingModel.getSkillLevel().getId());
@@ -45,6 +46,6 @@ public class SkillServiceImpl implements SkillService {
 
         skill.setSkillLevel(skillLevel);
 
-        this.skillRepository.saveAndFlush(skill);
+        return this.modelMapper.map(this.skillRepository.saveAndFlush(skill), SkillDto.class);
     }
 }

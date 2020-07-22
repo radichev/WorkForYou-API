@@ -4,6 +4,7 @@ import com.radichev.workforyou.domain.entity.Language;
 import com.radichev.workforyou.domain.entity.LanguageLevel;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.model.bindingModels.user.languageBindingModel.LanguageBindingModel;
+import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
 import com.radichev.workforyou.repository.LanguageRepository;
 import com.radichev.workforyou.service.LanguageLevelService;
 import com.radichev.workforyou.service.LanguageService;
@@ -28,7 +29,7 @@ public class LanguageServiceImpl implements LanguageService {
     }
 
     @Override
-    public void addLanguage(LanguageBindingModel languageBindingModel, String userId) {
+    public LanguageDto addLanguage(LanguageBindingModel languageBindingModel, String userId) {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         LanguageLevel languageLevel = this.languageLevelService.findLanguageLevelById(languageBindingModel.getLanguageLevel().getId());
@@ -47,6 +48,6 @@ public class LanguageServiceImpl implements LanguageService {
 
         language.setLanguageLevel(languageLevel);
 
-        this.languageRepository.saveAndFlush(language);
+        return this.modelMapper.map(this.languageRepository.saveAndFlush(language), LanguageDto.class);
     }
 }

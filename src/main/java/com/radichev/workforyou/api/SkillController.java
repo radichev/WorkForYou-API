@@ -1,9 +1,11 @@
 package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.model.bindingModels.user.skillBindingModel.SkillBindingModel;
+import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.service.SkillService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 
@@ -19,8 +21,16 @@ public class SkillController {
     }
 
     @PostMapping("/add/{userId}")
-    public ResponseEntity<Void> addSkill(@PathVariable String userId, @Valid @RequestBody SkillBindingModel skillBindingModel){
-        this.skillService.addSkill(skillBindingModel, userId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> addSkill(@PathVariable String userId,
+                                         @Valid @RequestBody SkillBindingModel skillBindingModel,
+                                         UriComponentsBuilder ucBuilder){
+
+        SkillDto skillDto = this.skillService.addSkill(skillBindingModel, userId);
+
+        return ResponseEntity
+                .created(ucBuilder.path("/skills/{skillId}")
+                        .buildAndExpand(skillDto.getId())
+                        .toUri())
+                        .build();
     }
 }
