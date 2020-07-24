@@ -1,15 +1,14 @@
 package com.radichev.workforyou.domain.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "sub_spheres")
 public class SubSphere extends BaseEntity {
     private String subSphere;
     private WorkSphere workSphere;
+    private Set<Job> job;
 
     public SubSphere() {
     }
@@ -34,5 +33,14 @@ public class SubSphere extends BaseEntity {
 
     public void setWorkSphere(WorkSphere workSphere) {
         this.workSphere = workSphere;
+    }
+
+    @OneToMany(mappedBy = "subSphere")
+    public Set<Job> getJob() {
+        return job;
+    }
+
+    public void setJob(Set<Job> job) {
+        this.job = job;
     }
 }
