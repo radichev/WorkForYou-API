@@ -12,4 +12,6 @@ public interface JobService {
     List<JobViewModel> findAllJobsByUserId(String userId);
 
     JobViewModel findJobById(String jobId);
+
+    List<JobViewModel> findFiveJobsInWebProgramming();
 }

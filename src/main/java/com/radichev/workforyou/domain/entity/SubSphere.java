@@ -8,7 +8,7 @@ import java.util.Set;
 public class SubSphere extends BaseEntity {
     private String subSphere;
     private WorkSphere workSphere;
-    private Set<Job> job;
+//    private Set<Job> jobs;
 
     public SubSphere() {
     }
@@ -35,12 +35,12 @@ public class SubSphere extends BaseEntity {
         this.workSphere = workSphere;
     }
 
-    @OneToMany(mappedBy = "subSphere")
-    public Set<Job> getJob() {
-        return job;
-    }
-
-    public void setJob(Set<Job> job) {
-        this.job = job;
-    }
+//    @OneToMany(mappedBy = "subSphere")
+//    public Set<Job> getJobs() {
+//        return jobs;
+//    }
+//
+//    public void setJobs(Set<Job> jobs) {
+//        this.jobs = jobs;
+//    }
 }

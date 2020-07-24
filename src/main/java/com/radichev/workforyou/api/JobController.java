@@ -43,4 +43,9 @@ public class JobController {
                         .toUri())
                         .build();
     }
+
+    @GetMapping("/web-programming")
+    public ResponseEntity<List<JobViewModel>> findFiveJobsInWebProgramming(){
+        return ResponseEntity.ok().body(this.jobService.findFiveJobsInWebProgramming());
+    }
 }
