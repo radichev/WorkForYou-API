@@ -21,8 +21,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class JobServiceImpl implements JobService {
-    private static final String WEB_PROGRAMMING_SUBSPHERE = "Web programming";
-
     private final JobRepository jobRepository;
     private final ModelMapper modelMapper;
     private final UserProfileDetailsService userProfileDetailsService;
@@ -70,13 +68,13 @@ public class JobServiceImpl implements JobService {
     @Override
     public JobViewModel findJobById(String jobId) {
         return this.modelMapper.map(this.jobRepository.findById(jobId)
-                        .orElseThrow(() ->
-                                new EntityNotFoundException(String.format("Job not found with %s id.", jobId))), JobViewModel.class);
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Job not found with %s id.", jobId))), JobViewModel.class);
     }
 
     @Override
-    public List<JobViewModel> findFiveJobsInWebProgramming() {
-        return this.jobRepository.findFiveJobsBySubSphere(WEB_PROGRAMMING_SUBSPHERE, PageRequest.of(0, 5))
+    public List<JobViewModel> findFiveJobsInGivenSubSphere(String subSphereName) {
+        return this.jobRepository.findFiveJobsBySubSphere(subSphereName, PageRequest.of(0, 5))
                 .stream()
                 .map(job -> this.modelMapper.map(job, JobViewModel.class))
                 .collect(Collectors.toList());

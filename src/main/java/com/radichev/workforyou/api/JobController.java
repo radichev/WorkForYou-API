@@ -44,8 +44,8 @@ public class JobController {
                         .build();
     }
 
-    @GetMapping("/web-programming")
-    public ResponseEntity<List<JobViewModel>> findFiveJobsInWebProgramming(){
-        return ResponseEntity.ok().body(this.jobService.findFiveJobsInWebProgramming());
+    @GetMapping("/sub-sphere/{subSphereName}")
+    public ResponseEntity<List<JobViewModel>> findFiveJobsInGivenSubSphere(@PathVariable String subSphereName){
+        return ResponseEntity.ok().body(this.jobService.findFiveJobsInGivenSubSphere(subSphereName));
     }
 }

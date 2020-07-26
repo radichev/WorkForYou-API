@@ -13,5 +13,5 @@ public interface JobService {
 
     JobViewModel findJobById(String jobId);
 
-    List<JobViewModel> findFiveJobsInWebProgramming();
+    List<JobViewModel> findFiveJobsInGivenSubSphere(String subSphereName);
 }
