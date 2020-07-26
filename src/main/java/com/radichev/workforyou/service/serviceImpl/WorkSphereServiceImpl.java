@@ -3,6 +3,7 @@ package com.radichev.workforyou.service.serviceImpl;
 import com.radichev.workforyou.domain.entity.SubSphere;
 import com.radichev.workforyou.domain.entity.WorkSphere;
 import com.radichev.workforyou.exception.EntityNotFoundException;
+import com.radichev.workforyou.model.dtos.WorkSphereDto.SubSphereDto;
 import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 import com.radichev.workforyou.repository.WorkSphereRepository;
 import com.radichev.workforyou.service.WorkSphereService;
@@ -10,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -88,6 +90,12 @@ public class WorkSphereServiceImpl implements WorkSphereService {
                 .stream()
                 .map(workSphere -> this.modelMapper.map(workSphere, WorkSphereDto.class))
                 .sorted(Comparator.comparing(WorkSphereDto::getWorkSphere))
+                .peek(workSphereDto -> {
+                    Set<SubSphereDto> subSphereDtos = workSphereDto.getSubSpheres().stream()
+                            .sorted(Comparator.comparing(SubSphereDto::getSubSphere))
+                            .collect(Collectors.toCollection(LinkedHashSet::new));
+                    workSphereDto.setSubSpheres(subSphereDtos);
+                })
                 .collect(Collectors.toList());
     }
 }
