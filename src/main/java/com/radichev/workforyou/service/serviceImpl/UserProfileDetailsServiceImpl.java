@@ -56,6 +56,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
         Country country = this.countryService.findCountryById(userProfileDetailsEditBindingModel.getCountry().getId());
         userProfileDetails.setCountry(country);
+        userProfileDetails.getUser().setId(id);
 
         this.userProfileDetailsRepository.save(userProfileDetails);
     }
