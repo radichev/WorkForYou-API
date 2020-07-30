@@ -3,6 +3,8 @@ package com.radichev.workforyou.api;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.service.JobService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,19 +23,23 @@ public class JobController {
     }
 
     @GetMapping("/all/{userId}")
-    public ResponseEntity<List<JobViewModel>> getAllJobs(@PathVariable String userId){
-        return ResponseEntity.ok().body(this.jobService.findAllJobsByUserId(userId));
+    public ResponseEntity<List<JobViewModel>> getAllJobs(@PathVariable String userId) {
+        return ResponseEntity
+                .ok()
+                .body(this.jobService.findAllJobsByUserId(userId));
     }
 
     @GetMapping("/{jobId}")
-    public ResponseEntity<JobViewModel> getJobById(@PathVariable String jobId){
-        return ResponseEntity.ok().body(this.jobService.findJobById(jobId));
+    public ResponseEntity<JobViewModel> getJobById(@PathVariable String jobId) {
+        return ResponseEntity
+                .ok()
+                .body(this.jobService.findJobById(jobId));
     }
 
     @PostMapping("/add/{userId}")
     public ResponseEntity<Void> addJob(@PathVariable String userId,
                                        @Valid @RequestBody JobBindingModel jobBindingModel,
-                                       UriComponentsBuilder ucBuilder){
+                                       UriComponentsBuilder ucBuilder) {
 
         JobViewModel jobViewModel = this.jobService.addJob(jobBindingModel, userId);
 
@@ -45,7 +51,20 @@ public class JobController {
     }
 
     @GetMapping("/sub-sphere/{subSphereName}")
-    public ResponseEntity<List<JobViewModel>> findFiveJobsInGivenSubSphere(@PathVariable String subSphereName){
-        return ResponseEntity.ok().body(this.jobService.findFiveJobsInGivenSubSphere(subSphereName));
+    public ResponseEntity<List<JobViewModel>> findFiveJobsInGivenSubSphere(@PathVariable String subSphereName) {
+        return ResponseEntity
+                .ok()
+                .body(this.jobService.findFiveJobsInGivenSubSphere(subSphereName, PageRequest.of(0, 5)));
+    }
+
+    @GetMapping(value = "/sub-sphere/{subSphereId}/all",
+            params = {"page", "size"})
+    public ResponseEntity<Page<JobViewModel>> findAllJobsInGivenSubSphere(@PathVariable String subSphereId,
+                                                                          @RequestParam("page") int page,
+                                                                          @RequestParam("size") int size) {
+
+        return ResponseEntity
+                .ok()
+                .body(this.jobService.findAllJobsBySubSphereId(subSphereId, PageRequest.of(page, size)));
     }
 }

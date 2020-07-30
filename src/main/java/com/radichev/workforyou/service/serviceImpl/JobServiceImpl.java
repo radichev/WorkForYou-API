@@ -13,7 +13,9 @@ import com.radichev.workforyou.service.SubSphereService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import com.radichev.workforyou.service.WorkSphereService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -73,10 +75,16 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public List<JobViewModel> findFiveJobsInGivenSubSphere(String subSphereName) {
-        return this.jobRepository.findFiveJobsBySubSphere(subSphereName, PageRequest.of(0, 5))
+    public List<JobViewModel> findFiveJobsInGivenSubSphere(String subSphereName, PageRequest pageRequest) {
+        return this.jobRepository.findFiveJobsBySubSphere(subSphereName, pageRequest)
                 .stream()
                 .map(job -> this.modelMapper.map(job, JobViewModel.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<JobViewModel> findAllJobsBySubSphereId(String subSphereId, PageRequest pageRequest) {
+        return this.jobRepository.findAllJobsBySubSphereId(subSphereId, pageRequest)
+                .map(job -> this.modelMapper.map(job, JobViewModel.class));
     }
 }
