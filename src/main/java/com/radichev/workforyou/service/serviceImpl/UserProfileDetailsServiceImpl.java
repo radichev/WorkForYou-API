@@ -62,11 +62,6 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     }
 
     @Override
-    public UserProfileDetailsViewModel getEditUserProfileDetails(String id) {
-        return this.modelMapper.map(this.userService.findUserProfileDetailsById(id), UserProfileDetailsViewModel.class);
-    }
-
-    @Override
     public UserProfileDetails findUserProfileDetailsById(String userId) {
         return this.userService.findUserProfileDetailsById(userId);
     }

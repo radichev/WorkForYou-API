@@ -11,8 +11,6 @@ public interface UserProfileDetailsService {
 
     void editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id);
 
-    UserProfileDetailsViewModel getEditUserProfileDetails(String id);
-
     UserProfileDetails findUserProfileDetailsById(String userId);
 
     void uploadUserProfileImage(String userId, MultipartFile file);

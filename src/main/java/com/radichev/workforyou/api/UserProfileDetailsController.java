@@ -1,9 +1,11 @@
 package com.radichev.workforyou.api;
 
+import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.model.bindingModels.user.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.model.viewModels.lookupViewModel.UserLookupTablesViewModel;
 import com.radichev.workforyou.service.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,23 +22,29 @@ public class UserProfileDetailsController {
     private final LanguageLevelService languageLevelService;
     private final TitleTypeService titleTypeService;
     private final CountryService countryService;
+    private final ModelMapper modelMapper;
 
     public UserProfileDetailsController(UserProfileDetailsService userProfileDetailsService,
                                         SkillLevelService skillLevelService,
                                         LanguageLevelService languageLevelService,
                                         TitleTypeService titleTypeService,
-                                        CountryService countryService) {
+                                        CountryService countryService,
+                                        ModelMapper modelMapper) {
 
         this.userProfileDetailsService = userProfileDetailsService;
         this.skillLevelService = skillLevelService;
         this.languageLevelService = languageLevelService;
         this.titleTypeService = titleTypeService;
         this.countryService = countryService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserProfileDetailsViewModel> getUserProfileDetails(@PathVariable String id){
-        return ResponseEntity.ok(this.userProfileDetailsService.getEditUserProfileDetails(id));
+        UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(id);
+        UserProfileDetailsViewModel userProfileDetailsViewModel = this.modelMapper.map(userProfileDetails, UserProfileDetailsViewModel.class);
+        userProfileDetailsViewModel.setUsername(userProfileDetails.getUser().getUsername());
+        return ResponseEntity.ok(userProfileDetailsViewModel);
     }
 
     @PostMapping("/{id}")

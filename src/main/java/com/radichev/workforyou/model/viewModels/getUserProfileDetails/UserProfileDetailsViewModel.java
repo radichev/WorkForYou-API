@@ -13,6 +13,7 @@ import java.util.Set;
 
 public class UserProfileDetailsViewModel {
     private String id;
+    private String username;
     private String firstName;
     private String lastName;
     private String description;
@@ -37,6 +38,14 @@ public class UserProfileDetailsViewModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
