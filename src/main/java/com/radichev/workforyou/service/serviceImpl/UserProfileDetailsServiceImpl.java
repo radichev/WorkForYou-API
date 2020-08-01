@@ -49,7 +49,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
     @Override
     @Transactional
-    public void editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id) {
+    public UserProfileDetailsViewModel editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id) {
         UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(id);
 
         this.modelMapper.map(userProfileDetailsEditBindingModel, userProfileDetails);
@@ -58,7 +58,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         userProfileDetails.setCountry(country);
         userProfileDetails.getUser().setId(id);
 
-        this.userProfileDetailsRepository.save(userProfileDetails);
+        return this.modelMapper.map(this.userProfileDetailsRepository.save(userProfileDetails), UserProfileDetailsViewModel.class);
     }
 
     @Override

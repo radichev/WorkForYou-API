@@ -49,9 +49,9 @@ public class UserProfileDetailsController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Void> editUserProfileDetails(@Valid @RequestBody UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, @PathVariable String id) {
-        this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsEditBindingModel, id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UserProfileDetailsViewModel> editUserProfileDetails(@Valid @RequestBody UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel,
+                                                                              @PathVariable String id) {
+        return ResponseEntity.ok(this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsEditBindingModel, id));
     }
 
     @PostMapping(

@@ -9,7 +9,7 @@ public interface UserProfileDetailsService {
 
     UserProfileDetails createUserProfileDetails(String email);
 
-    void editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id);
+    UserProfileDetailsViewModel editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id);
 
     UserProfileDetails findUserProfileDetailsById(String userId);
 
