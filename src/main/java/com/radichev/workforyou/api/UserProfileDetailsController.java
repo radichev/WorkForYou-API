@@ -45,13 +45,17 @@ public class UserProfileDetailsController {
         UserProfileDetailsViewModel userProfileDetailsViewModel = this.modelMapper.map(userProfileDetails, UserProfileDetailsViewModel.class);
         userProfileDetailsViewModel.setUsername(userProfileDetails.getUser().getUsername());
         userProfileDetailsViewModel.setUserId(userProfileDetails.getUser().getId());
-        return ResponseEntity.ok(userProfileDetailsViewModel);
+        return ResponseEntity
+                .ok()
+                .body(userProfileDetailsViewModel);
     }
 
     @PostMapping("/{id}")
     public ResponseEntity<UserProfileDetailsViewModel> editUserProfileDetails(@Valid @RequestBody UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel,
                                                                               @PathVariable String id) {
-        return ResponseEntity.ok(this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsEditBindingModel, id));
+        return ResponseEntity
+                .ok()
+                .body(this.userProfileDetailsService.editUserProfileDetails(userProfileDetailsEditBindingModel, id));
     }
 
     @PostMapping(
@@ -64,7 +68,9 @@ public class UserProfileDetailsController {
 
         this.userProfileDetailsService.uploadUserProfileImage(userId, file);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity
+                .ok()
+                .build();
     }
 
     @GetMapping("/{id}/image/download")
@@ -81,6 +87,8 @@ public class UserProfileDetailsController {
        userLookupTablesViewModel.setTitleTypes(this.titleTypeService.findAllTitleTypes());
        userLookupTablesViewModel.setCountries(this.countryService.findAllCountries());
 
-       return ResponseEntity.ok().body(userLookupTablesViewModel);
+       return ResponseEntity
+               .ok()
+               .body(userLookupTablesViewModel);
     }
 }

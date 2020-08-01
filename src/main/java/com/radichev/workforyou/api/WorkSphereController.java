@@ -24,6 +24,8 @@ public class WorkSphereController {
         WorkSphereLookupViewModel workSphereLookupViewModel = new WorkSphereLookupViewModel();
         workSphereLookupViewModel.setWorkSpheres(this.workSphereService.findAllWorkSpheres());
 
-        return ResponseEntity.ok().body(workSphereLookupViewModel);
+        return ResponseEntity
+                .ok()
+                .body(workSphereLookupViewModel);
     }
 }

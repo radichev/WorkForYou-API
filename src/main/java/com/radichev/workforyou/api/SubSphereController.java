@@ -19,6 +19,8 @@ public class SubSphereController {
 
     @GetMapping("/five")
     public ResponseEntity<List<SubSphereDto>> findFiveSubSpheres(){
-        return ResponseEntity.ok().body(this.subSphereService.findFiveSubSpheres());
+        return ResponseEntity
+                .ok()
+                .body(this.subSphereService.findFiveSubSpheres());
     }
 }
