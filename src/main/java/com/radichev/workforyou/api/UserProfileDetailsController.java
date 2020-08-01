@@ -44,6 +44,7 @@ public class UserProfileDetailsController {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(id);
         UserProfileDetailsViewModel userProfileDetailsViewModel = this.modelMapper.map(userProfileDetails, UserProfileDetailsViewModel.class);
         userProfileDetailsViewModel.setUsername(userProfileDetails.getUser().getUsername());
+        userProfileDetailsViewModel.setUserId(userProfileDetails.getUser().getId());
         return ResponseEntity.ok(userProfileDetailsViewModel);
     }
 
