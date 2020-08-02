@@ -58,6 +58,12 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         userProfileDetails.setCountry(country);
         userProfileDetails.getUser().setId(id);
 
+        if(userProfileDetails.getFirstName() != null &&
+                userProfileDetails.getLanguages() != null &&
+                userProfileDetails.getCountry() != null){
+            userProfileDetails.setHasCompletedAccountSetup(true);
+        }
+
         return this.modelMapper.map(this.userProfileDetailsRepository.save(userProfileDetails), UserProfileDetailsViewModel.class);
     }
 

@@ -49,14 +49,15 @@ public class JwtUtils {
         Set<Object> claims = user.getAuthorities().stream()
                 .map(m -> new SimpleGrantedAuthority(m.getAuthority())).collect(Collectors.toSet());
 
-        return doGenerateToken(claims, user.getUsername(), user.getId());
+        return doGenerateToken(claims, user);
     }
 
-    private String doGenerateToken(Set<Object> claims, String subject, String id) {
+    private String doGenerateToken(Set<Object> claims, User user) {
         return Jwts.builder()
                 .claim("authorities", claims.toString())
-                .claim("id", id)
-                .setSubject(subject)
+                .claim("hasCompletedAccountSetup", user.getUserProfileDetails().getHasCompletedAccountSetup())
+                .claim("id", user.getId())
+                .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY))
                 .signWith(this.jwtSecretKey.secretKey(), SignatureAlgorithm.HS512)

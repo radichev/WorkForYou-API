@@ -17,7 +17,6 @@ public class SkillController {
 
     public SkillController(SkillService skillService) {
         this.skillService = skillService;
-
     }
 
     @PostMapping("/add/{userId}")

@@ -17,6 +17,7 @@ public class UserProfileDetails extends BaseEntity {
     private String profilePicture;
     private String email;
     private Country country;
+    private Boolean hasCompletedAccountSetup;
     private Set<Language> languages;
     private Set<Skill> skills;
     private Set<Education> educations;
@@ -142,5 +143,14 @@ public class UserProfileDetails extends BaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Column(name = "has_completed_account_setup", nullable = false)
+    public Boolean getHasCompletedAccountSetup() {
+        return hasCompletedAccountSetup;
+    }
+
+    public void setHasCompletedAccountSetup(Boolean hasCompletedAccountSetup) {
+        this.hasCompletedAccountSetup = hasCompletedAccountSetup;
     }
 }
