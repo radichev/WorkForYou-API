@@ -21,4 +21,6 @@ public interface JobService {
     Page<JobViewModel> findAllJobsBySubSphereId(String subSphereId, PageRequest pageRequest);
 
     void buyJob(JobBuyBindingModel jobBuyBindingModel);
+
+    List<JobViewModel> findJobsBoughtByUserId(String userId);
 }

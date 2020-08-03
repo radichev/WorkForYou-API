@@ -21,4 +21,8 @@ public interface JobRepository extends JpaRepository<Job, String> {
 
     @Query("SELECT j FROM Job as j WHERE j.subSphere.id = :subSphereId ORDER BY j.jobTitle ASC")
     Page<Job> findAllJobsBySubSphereId(@Param("subSphereId") String subSphereId, Pageable pageable);
+
+    @Query("SELECT j FROM Job as j join j.boughtByUser boughtByUser WHERE boughtByUser.user.id = :userId")
+    List<Job> findJobsBoughtByUserId(@Param("userId") String userId);
+
 }

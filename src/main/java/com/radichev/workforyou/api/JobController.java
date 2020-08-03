@@ -59,6 +59,13 @@ public class JobController {
                         .build();
     }
 
+    @GetMapping("/{userId}/bought")
+    public ResponseEntity<List<JobViewModel>> getJobsBoughtByUserId(@PathVariable String userId) {
+        return ResponseEntity
+                .ok()
+                .body(this.jobService.findJobsBoughtByUserId(userId));
+    }
+
     @GetMapping("/sub-sphere/{subSphereName}")
     public ResponseEntity<List<JobViewModel>> findFiveJobsInGivenSubSphere(@PathVariable String subSphereName) {
         return ResponseEntity

@@ -101,4 +101,12 @@ public class JobServiceImpl implements JobService {
 
         this.jobRepository.save(job);
     }
+
+    @Override
+    public List<JobViewModel> findJobsBoughtByUserId(String userId) {
+        return this.jobRepository.findJobsBoughtByUserId(userId)
+                .stream()
+                .map(job -> this.modelMapper.map(job, JobViewModel.class))
+                .collect(Collectors.toList());
+    }
 }
