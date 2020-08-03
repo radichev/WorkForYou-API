@@ -21,6 +21,7 @@ public class UserProfileDetailsViewModel {
     private String personalWebsite;
     private String profilePicture;
     private CountryDto country;
+    private Boolean hasCompletedAccountSetup;
     private String email;
     private LocalDate createdDate;
     private Set<LanguageDto> languages;
@@ -95,6 +96,14 @@ public class UserProfileDetailsViewModel {
 
     public void setCountry(CountryDto country) {
         this.country = country;
+    }
+
+    public Boolean getHasCompletedAccountSetup() {
+        return hasCompletedAccountSetup;
+    }
+
+    public void setHasCompletedAccountSetup(Boolean hasCompletedAccountSetup) {
+        this.hasCompletedAccountSetup = hasCompletedAccountSetup;
     }
 
     public String getEmail() {

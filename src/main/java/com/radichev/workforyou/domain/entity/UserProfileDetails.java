@@ -26,6 +26,7 @@ public class UserProfileDetails extends BaseEntity {
     private User user;
 
     public UserProfileDetails() {
+        this.hasCompletedAccountSetup = false;
     }
 
     @Column(name = "first_name")
