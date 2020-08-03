@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "countries")
 public class Country extends BaseEntity {
     private String country;
-//    private Set<UserProfileDetails> userProfileDetails;
+    private Set<UserProfileDetails> userProfileDetails;
 
     public Country() {
     }
@@ -28,12 +28,12 @@ public class Country extends BaseEntity {
         this.country = country;
     }
 
-//    @OneToMany(mappedBy = "country")
-//    public Set<UserProfileDetails> getUserProfileDetails() {
-//        return userProfileDetails;
-//    }
-//
-//    public void setUserProfileDetails(Set<UserProfileDetails> userProfileDetails) {
-//        this.userProfileDetails = userProfileDetails;
-//    }
+    @OneToMany(mappedBy = "country")
+    public Set<UserProfileDetails> getUserProfileDetails() {
+        return userProfileDetails;
+    }
+
+    public void setUserProfileDetails(Set<UserProfileDetails> userProfileDetails) {
+        this.userProfileDetails = userProfileDetails;
+    }
 }

@@ -52,7 +52,9 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     public UserProfileDetailsViewModel editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id) {
         UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(id);
 
-        this.modelMapper.map(userProfileDetailsEditBindingModel, userProfileDetails);
+        userProfileDetails.setFirstName(userProfileDetailsEditBindingModel.getFirstName());
+        userProfileDetails.setLastName(userProfileDetailsEditBindingModel.getLastName());
+        userProfileDetails.setPersonalWebsite(userProfileDetailsEditBindingModel.getPersonalWebsite());
 
         Country country = this.countryService.findCountryById(userProfileDetailsEditBindingModel.getCountry().getId());
         userProfileDetails.setCountry(country);
