@@ -6,6 +6,7 @@ import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.WorkSphere;
 import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
+import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.repository.JobRepository;
 import com.radichev.workforyou.service.JobService;
@@ -86,5 +87,18 @@ public class JobServiceImpl implements JobService {
     public Page<JobViewModel> findAllJobsBySubSphereId(String subSphereId, PageRequest pageRequest) {
         return this.jobRepository.findAllJobsBySubSphereId(subSphereId, pageRequest)
                 .map(job -> this.modelMapper.map(job, JobViewModel.class));
+    }
+
+    @Override
+    public void buyJob(JobBuyBindingModel jobBuyBindingModel) {
+        Job job = this.jobRepository.findById(jobBuyBindingModel.getJobId())
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Job not found with %s id.", jobBuyBindingModel.getJobId())));
+
+        UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(jobBuyBindingModel.getUserId());
+
+        job.getBoughtByUser().add(userProfileDetails);
+
+        this.jobRepository.save(job);
     }
 }

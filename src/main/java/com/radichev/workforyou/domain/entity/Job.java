@@ -18,6 +18,7 @@ public class Job extends BaseEntity {
     private String description;
     private Set<Picture> pictures;
     private UserProfileDetails userProfileDetails;
+    private Set<UserProfileDetails> boughtByUser;
 
     public Job() {
     }
@@ -95,5 +96,14 @@ public class Job extends BaseEntity {
 
     public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
         this.userProfileDetails = userProfileDetails;
+    }
+
+    @ManyToMany
+    public Set<UserProfileDetails> getBoughtByUser() {
+        return boughtByUser;
+    }
+
+    public void setBoughtByUser(Set<UserProfileDetails> boughtByUser) {
+        this.boughtByUser = boughtByUser;
     }
 }

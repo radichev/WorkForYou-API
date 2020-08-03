@@ -23,6 +23,7 @@ public class UserProfileDetails extends BaseEntity {
     private Set<Education> educations;
     private Set<Certificate> certificates;
     private Set<Job> jobs;
+    private Set<Job> boughtJobs;
     private User user;
 
     public UserProfileDetails() {
@@ -135,6 +136,15 @@ public class UserProfileDetails extends BaseEntity {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    @ManyToMany(mappedBy = "boughtByUser")
+    public Set<Job> getBoughtJobs() {
+        return boughtJobs;
+    }
+
+    public void setBoughtJobs(Set<Job> boughtJobs) {
+        this.boughtJobs = boughtJobs;
     }
 
     @OneToOne(mappedBy = "userProfileDetails")
