@@ -37,8 +37,8 @@ public class JobController {
                 .body(this.jobService.findJobById(jobId));
     }
 
-    @GetMapping("/buy/{jobId}")
-    public ResponseEntity<Void> buyJob(@PathVariable String jobId, @Valid @RequestBody JobBuyBindingModel jobBuyBindingModel) {
+    @PostMapping("/buy/{jobId}")
+    public ResponseEntity<Void> buyJob(@Valid @RequestBody JobBuyBindingModel jobBuyBindingModel) {
         this.jobService.buyJob(jobBuyBindingModel);
         return ResponseEntity
                 .ok()
