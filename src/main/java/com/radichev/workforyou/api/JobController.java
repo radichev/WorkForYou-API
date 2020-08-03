@@ -1,6 +1,7 @@
 package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
+import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.service.JobService;
 import org.springframework.data.domain.Page;
@@ -34,6 +35,14 @@ public class JobController {
         return ResponseEntity
                 .ok()
                 .body(this.jobService.findJobById(jobId));
+    }
+
+    @GetMapping("/buy/{jobId}")
+    public ResponseEntity<Void> buyJob(@PathVariable String jobId, @Valid @RequestBody JobBuyBindingModel jobBuyBindingModel) {
+        this.jobService.buyJob(jobBuyBindingModel);
+        return ResponseEntity
+                .ok()
+                .build();
     }
 
     @PostMapping("/add/{userId}")
