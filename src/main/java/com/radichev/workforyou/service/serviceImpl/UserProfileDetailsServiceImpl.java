@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 import static org.apache.http.entity.ContentType.*;
@@ -91,11 +92,14 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         metadata.put("Content-Length", String.valueOf(file.getSize()));
 
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), userId);
-        String fileName = String.format("%s-%s", file.getOriginalFilename(), UUID.randomUUID());
+        String fileName = String.format("%s", file.getOriginalFilename());
+
+        String key = String.format("%s/%s", userId, fileName);
+        URL url = this.fileStore.generateUrl(BucketName.PROFILE_IMAGE.getBucketName(), key);
 
         try {
             this.fileStore.save(path, fileName, Optional.of(metadata), file.getInputStream());
-            userProfileDetails.setProfilePicture(fileName);
+            userProfileDetails.setProfilePicture(url.toString());
 
             this.userProfileDetailsRepository.save(userProfileDetails);
         } catch (IOException e) {

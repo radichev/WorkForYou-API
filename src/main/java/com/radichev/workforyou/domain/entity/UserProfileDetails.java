@@ -66,6 +66,7 @@ public class UserProfileDetails extends BaseEntity {
         this.personalWebsite = personalWebsite;
     }
 
+    @Column(name = "profile_picture", columnDefinition = "text")
     public String getProfilePicture() {
         return profilePicture;
     }
