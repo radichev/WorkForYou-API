@@ -1,5 +1,6 @@
 package com.radichev.workforyou.model.bindingModels;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class WorkSphereBindingModel {
@@ -10,6 +11,7 @@ public class WorkSphereBindingModel {
     }
 
     @NotNull
+    @NotBlank
     public String getId() {
         return id;
     }

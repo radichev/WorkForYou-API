@@ -1,5 +1,8 @@
 package com.radichev.workforyou.model.dtos.LanguageDto;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class LanguageLevelDto {
@@ -9,6 +12,8 @@ public class LanguageLevelDto {
     public LanguageLevelDto() {
     }
 
+    @NotNull
+    @NotBlank
     public String getId() {
         return id;
     }
@@ -18,6 +23,7 @@ public class LanguageLevelDto {
     }
 
     @NotNull
+    @NotBlank
     public String getLanguageLevel() {
         return languageLevel;
     }

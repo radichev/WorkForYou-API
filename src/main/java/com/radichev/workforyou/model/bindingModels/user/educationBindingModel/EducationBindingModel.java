@@ -2,6 +2,11 @@ package com.radichev.workforyou.model.bindingModels.user.educationBindingModel;
 
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import com.radichev.workforyou.model.dtos.EducationDto.TitleTypeDto;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class EducationBindingModel {
     private CountryDto country;
@@ -13,6 +18,7 @@ public class EducationBindingModel {
     public EducationBindingModel() {
     }
 
+    @NotNull
     public CountryDto getCountry() {
         return country;
     }
@@ -21,6 +27,9 @@ public class EducationBindingModel {
         this.country = country;
     }
 
+    @NotNull
+    @NotBlank
+    @Length(min = 4, max = 40)
     public String getUniversityName() {
         return universityName;
     }
@@ -29,6 +38,7 @@ public class EducationBindingModel {
         this.universityName = universityName;
     }
 
+    @NotNull
     public TitleTypeDto getTitleType() {
         return titleType;
     }
@@ -37,6 +47,9 @@ public class EducationBindingModel {
         this.titleType = titleType;
     }
 
+    @NotNull
+    @NotBlank
+    @Length(min = 3, max = 40)
     public String getEducationSubject() {
         return educationSubject;
     }
@@ -45,6 +58,9 @@ public class EducationBindingModel {
         this.educationSubject = educationSubject;
     }
 
+    @NotNull
+    @NotBlank
+    @Min(1915)
     public int getGraduationYear() {
         return graduationYear;
     }

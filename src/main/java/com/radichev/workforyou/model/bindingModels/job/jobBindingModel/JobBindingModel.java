@@ -1,8 +1,11 @@
 package com.radichev.workforyou.model.bindingModels.job.jobBindingModel;
 
 import com.radichev.workforyou.model.bindingModels.WorkSphereBindingModel;
-import org.springframework.web.multipart.MultipartFile;
+import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -12,12 +15,13 @@ public class JobBindingModel {
     private int deliveryTime;
     private BigDecimal price;
     private String description;
-    private MultipartFile jobPicture;
 
     public JobBindingModel() {
     }
 
     @NotNull
+    @NotBlank
+    @Length(min = 5, max = 40)
     public String getJobTitle() {
         return jobTitle;
     }
@@ -36,6 +40,8 @@ public class JobBindingModel {
     }
 
     @NotNull
+    @NotBlank
+    @Min(0)
     public int getDeliveryTime() {
         return deliveryTime;
     }
@@ -45,6 +51,8 @@ public class JobBindingModel {
     }
 
     @NotNull
+    @NotBlank
+    @DecimalMin("0")
     public BigDecimal getPrice() {
         return price;
     }
@@ -54,19 +62,13 @@ public class JobBindingModel {
     }
 
     @NotNull
+    @NotBlank
+    @Length(min = 15, max = 1200)
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public MultipartFile getJobPicture() {
-        return jobPicture;
-    }
-
-    public void setJobPicture(MultipartFile jobPicture) {
-        this.jobPicture = jobPicture;
     }
 }

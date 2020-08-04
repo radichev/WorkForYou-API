@@ -1,6 +1,10 @@
 package com.radichev.workforyou.model.bindingModels.user.languageBindingModel;
 
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageLevelDto;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class LanguageBindingModel {
     private String language;
@@ -9,6 +13,9 @@ public class LanguageBindingModel {
     public LanguageBindingModel() {
     }
 
+    @NotNull
+    @NotBlank
+    @Length(min = 3, max = 30)
     public String getLanguage() {
         return language;
     }
@@ -17,6 +24,7 @@ public class LanguageBindingModel {
         this.language = language;
     }
 
+    @NotNull
     public LanguageLevelDto getLanguageLevel() {
         return languageLevel;
     }
