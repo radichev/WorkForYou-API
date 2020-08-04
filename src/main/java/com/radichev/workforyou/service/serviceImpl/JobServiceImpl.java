@@ -1,5 +1,6 @@
 package com.radichev.workforyou.service.serviceImpl;
 
+import com.radichev.workforyou.bucket.BucketName;
 import com.radichev.workforyou.domain.entity.Job;
 import com.radichev.workforyou.domain.entity.SubSphere;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
@@ -9,38 +10,42 @@ import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindin
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.repository.JobRepository;
-import com.radichev.workforyou.service.JobService;
-import com.radichev.workforyou.service.SubSphereService;
-import com.radichev.workforyou.service.UserProfileDetailsService;
-import com.radichev.workforyou.service.WorkSphereService;
+import com.radichev.workforyou.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.IOException;
+import java.net.URL;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.apache.http.entity.ContentType.*;
 
 @Service
 public class JobServiceImpl implements JobService {
+    private static final String AWS_S3_DEFAULT_URL = "https://workforyou-images.s3.amazonaws.com/";
     private final JobRepository jobRepository;
     private final ModelMapper modelMapper;
     private final UserProfileDetailsService userProfileDetailsService;
     private final WorkSphereService workSphereService;
     private final SubSphereService subSphereService;
+    private final FileStoreService fileStoreService;
 
-    public JobServiceImpl(JobRepository jobRepository, ModelMapper modelMapper, UserProfileDetailsService userProfileDetailsService, WorkSphereService workSphereService, SubSphereService subSphereService) {
+    public JobServiceImpl(JobRepository jobRepository, ModelMapper modelMapper, UserProfileDetailsService userProfileDetailsService, WorkSphereService workSphereService, SubSphereService subSphereService, FileStoreService fileStoreService) {
         this.jobRepository = jobRepository;
         this.modelMapper = modelMapper;
         this.userProfileDetailsService = userProfileDetailsService;
         this.workSphereService = workSphereService;
         this.subSphereService = subSphereService;
+        this.fileStoreService = fileStoreService;
     }
 
 
     @Override
-    public JobViewModel addJob(JobBindingModel jobBindingModel, String userId) {
+    public JobViewModel addJob(JobBindingModel jobBindingModel, String userId, MultipartFile file) {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         WorkSphere workSphere = this.workSphereService.findWorkSphereById(jobBindingModel.getWorkSphere().getId());
@@ -50,6 +55,8 @@ public class JobServiceImpl implements JobService {
         job.setUserProfileDetails(userProfileDetails);
         job.setWorkSphere(workSphere);
         job.setSubSphere(subSphere);
+        job.setJobPicture(uploadJobImage(userId, jobBindingModel.getJobTitle(), file));
+
 
         return this.modelMapper.map(this.jobRepository.save(job), JobViewModel.class);
     }
@@ -108,5 +115,33 @@ public class JobServiceImpl implements JobService {
                 .stream()
                 .map(job -> this.modelMapper.map(job, JobViewModel.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String uploadJobImage(String userId, String jobTitle, MultipartFile file) {
+        if (file.isEmpty()) {
+            throw new IllegalStateException("Cannot upload empty file");
+        }
+
+        if (!Arrays.asList(IMAGE_JPEG.getMimeType(), IMAGE_PNG.getMimeType(), IMAGE_GIF.getMimeType()).contains(file.getContentType())) {
+            throw new IllegalStateException("File must be an image");
+        }
+
+        Map<String, String> metadata = new HashMap<>();
+        metadata.put("Content-Type", file.getContentType());
+        metadata.put("Content-Length", String.valueOf(file.getSize()));
+
+        String path = String.format("%s/%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), userId, jobTitle);
+        String fileName = String.format("%s", file.getOriginalFilename());
+
+        String key = String.format("%s/%s/%s", userId, jobTitle, fileName);
+        String url = String.format("%s%s", AWS_S3_DEFAULT_URL, key);
+
+        try {
+            this.fileStoreService.save(path, fileName, Optional.of(metadata), file.getInputStream());
+            return url;
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

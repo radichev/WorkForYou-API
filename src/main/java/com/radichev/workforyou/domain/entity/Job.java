@@ -16,7 +16,7 @@ public class Job extends BaseEntity {
     private int deliveryTime;
     private BigDecimal price;
     private String description;
-    private Set<Picture> pictures;
+    private String jobPicture;
     private UserProfileDetails userProfileDetails;
     private Set<UserProfileDetails> boughtByUser;
 
@@ -78,14 +78,13 @@ public class Job extends BaseEntity {
         this.description = description;
     }
 
-    @OneToMany
-    @JoinColumn(name = "job_id", referencedColumnName = "id")
-    public Set<Picture> getPictures() {
-        return pictures;
+    @Column(name = "job_pictures", columnDefinition = "text")
+    public String getJobPicture() {
+        return jobPicture;
     }
 
-    public void setPictures(Set<Picture> pictures) {
-        this.pictures = pictures;
+    public void setJobPicture(String jobPicture) {
+        this.jobPicture = jobPicture;
     }
 
     @NotNull

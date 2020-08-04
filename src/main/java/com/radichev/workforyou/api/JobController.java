@@ -6,11 +6,15 @@ import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.service.JobService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -45,12 +49,16 @@ public class JobController {
                 .build();
     }
 
-    @PostMapping("/add/{userId}")
+    @PostMapping(value = "/add/{userId}",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
     public ResponseEntity<Void> addJob(@PathVariable String userId,
-                                       @Valid @RequestBody JobBindingModel jobBindingModel,
+                                       @RequestPart("job") @Valid JobBindingModel jobBindingModel,
+                                       @RequestPart("file") @Valid @NotNull @NotBlank MultipartFile file,
                                        UriComponentsBuilder ucBuilder) {
 
-        JobViewModel jobViewModel = this.jobService.addJob(jobBindingModel, userId);
+        JobViewModel jobViewModel = this.jobService.addJob(jobBindingModel, userId, file);
 
         return ResponseEntity
                 .created(ucBuilder.path("/jobs/{jobId}")

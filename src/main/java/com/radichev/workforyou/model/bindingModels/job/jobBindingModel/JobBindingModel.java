@@ -1,6 +1,7 @@
 package com.radichev.workforyou.model.bindingModels.job.jobBindingModel;
 
 import com.radichev.workforyou.model.bindingModels.WorkSphereBindingModel;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ public class JobBindingModel {
     private int deliveryTime;
     private BigDecimal price;
     private String description;
+    private MultipartFile jobPicture;
 
     public JobBindingModel() {
     }
@@ -58,5 +60,13 @@ public class JobBindingModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public MultipartFile getJobPicture() {
+        return jobPicture;
+    }
+
+    public void setJobPicture(MultipartFile jobPicture) {
+        this.jobPicture = jobPicture;
     }
 }

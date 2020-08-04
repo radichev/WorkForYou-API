@@ -5,12 +5,13 @@ import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBin
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface JobService {
 
-    JobViewModel addJob(JobBindingModel jobBindingModel, String userId);
+    JobViewModel addJob(JobBindingModel jobBindingModel, String userId, MultipartFile file);
 
     List<JobViewModel> findAllJobsByUserId(String userId);
 
@@ -23,4 +24,6 @@ public interface JobService {
     void buyJob(JobBuyBindingModel jobBuyBindingModel);
 
     List<JobViewModel> findJobsBoughtByUserId(String userId);
+
+    String uploadJobImage(String userId, String jobTitle, MultipartFile file);
 }

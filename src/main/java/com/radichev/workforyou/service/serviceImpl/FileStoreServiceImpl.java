@@ -20,7 +20,6 @@ import java.util.Optional;
 
 @Service
 public class FileStoreServiceImpl implements FileStoreService {
-
     private final AmazonS3 amazonS3;
 
     public FileStoreServiceImpl(AmazonS3 amazonS3) {
@@ -59,7 +58,7 @@ public class FileStoreServiceImpl implements FileStoreService {
     public URL generateUrl(String bucketName, String objectKey) {
         Date expiration = new Date();
         long expMilliS = expiration.getTime();
-        expMilliS += 9942 * 60 * 60 * 60;
+        expMilliS += 604800000;
         expiration.setTime(expMilliS);
 
         GeneratePresignedUrlRequest generatePresignedUrlRequest =
