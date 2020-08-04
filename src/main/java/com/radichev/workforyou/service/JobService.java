@@ -1,5 +1,6 @@
 package com.radichev.workforyou.service;
 
+import com.radichev.workforyou.domain.entity.Job;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
@@ -15,7 +16,7 @@ public interface JobService {
 
     List<JobViewModel> findAllJobsByUserId(String userId);
 
-    JobViewModel findJobById(String jobId);
+    Job findJobById(String jobId);
 
     List<JobViewModel> findFiveJobsInGivenSubSphere(String subSphereName, PageRequest pageRequest);
 
@@ -26,4 +27,6 @@ public interface JobService {
     List<JobViewModel> findJobsBoughtByUserId(String userId);
 
     String uploadJobImage(String userId, String jobTitle, MultipartFile file);
+
+    void deleteJobById(String jobId);
 }

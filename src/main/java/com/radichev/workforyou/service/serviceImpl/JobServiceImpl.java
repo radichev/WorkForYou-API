@@ -18,7 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -76,10 +77,10 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public JobViewModel findJobById(String jobId) {
-        return this.modelMapper.map(this.jobRepository.findById(jobId)
+    public Job findJobById(String jobId) {
+        return this.jobRepository.findById(jobId)
                 .orElseThrow(() ->
-                        new EntityNotFoundException(String.format("Job not found with %s id.", jobId))), JobViewModel.class);
+                        new EntityNotFoundException(String.format("Job not found with %s id.", jobId)));
     }
 
     @Override
@@ -98,9 +99,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public void buyJob(JobBuyBindingModel jobBuyBindingModel) {
-        Job job = this.jobRepository.findById(jobBuyBindingModel.getJobId())
-                .orElseThrow(() ->
-                        new EntityNotFoundException(String.format("Job not found with %s id.", jobBuyBindingModel.getJobId())));
+        Job job = findJobById(jobBuyBindingModel.getJobId());
 
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(jobBuyBindingModel.getUserId());
 
@@ -143,5 +142,14 @@ public class JobServiceImpl implements JobService {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    @Override
+    public void deleteJobById(String jobId) {
+        Job job = findJobById(jobId);
+        job.setDeleted(true);
+        job.setDeletedOn(LocalDate.now());
+
+        this.jobRepository.save(job);
     }
 }

@@ -2,6 +2,7 @@ package com.radichev.workforyou.model.bindingModels.user.certificateBindingModel
 
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -39,6 +40,7 @@ public class CertificateBindingModel {
     @NotNull
     @NotBlank
     @Min(1915)
+    @Max(2050)
     public int getGraduationYear() {
         return graduationYear;
     }

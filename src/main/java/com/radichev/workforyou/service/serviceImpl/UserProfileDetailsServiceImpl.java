@@ -57,6 +57,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         userProfileDetails.setFirstName(userProfileDetailsEditBindingModel.getFirstName());
         userProfileDetails.setLastName(userProfileDetailsEditBindingModel.getLastName());
         userProfileDetails.setPersonalWebsite(userProfileDetailsEditBindingModel.getPersonalWebsite());
+        userProfileDetails.setDescription(userProfileDetailsEditBindingModel.getDescription());
 
         Country country = this.countryService.findCountryById(userProfileDetailsEditBindingModel.getCountry().getId());
         userProfileDetails.setCountry(country);

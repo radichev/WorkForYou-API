@@ -63,7 +63,7 @@ public class JobBindingModel {
 
     @NotNull
     @NotBlank
-    @Length(min = 15, max = 1200)
+    @Length(min = 15, max = 800)
     public String getDescription() {
         return description;
     }

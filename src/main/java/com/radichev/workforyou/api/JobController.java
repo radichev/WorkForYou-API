@@ -4,6 +4,7 @@ import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindin
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.service.JobService;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
@@ -22,9 +23,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class JobController {
     private final JobService jobService;
+    private final ModelMapper modelMapper;
 
-    public JobController(JobService jobService) {
+    public JobController(JobService jobService, ModelMapper modelMapper) {
         this.jobService = jobService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/all/{userId}")
@@ -38,7 +41,7 @@ public class JobController {
     public ResponseEntity<JobViewModel> getJobById(@PathVariable String jobId) {
         return ResponseEntity
                 .ok()
-                .body(this.jobService.findJobById(jobId));
+                .body(this.modelMapper.map(this.jobService.findJobById(jobId), JobViewModel.class));
     }
 
     @PostMapping("/buy/{jobId}")
@@ -64,7 +67,7 @@ public class JobController {
                 .created(ucBuilder.path("/jobs/{jobId}")
                         .buildAndExpand(jobViewModel.getId())
                         .toUri())
-                        .build();
+                .build();
     }
 
     @GetMapping("/{userId}/bought")
@@ -90,5 +93,15 @@ public class JobController {
         return ResponseEntity
                 .ok()
                 .body(this.jobService.findAllJobsBySubSphereId(subSphereId, PageRequest.of(page, size)));
+    }
+
+    @DeleteMapping("/{jobId}")
+    public ResponseEntity<Void> deleteJob(@PathVariable String jobId) {
+
+        this.jobService.deleteJobById(jobId);
+
+        return ResponseEntity
+                .ok()
+                .build();
     }
 }

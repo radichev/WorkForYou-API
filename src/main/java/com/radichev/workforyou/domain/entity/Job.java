@@ -1,5 +1,7 @@
 package com.radichev.workforyou.domain.entity;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -7,6 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "jobs")
+@Where(clause="deleted = 0")
 public class Job extends BaseEntity {
     private String jobTitle;
     private WorkSphere workSphere;

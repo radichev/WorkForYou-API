@@ -4,6 +4,7 @@ import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import com.radichev.workforyou.model.dtos.EducationDto.TitleTypeDto;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -61,6 +62,7 @@ public class EducationBindingModel {
     @NotNull
     @NotBlank
     @Min(1915)
+    @Max(2050)
     public int getGraduationYear() {
         return graduationYear;
     }
