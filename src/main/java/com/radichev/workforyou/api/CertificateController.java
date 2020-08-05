@@ -22,7 +22,7 @@ public class CertificateController {
     @PostMapping("/add/{userId}")
     public ResponseEntity<CertificateDto> addCertificate(@PathVariable String userId,
                                                          @Valid @RequestBody CertificateBindingModel certificateBindingModel,
-                                                         UriComponentsBuilder ucBuilder){
+                                                         UriComponentsBuilder ucBuilder) {
 
         CertificateDto certificateDto = this.certificateService.addCertificate(certificateBindingModel, userId);
 
@@ -31,6 +31,14 @@ public class CertificateController {
                         .buildAndExpand(certificateDto.getId())
                         .toUri())
                         .build();
+    }
+
+    @PostMapping("/edit/{certificateId}")
+    public ResponseEntity<CertificateDto> editCertificateById(@PathVariable String certificateId,
+                                                              @Valid @RequestBody CertificateBindingModel certificateBindingModel) {
+
+        return ResponseEntity
+                .ok(this.certificateService.editCertificateById(certificateId, certificateBindingModel));
     }
 
     @DeleteMapping("/{certificateId}")

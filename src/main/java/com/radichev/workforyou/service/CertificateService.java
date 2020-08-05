@@ -11,4 +11,6 @@ public interface CertificateService {
     Certificate findCertificateById(String certificateId);
 
     void deleteCertificateById(String certificateId);
+
+    CertificateDto editCertificateById(String certificateId, CertificateBindingModel certificateBindingModel);
 }

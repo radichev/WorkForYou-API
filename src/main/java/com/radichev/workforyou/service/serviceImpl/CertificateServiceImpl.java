@@ -19,7 +19,9 @@ public class CertificateServiceImpl implements CertificateService {
     private final ModelMapper modelMapper;
     private final UserProfileDetailsService userProfileDetailsService;
 
-    public CertificateServiceImpl(CertificateRepository certificateRepository, ModelMapper modelMapper, UserProfileDetailsService userProfileDetailsService) {
+    public CertificateServiceImpl(CertificateRepository certificateRepository,
+                                  ModelMapper modelMapper,
+                                  UserProfileDetailsService userProfileDetailsService) {
         this.certificateRepository = certificateRepository;
         this.modelMapper = modelMapper;
         this.userProfileDetailsService = userProfileDetailsService;
@@ -39,7 +41,7 @@ public class CertificateServiceImpl implements CertificateService {
     public Certificate findCertificateById(String certificateId) {
         return this.certificateRepository.findById(certificateId)
                 .orElseThrow(() ->
-                new EntityNotFoundException(String.format("Certificate not found with %s id.", certificateId)));
+                        new EntityNotFoundException(String.format("Certificate not found with %s id.", certificateId)));
     }
 
 
@@ -50,5 +52,14 @@ public class CertificateServiceImpl implements CertificateService {
         certificate.setDeletedOn(LocalDate.now());
 
         this.certificateRepository.save(certificate);
+    }
+
+    @Override
+    public CertificateDto editCertificateById(String certificateId, CertificateBindingModel certificateBindingModel) {
+        Certificate certificate = this.findCertificateById(certificateId);
+
+        this.modelMapper.map(certificateBindingModel, certificate);
+
+        return this.modelMapper.map(this.certificateRepository.save(certificate), CertificateDto.class);
     }
 }

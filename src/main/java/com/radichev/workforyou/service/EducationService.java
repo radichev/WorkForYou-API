@@ -11,4 +11,6 @@ public interface EducationService {
     Education findEducationById(String educationId);
 
     void deleteEducationById(String educationId);
+
+    EducationDto editEducationById(String educationId, EducationBindingModel educationBindingModel);
 }

@@ -25,7 +25,11 @@ public class EducationServiceImpl implements EducationService {
     private final CountryService countryService;
     private final TitleTypeService titleTypeService;
 
-    public EducationServiceImpl(EducationRepository educationRepository, ModelMapper modelMapper, UserProfileDetailsService userProfileDetailsService, CountryService countryService, TitleTypeService titleTypeService) {
+    public EducationServiceImpl(EducationRepository educationRepository,
+                                ModelMapper modelMapper,
+                                UserProfileDetailsService userProfileDetailsService,
+                                CountryService countryService,
+                                TitleTypeService titleTypeService) {
         this.educationRepository = educationRepository;
         this.modelMapper = modelMapper;
         this.userProfileDetailsService = userProfileDetailsService;
@@ -64,5 +68,22 @@ public class EducationServiceImpl implements EducationService {
         education.setDeletedOn(LocalDate.now());
 
         this.educationRepository.save(education);
+    }
+
+    @Override
+    public EducationDto editEducationById(String educationId, EducationBindingModel educationBindingModel) {
+        Education education = this.findEducationById(educationId);
+
+        education.setUniversityName(educationBindingModel.getUniversityName());
+        education.setEducationSubject(educationBindingModel.getEducationSubject());
+        education.setGraduationYear(educationBindingModel.getGraduationYear());
+
+        Country country = this.countryService.findCountryById(educationBindingModel.getCountry().getId());
+        TitleType titleType = this.titleTypeService.findTitleTypeById(educationBindingModel.getTitleType().getId());
+
+        education.setCountry(country);
+        education.setTitleType(titleType);
+
+        return this.modelMapper.map(this.educationRepository.save(education), EducationDto.class);
     }
 }

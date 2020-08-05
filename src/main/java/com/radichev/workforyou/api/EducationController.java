@@ -33,6 +33,14 @@ public class EducationController {
                         .build();
     }
 
+    @PostMapping("/edit/{educationId}")
+    public ResponseEntity<EducationDto> editEducationById(@PathVariable String educationId,
+                                                              @Valid @RequestBody EducationBindingModel educationBindingModel) {
+
+        return ResponseEntity
+                .ok(this.educationService.editEducationById(educationId, educationBindingModel));
+    }
+
     @DeleteMapping("/{educationId}")
     public ResponseEntity<Void> deleteEducationById(@PathVariable String educationId) {
 

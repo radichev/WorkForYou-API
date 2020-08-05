@@ -38,7 +38,6 @@ public class CertificateBindingModel {
     }
 
     @NotNull
-    @NotBlank
     @Min(1915)
     @Max(2050)
     public int getGraduationYear() {
