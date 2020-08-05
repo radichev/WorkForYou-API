@@ -4,6 +4,7 @@ import com.radichev.workforyou.domain.entity.Country;
 import com.radichev.workforyou.domain.entity.Education;
 import com.radichev.workforyou.domain.entity.TitleType;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.user.educationBindingModel.EducationBindingModel;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.repository.EducationRepository;
@@ -13,6 +14,8 @@ import com.radichev.workforyou.service.TitleTypeService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class EducationServiceImpl implements EducationService {
@@ -45,5 +48,21 @@ public class EducationServiceImpl implements EducationService {
         education.setTitleType(titleType);
 
         return this.modelMapper.map(this.educationRepository.saveAndFlush(education), EducationDto.class);
+    }
+
+    @Override
+    public Education findEducationById(String educationId) {
+        return this.educationRepository.findById(educationId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Education not found with %s id.", educationId)));
+    }
+
+    @Override
+    public void deleteCertificateById(String educationId) {
+        Education education = this.findEducationById(educationId);
+        education.setDeleted(true);
+        education.setDeletedOn(LocalDate.now());
+
+        this.educationRepository.save(education);
     }
 }

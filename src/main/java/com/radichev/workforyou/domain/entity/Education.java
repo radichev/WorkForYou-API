@@ -1,10 +1,13 @@
 package com.radichev.workforyou.domain.entity;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "educations")
+@Where(clause="deleted = 0")
 public class Education extends BaseEntity {
 
     private Country country;

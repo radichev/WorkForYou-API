@@ -1,9 +1,12 @@
 package com.radichev.workforyou.domain.entity;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "certificates")
+@Where(clause="deleted = 0")
 public class Certificate extends BaseEntity {
     private String certificateSubject;
     private String awardedFrom;

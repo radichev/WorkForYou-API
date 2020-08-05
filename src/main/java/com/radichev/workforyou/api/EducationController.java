@@ -32,4 +32,14 @@ public class EducationController {
                         .toUri())
                         .build();
     }
+
+    @DeleteMapping("/{educationId}")
+    public ResponseEntity<Void> deleteEducationById(@PathVariable String educationId) {
+
+        this.educationService.deleteCertificateById(educationId);
+
+        return ResponseEntity
+                .ok()
+                .build();
+    }
 }

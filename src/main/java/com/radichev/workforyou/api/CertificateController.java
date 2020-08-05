@@ -32,4 +32,14 @@ public class CertificateController {
                         .toUri())
                         .build();
     }
+
+    @DeleteMapping("/{certificateId}")
+    public ResponseEntity<Void> deleteCertificateById(@PathVariable String certificateId) {
+
+        this.certificateService.deleteCertificateById(certificateId);
+        
+        return ResponseEntity
+                .ok()
+                .build();
+    }
 }

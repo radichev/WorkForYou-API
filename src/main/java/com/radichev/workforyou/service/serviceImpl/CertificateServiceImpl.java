@@ -2,6 +2,7 @@ package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.Certificate;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.user.certificateBindingModel.CertificateBindingModel;
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.repository.CertificateRepository;
@@ -9,6 +10,8 @@ import com.radichev.workforyou.service.CertificateService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class CertificateServiceImpl implements CertificateService {
@@ -30,5 +33,22 @@ public class CertificateServiceImpl implements CertificateService {
         certificate.setUserProfileDetails(userProfileDetails);
 
         return this.modelMapper.map(this.certificateRepository.saveAndFlush(certificate), CertificateDto.class);
+    }
+
+    @Override
+    public Certificate findCertificateById(String certificateId) {
+        return this.certificateRepository.findById(certificateId)
+                .orElseThrow(() ->
+                new EntityNotFoundException(String.format("Certificate not found with %s id.", certificateId)));
+    }
+
+
+    @Override
+    public void deleteCertificateById(String certificateId) {
+        Certificate certificate = this.findCertificateById(certificateId);
+        certificate.setDeleted(true);
+        certificate.setDeletedOn(LocalDate.now());
+
+        this.certificateRepository.save(certificate);
     }
 }
