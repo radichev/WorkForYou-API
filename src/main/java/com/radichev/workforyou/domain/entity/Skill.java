@@ -13,7 +13,7 @@ public class Skill extends BaseEntity {
 
     private String skill;
     private SkillLevel skillLevel;
-    private Set<UserProfileDetails> userProfileDetails;
+    private UserProfileDetails userProfileDetails;
 
     public Skill() {
     }
@@ -38,12 +38,12 @@ public class Skill extends BaseEntity {
         this.skillLevel = skillLevel;
     }
 
-    @ManyToMany
-    public Set<UserProfileDetails> getUserProfileDetails() {
+    @ManyToOne
+    public UserProfileDetails getUserProfileDetails() {
         return userProfileDetails;
     }
 
-    public void setUserProfileDetails(Set<UserProfileDetails> userProfileDetails) {
+    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
         this.userProfileDetails = userProfileDetails;
     }
 }

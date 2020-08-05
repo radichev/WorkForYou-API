@@ -35,19 +35,8 @@ public class LanguageServiceImpl implements LanguageService {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(userId);
 
         LanguageLevel languageLevel = this.languageLevelService.findLanguageLevelById(languageBindingModel.getLanguageLevel().getId());
-
-        Language language = this.languageRepository.findByLanguage(languageBindingModel.getLanguage());
-
-        if (language == null) {
-            language = this.modelMapper.map(languageBindingModel, Language.class);
-        }
-
-        if (language.getUserProfileDetails() != null) {
-            language.getUserProfileDetails().add(userProfileDetails);
-        } else {
-            language.setUserProfileDetails(Set.of(userProfileDetails));
-        }
-
+        Language language = this.modelMapper.map(languageBindingModel, Language.class);
+        language.setUserProfileDetails(userProfileDetails);
         language.setLanguageLevel(languageLevel);
 
         return this.modelMapper.map(this.languageRepository.saveAndFlush(language), LanguageDto.class);

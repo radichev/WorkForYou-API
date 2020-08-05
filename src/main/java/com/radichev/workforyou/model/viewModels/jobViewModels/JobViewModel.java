@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class JobViewModel {
     private String id;
     private String jobTitle;
-    private WorkSphereDto workSphere;
+    private WorkSphereViewModel workSphere;
     private SubSphereDto subSphere;
     private int deliveryTime;
     private BigDecimal price;
@@ -35,11 +35,11 @@ public class JobViewModel {
         this.jobTitle = jobTitle;
     }
 
-    public WorkSphereDto getWorkSphere() {
+    public WorkSphereViewModel getWorkSphere() {
         return workSphere;
     }
 
-    public void setWorkSphere(WorkSphereDto workSphere) {
+    public void setWorkSphere(WorkSphereViewModel workSphere) {
         this.workSphere = workSphere;
     }
 

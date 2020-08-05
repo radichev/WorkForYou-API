@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TitleTypeRepository extends JpaRepository<TitleType, String> {
-
-    TitleType findByTitleType(String titleType);
 }

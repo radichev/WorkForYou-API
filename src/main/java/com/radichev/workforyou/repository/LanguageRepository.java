@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LanguageRepository extends JpaRepository<Language, String> {
-
-    Language findByLanguage(String languageName);
 }

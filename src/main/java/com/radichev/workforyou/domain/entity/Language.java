@@ -12,7 +12,7 @@ import java.util.Set;
 public class Language extends BaseEntity {
     private String language;
     LanguageLevel languageLevel;
-    private Set<UserProfileDetails> userProfileDetails;
+    private UserProfileDetails userProfileDetails;
 
     public Language() {
     }
@@ -37,12 +37,12 @@ public class Language extends BaseEntity {
         this.languageLevel = languageLevel;
     }
 
-    @ManyToMany
-    public Set<UserProfileDetails> getUserProfileDetails() {
+    @ManyToOne
+    public UserProfileDetails getUserProfileDetails() {
         return userProfileDetails;
     }
 
-    public void setUserProfileDetails(Set<UserProfileDetails> userProfileDetails) {
+    public void setUserProfileDetails(UserProfileDetails userProfileDetails) {
         this.userProfileDetails = userProfileDetails;
     }
 }

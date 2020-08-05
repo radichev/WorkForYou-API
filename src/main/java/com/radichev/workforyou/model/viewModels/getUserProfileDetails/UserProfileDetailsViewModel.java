@@ -25,7 +25,6 @@ public class UserProfileDetailsViewModel {
     private String email;
     private LocalDate createdDate;
     private Set<LanguageDto> languages;
-    private Set<WorkSphereDto> workSpheres;
     private Set<SkillDto> skills;
     private Set<EducationDto> educations;
     private Set<CertificateDto> certificates;
@@ -136,14 +135,6 @@ public class UserProfileDetailsViewModel {
 
     public void setLanguages(Set<LanguageDto> languages) {
         this.languages = languages;
-    }
-
-    public Set<WorkSphereDto> getWorkSpheres() {
-        return workSpheres;
-    }
-
-    public void setWorkSpheres(Set<WorkSphereDto> workSpheres) {
-        this.workSpheres = workSpheres;
     }
 
     public Set<SkillDto> getSkills() {

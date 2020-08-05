@@ -84,8 +84,7 @@ public class UserProfileDetails extends BaseEntity {
         this.email = email;
     }
 
-
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "userProfileDetails")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userProfileDetails")
     public Set<Language> getLanguages() {
         return languages;
     }
@@ -94,7 +93,7 @@ public class UserProfileDetails extends BaseEntity {
         this.languages = languages;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "userProfileDetails")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userProfileDetails")
     public Set<Skill> getSkills() {
         return skills;
     }

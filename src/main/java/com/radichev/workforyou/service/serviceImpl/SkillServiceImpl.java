@@ -34,18 +34,8 @@ public class SkillServiceImpl implements SkillService {
 
         SkillLevel skillLevel = this.skillLevelService.findSkillLevelById(skillBindingModel.getSkillLevel().getId());
 
-        Skill skill = this.skillRepository.findBySkill(skillBindingModel.getSkill());
-
-        if (skill == null) {
-            skill = this.modelMapper.map(skillBindingModel, Skill.class);
-        }
-
-        if (skill.getUserProfileDetails() != null) {
-            skill.getUserProfileDetails().add(userProfileDetails);
-        } else {
-            skill.setUserProfileDetails(Set.of(userProfileDetails));
-        }
-
+        Skill skill = this.modelMapper.map(skillBindingModel, Skill.class);
+        skill.setUserProfileDetails(userProfileDetails);
         skill.setSkillLevel(skillLevel);
 
         return this.modelMapper.map(this.skillRepository.saveAndFlush(skill), SkillDto.class);

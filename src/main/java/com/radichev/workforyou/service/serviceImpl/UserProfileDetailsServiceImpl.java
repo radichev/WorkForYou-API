@@ -3,12 +3,12 @@ package com.radichev.workforyou.service.serviceImpl;
 import com.radichev.workforyou.bucket.BucketName;
 import com.radichev.workforyou.domain.entity.Country;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.user.editUserProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.service.*;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,18 +24,15 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
     private static final String AWS_S3_DEFAULT_URL = "https://workforyou-images.s3.amazonaws.com/";
     private final UserProfileDetailsRepository userProfileDetailsRepository;
     private final ModelMapper modelMapper;
-    private final UserService userService;
     private final FileStoreService fileStoreService;
     private final CountryService countryService;
 
     public UserProfileDetailsServiceImpl(UserProfileDetailsRepository userProfileDetailsRepository,
                                          ModelMapper modelMapper,
-                                         @Lazy UserService userService,
                                          FileStoreService fileStoreService,
                                          CountryService countryService) {
         this.userProfileDetailsRepository = userProfileDetailsRepository;
         this.modelMapper = modelMapper;
-        this.userService = userService;
         this.fileStoreService = fileStoreService;
         this.countryService = countryService;
     }
@@ -51,8 +48,8 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
     @Override
     @Transactional
-    public UserProfileDetailsViewModel editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String id) {
-        UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(id);
+    public UserProfileDetailsViewModel editUserProfileDetails(UserProfileDetailsEditBindingModel userProfileDetailsEditBindingModel, String userId) {
+        UserProfileDetails userProfileDetails = this.findUserProfileDetailsById(userId);
 
         userProfileDetails.setFirstName(userProfileDetailsEditBindingModel.getFirstName());
         userProfileDetails.setLastName(userProfileDetailsEditBindingModel.getLastName());
@@ -61,11 +58,11 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
         Country country = this.countryService.findCountryById(userProfileDetailsEditBindingModel.getCountry().getId());
         userProfileDetails.setCountry(country);
-        userProfileDetails.getUser().setId(id);
+        userProfileDetails.getUser().setId(userId);
 
-        if(userProfileDetails.getFirstName() != null &&
+        if (userProfileDetails.getFirstName() != null &&
                 userProfileDetails.getLanguages() != null &&
-                userProfileDetails.getCountry() != null){
+                userProfileDetails.getCountry() != null) {
             userProfileDetails.setHasCompletedAccountSetup(true);
         }
 
@@ -74,7 +71,9 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
     @Override
     public UserProfileDetails findUserProfileDetailsById(String userId) {
-        return this.userService.findUserProfileDetailsById(userId);
+        return this.userProfileDetailsRepository.findByUserId(userId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("UserProfileDetails not found with %s user id.", userId)));
     }
 
     @Override
@@ -87,7 +86,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
             throw new IllegalStateException("File must be an image");
         }
 
-        UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(userId);
+        UserProfileDetails userProfileDetails = this.findUserProfileDetailsById(userId);
 
         Map<String, String> metadata = new HashMap<>();
         metadata.put("Content-Type", file.getContentType());
@@ -110,7 +109,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
 
     @Override
     public byte[] downloadUserProfileImage(String userId) {
-        UserProfileDetails userProfileDetails = this.userService.findUserProfileDetailsById(userId);
+        UserProfileDetails userProfileDetails = this.findUserProfileDetailsById(userId);
         String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), userId);
 
         return this.fileStoreService.download(path, userProfileDetails.getProfilePicture());
