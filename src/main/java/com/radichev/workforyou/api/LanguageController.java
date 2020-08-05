@@ -32,4 +32,14 @@ public class LanguageController {
                         .toUri())
                         .build();
     }
+
+    @DeleteMapping("/{languageId}")
+    public ResponseEntity<Void> deleteLanguageById(@PathVariable String languageId) {
+
+        this.languageService.deleteLanguageById(languageId);
+
+        return ResponseEntity
+                .ok()
+                .build();
+    }
 }

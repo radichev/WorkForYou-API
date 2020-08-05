@@ -58,7 +58,7 @@ public class EducationServiceImpl implements EducationService {
     }
 
     @Override
-    public void deleteCertificateById(String educationId) {
+    public void deleteEducationById(String educationId) {
         Education education = this.findEducationById(educationId);
         education.setDeleted(true);
         education.setDeletedOn(LocalDate.now());

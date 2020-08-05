@@ -36,7 +36,7 @@ public class EducationController {
     @DeleteMapping("/{educationId}")
     public ResponseEntity<Void> deleteEducationById(@PathVariable String educationId) {
 
-        this.educationService.deleteCertificateById(educationId);
+        this.educationService.deleteEducationById(educationId);
 
         return ResponseEntity
                 .ok()

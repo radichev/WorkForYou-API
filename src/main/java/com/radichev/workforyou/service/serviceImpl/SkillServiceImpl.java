@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.*;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.user.skillBindingModel.SkillBindingModel;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
 import com.radichev.workforyou.repository.SkillRepository;
@@ -10,6 +11,7 @@ import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Repository
@@ -47,5 +49,21 @@ public class SkillServiceImpl implements SkillService {
         skill.setSkillLevel(skillLevel);
 
         return this.modelMapper.map(this.skillRepository.saveAndFlush(skill), SkillDto.class);
+    }
+
+    @Override
+    public Skill findSkillById(String skillId) {
+        return this.skillRepository.findById(skillId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Skill not found with %s id.", skillId)));
+    }
+
+    @Override
+    public void deleteSkillById(String skillId) {
+        Skill skill = this.findSkillById(skillId);
+        skill.setDeleted(true);
+        skill.setDeletedOn(LocalDate.now());
+
+        this.skillRepository.save(skill);
     }
 }

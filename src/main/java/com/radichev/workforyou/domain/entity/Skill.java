@@ -1,11 +1,14 @@
 package com.radichev.workforyou.domain.entity;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
 @Table(name = "skills")
+@Where(clause="deleted = 0")
 public class Skill extends BaseEntity {
 
     private String skill;

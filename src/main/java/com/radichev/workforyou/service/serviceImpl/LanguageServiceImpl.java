@@ -3,6 +3,7 @@ package com.radichev.workforyou.service.serviceImpl;
 import com.radichev.workforyou.domain.entity.Language;
 import com.radichev.workforyou.domain.entity.LanguageLevel;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.user.languageBindingModel.LanguageBindingModel;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
 import com.radichev.workforyou.repository.LanguageRepository;
@@ -12,6 +13,7 @@ import com.radichev.workforyou.service.UserProfileDetailsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Service
@@ -49,5 +51,21 @@ public class LanguageServiceImpl implements LanguageService {
         language.setLanguageLevel(languageLevel);
 
         return this.modelMapper.map(this.languageRepository.saveAndFlush(language), LanguageDto.class);
+    }
+
+    @Override
+    public Language findLanguageById(String languageId) {
+        return this.languageRepository.findById(languageId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Language not found with %s id.", languageId)));
+    }
+
+    @Override
+    public void deleteLanguageById(String languageId) {
+        Language language = this.findLanguageById(languageId);
+        language.setDeleted(true);
+        language.setDeletedOn(LocalDate.now());
+
+        this.languageRepository.save(language);
     }
 }

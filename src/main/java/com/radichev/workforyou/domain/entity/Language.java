@@ -1,11 +1,14 @@
 package com.radichev.workforyou.domain.entity;
 
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
 @Table(name = "languages")
+@Where(clause="deleted = 0")
 public class Language extends BaseEntity {
     private String language;
     LanguageLevel languageLevel;

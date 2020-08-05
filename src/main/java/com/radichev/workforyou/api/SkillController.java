@@ -32,4 +32,14 @@ public class SkillController {
                         .toUri())
                         .build();
     }
+
+    @DeleteMapping("/{skillId}")
+    public ResponseEntity<Void> deleteSkillById(@PathVariable String skillId) {
+
+        this.skillService.deleteSkillById(skillId);
+
+        return ResponseEntity
+                .ok()
+                .build();
+    }
 }

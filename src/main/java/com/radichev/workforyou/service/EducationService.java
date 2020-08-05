@@ -10,5 +10,5 @@ public interface EducationService {
 
     Education findEducationById(String educationId);
 
-    void deleteCertificateById(String educationId);
+    void deleteEducationById(String educationId);
 }
