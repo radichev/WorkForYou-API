@@ -33,6 +33,14 @@ public class SkillController {
                         .build();
     }
 
+    @PostMapping("/edit/{skillId}")
+    public ResponseEntity<SkillDto> editSkillById(@PathVariable String skillId,
+                                                        @Valid @RequestBody SkillBindingModel skillBindingModel) {
+
+        return ResponseEntity
+                .ok(this.skillService.editSkillById(skillId, skillBindingModel));
+    }
+
     @DeleteMapping("/{skillId}")
     public ResponseEntity<Void> deleteSkillById(@PathVariable String skillId) {
 

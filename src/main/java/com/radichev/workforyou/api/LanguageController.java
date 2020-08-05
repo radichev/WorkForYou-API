@@ -33,6 +33,14 @@ public class LanguageController {
                         .build();
     }
 
+    @PostMapping("/edit/{languageId}")
+    public ResponseEntity<LanguageDto> editLanguageById(@PathVariable String languageId,
+                                                          @Valid @RequestBody LanguageBindingModel languageBindingModel) {
+
+        return ResponseEntity
+                .ok(this.languageService.editLanguageById(languageId, languageBindingModel));
+    }
+
     @DeleteMapping("/{languageId}")
     public ResponseEntity<Void> deleteLanguageById(@PathVariable String languageId) {
 

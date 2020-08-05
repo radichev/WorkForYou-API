@@ -11,4 +11,6 @@ public interface SkillService {
     Skill findSkillById(String skillId);
 
     void deleteSkillById(String skillId);
+
+    SkillDto editSkillById(String skillId, SkillBindingModel skillBindingModel);
 }

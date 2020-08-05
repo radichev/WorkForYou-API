@@ -66,4 +66,15 @@ public class SkillServiceImpl implements SkillService {
 
         this.skillRepository.save(skill);
     }
+
+    @Override
+    public SkillDto editSkillById(String skillId, SkillBindingModel skillBindingModel) {
+        Skill skill = this.findSkillById(skillId);
+        skill.setSkill(skillBindingModel.getSkill());
+
+        SkillLevel skillLevel = this.skillLevelService.findSkillLevelById(skillBindingModel.getSkillLevel().getId());
+        skill.setSkillLevel(skillLevel);
+
+        return this.modelMapper.map(this.skillRepository.save(skill), SkillDto.class);
+    }
 }

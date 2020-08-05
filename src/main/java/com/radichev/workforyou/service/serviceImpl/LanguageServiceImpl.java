@@ -68,4 +68,15 @@ public class LanguageServiceImpl implements LanguageService {
 
         this.languageRepository.save(language);
     }
+
+    @Override
+    public LanguageDto editLanguageById(String languageId, LanguageBindingModel languageBindingModel) {
+        Language language = this.findLanguageById(languageId);
+        language.setLanguage(languageBindingModel.getLanguage());
+
+        LanguageLevel languageLevel = this.languageLevelService.findLanguageLevelById(languageBindingModel.getLanguageLevel().getId());
+        language.setLanguageLevel(languageLevel);
+
+        return this.modelMapper.map(this.languageRepository.save(language), LanguageDto.class);
+    }
 }

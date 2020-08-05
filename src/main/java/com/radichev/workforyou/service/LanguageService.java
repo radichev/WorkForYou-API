@@ -11,4 +11,6 @@ public interface LanguageService {
     Language findLanguageById(String languageId);
 
     void deleteLanguageById(String languageId);
+
+    LanguageDto editLanguageById(String languageId, LanguageBindingModel languageBindingModel);
 }
