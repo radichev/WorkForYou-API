@@ -17,7 +17,7 @@ public class CertificateBindingModel {
 
     @NotNull
     @NotBlank
-    @Length(min = 3, max = 40)
+    @Length(min = 3, max = 30)
     public String getCertificateSubject() {
         return certificateSubject;
     }
@@ -28,7 +28,7 @@ public class CertificateBindingModel {
 
     @NotNull
     @NotBlank
-    @Length(min = 3, max = 40)
+    @Length(min = 3, max = 30)
     public String getAwardedFrom() {
         return awardedFrom;
     }

@@ -22,7 +22,7 @@ public class LanguageController {
     @PostMapping("/add/{userId}")
     public ResponseEntity<Void> addLanguage(@PathVariable String userId,
                                             @Valid @RequestBody LanguageBindingModel languageBindingModel,
-                                            UriComponentsBuilder ucBuilder){
+                                            UriComponentsBuilder ucBuilder) {
 
         LanguageDto languageDto = this.languageService.addLanguage(languageBindingModel, userId);
 
@@ -30,12 +30,12 @@ public class LanguageController {
                 .created(ucBuilder.path("/languages/{languageId}")
                         .buildAndExpand(languageDto.getId())
                         .toUri())
-                        .build();
+                    .build();
     }
 
     @PostMapping("/edit/{languageId}")
     public ResponseEntity<LanguageDto> editLanguageById(@PathVariable String languageId,
-                                                          @Valid @RequestBody LanguageBindingModel languageBindingModel) {
+                                                        @Valid @RequestBody LanguageBindingModel languageBindingModel) {
 
         return ResponseEntity
                 .ok(this.languageService.editLanguageById(languageId, languageBindingModel));

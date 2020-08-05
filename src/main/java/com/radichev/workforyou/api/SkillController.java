@@ -22,7 +22,7 @@ public class SkillController {
     @PostMapping("/add/{userId}")
     public ResponseEntity<Void> addSkill(@PathVariable String userId,
                                          @Valid @RequestBody SkillBindingModel skillBindingModel,
-                                         UriComponentsBuilder ucBuilder){
+                                         UriComponentsBuilder ucBuilder) {
 
         SkillDto skillDto = this.skillService.addSkill(skillBindingModel, userId);
 
@@ -35,7 +35,7 @@ public class SkillController {
 
     @PostMapping("/edit/{skillId}")
     public ResponseEntity<SkillDto> editSkillById(@PathVariable String skillId,
-                                                        @Valid @RequestBody SkillBindingModel skillBindingModel) {
+                                                  @Valid @RequestBody SkillBindingModel skillBindingModel) {
 
         return ResponseEntity
                 .ok(this.skillService.editSkillById(skillId, skillBindingModel));

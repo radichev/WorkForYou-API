@@ -30,7 +30,7 @@ public class EducationBindingModel {
 
     @NotNull
     @NotBlank
-    @Length(min = 4, max = 40)
+    @Length(min = 3, max = 30)
     public String getUniversityName() {
         return universityName;
     }
@@ -50,7 +50,7 @@ public class EducationBindingModel {
 
     @NotNull
     @NotBlank
-    @Length(min = 3, max = 40)
+    @Length(min = 3, max = 30)
     public String getEducationSubject() {
         return educationSubject;
     }

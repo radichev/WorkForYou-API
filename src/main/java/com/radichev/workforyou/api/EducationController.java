@@ -22,7 +22,7 @@ public class EducationController {
     @PostMapping("/add/{userId}")
     public ResponseEntity<Void> addEducations(@PathVariable String userId,
                                               @Valid @RequestBody EducationBindingModel educationBindingModel,
-                                              UriComponentsBuilder ucBuilder){
+                                              UriComponentsBuilder ucBuilder) {
 
         EducationDto educationDto = this.educationService.addEducation(educationBindingModel, userId);
 
@@ -35,7 +35,7 @@ public class EducationController {
 
     @PostMapping("/edit/{educationId}")
     public ResponseEntity<EducationDto> editEducationById(@PathVariable String educationId,
-                                                              @Valid @RequestBody EducationBindingModel educationBindingModel) {
+                                                          @Valid @RequestBody EducationBindingModel educationBindingModel) {
 
         return ResponseEntity
                 .ok(this.educationService.editEducationById(educationId, educationBindingModel));

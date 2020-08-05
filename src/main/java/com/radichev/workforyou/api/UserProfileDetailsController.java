@@ -40,7 +40,7 @@ public class UserProfileDetailsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserProfileDetailsViewModel> getUserProfileDetails(@PathVariable String id){
+    public ResponseEntity<UserProfileDetailsViewModel> getUserProfileDetails(@PathVariable String id) {
         UserProfileDetails userProfileDetails = this.userProfileDetailsService.findUserProfileDetailsById(id);
         UserProfileDetailsViewModel userProfileDetailsViewModel = this.modelMapper.map(userProfileDetails, UserProfileDetailsViewModel.class);
         userProfileDetailsViewModel.setUsername(userProfileDetails.getUser().getUsername());
@@ -81,14 +81,14 @@ public class UserProfileDetailsController {
 
     @GetMapping("/lookups")
     public ResponseEntity<UserLookupTablesViewModel> getAllLookupTables() {
-       UserLookupTablesViewModel userLookupTablesViewModel = new UserLookupTablesViewModel();
-       userLookupTablesViewModel.setSkillLevels(this.skillLevelService.findAllSkillLevels());
-       userLookupTablesViewModel.setLanguageLevels(this.languageLevelService.findAllLanguageLevels());
-       userLookupTablesViewModel.setTitleTypes(this.titleTypeService.findAllTitleTypes());
-       userLookupTablesViewModel.setCountries(this.countryService.findAllCountries());
+        UserLookupTablesViewModel userLookupTablesViewModel = new UserLookupTablesViewModel();
+        userLookupTablesViewModel.setSkillLevels(this.skillLevelService.findAllSkillLevels());
+        userLookupTablesViewModel.setLanguageLevels(this.languageLevelService.findAllLanguageLevels());
+        userLookupTablesViewModel.setTitleTypes(this.titleTypeService.findAllTitleTypes());
+        userLookupTablesViewModel.setCountries(this.countryService.findAllCountries());
 
-       return ResponseEntity
-               .ok()
-               .body(userLookupTablesViewModel);
+        return ResponseEntity
+                .ok()
+                .body(userLookupTablesViewModel);
     }
 }
