@@ -34,7 +34,7 @@ public class LanguageLevelServiceImplTest {
     public void setUp() {
         this.languageLevelService = new LanguageLevelServiceImpl(languageLevelRepository, modelMapper);
 
-        languageLevel = new LanguageLevel("Expert");
+        languageLevel = new LanguageLevel("Fluent");
     }
 
     @Test
@@ -61,7 +61,7 @@ public class LanguageLevelServiceImplTest {
     }
 
     @Test
-    public void testFindLanguageLevelByIdShouldThrowEntityNotFoundException() {
+    public void testFindLanguageLevelByIdShouldThrowEntityNotFoundExceptionWithInvalid() {
         Exception exception = Assertions.assertThrows(EntityNotFoundException.class, () -> {
             this.languageLevelService.findLanguageLevelById("testId");
         });

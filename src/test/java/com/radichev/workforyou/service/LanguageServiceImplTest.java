@@ -41,6 +41,7 @@ public class LanguageServiceImplTest {
     private UserProfileDetails userProfileDetails;
     private LanguageLevel languageLevel;
     private LanguageLevel testLanguageLevel;
+    private LanguageBindingModel languageBindingModel;
 
     @BeforeEach
     public void setUp() {
@@ -52,13 +53,15 @@ public class LanguageServiceImplTest {
         language = new Language();
         language.setLanguage("English");
 
-        testLanguageLevel = new LanguageLevel();
-//        testLanguageLevel.setId("testId");
-        testLanguageLevel.setLanguageLevel("Basic");
-        language.setLanguageLevel(testLanguageLevel);
-
         languageLevel = new LanguageLevel();
         languageLevel.setLanguageLevel("Fluent");
+        language.setLanguageLevel(languageLevel);
+
+        languageBindingModel = new LanguageBindingModel();
+        languageBindingModel.setLanguage("Spanish");
+        testLanguageLevel = new LanguageLevel();
+        testLanguageLevel.setLanguageLevel("Basic");
+        languageBindingModel.setLanguageLevel(this.modelMapper.map(testLanguageLevel, LanguageLevelDto.class));
 
         userProfileDetails = new UserProfileDetails();
         userProfileDetails.setFirstName("Ivan");
@@ -75,7 +78,7 @@ public class LanguageServiceImplTest {
                 .thenReturn(language);
 
         when(this.languageLevelService.findLanguageLevelById(language.getLanguageLevel().getId()))
-                .thenReturn(languageLevel);
+                .thenReturn(testLanguageLevel);
 
         LanguageBindingModel languageBindingModel = this.modelMapper.map(language, LanguageBindingModel.class);
 
@@ -108,11 +111,7 @@ public class LanguageServiceImplTest {
     @Test
     public void testEditLanguageShouldReturnCorrectResult() {
         when(this.languageRepository.save(Mockito.any(Language.class)))
-                .thenReturn(language);
-
-        LanguageBindingModel languageBindingModel = new LanguageBindingModel();
-        languageBindingModel.setLanguage("French");
-        languageBindingModel.setLanguageLevel(this.modelMapper.map(languageLevel, LanguageLevelDto.class));
+                .thenReturn(this.modelMapper.map(languageBindingModel, Language.class));
 
         when(this.languageRepository.findById("testId"))
                 .thenReturn(Optional.ofNullable(language));
@@ -122,7 +121,7 @@ public class LanguageServiceImplTest {
 
         LanguageDto testLanguage = this.languageService.editLanguageById("testId", languageBindingModel);
 
-        Assertions.assertEquals(language.getLanguage(), testLanguage.getLanguage());
-        Assertions.assertEquals(language.getLanguageLevel().getLanguageLevel(), testLanguage.getLanguageLevel().getLanguageLevel());
+        Assertions.assertEquals(languageBindingModel.getLanguage(), testLanguage.getLanguage());
+        Assertions.assertEquals(languageBindingModel.getLanguageLevel().getLanguageLevel(), testLanguage.getLanguageLevel().getLanguageLevel());
     }
 }
