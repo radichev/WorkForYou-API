@@ -66,7 +66,7 @@ public class CountryServiceImplTest {
     }
 
     @Test
-    public void testFindCountryByIdShouldThrowInvalidEntityExceptionWithInvalidId() {
+    public void testFindCountryByIdShouldThrowEntityNotFoundExceptionWithInvalidId() {
         Exception exception = Assertions.assertThrows(EntityNotFoundException.class, () -> {
             this.countryService.findCountryById("testId");
         });
