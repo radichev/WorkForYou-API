@@ -65,7 +65,8 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public List<JobViewModel> findAllJobsByUserId(String userId) {
-        return this.jobRepository.findAllByUserId(userId).stream()
+        return this.jobRepository.findAllByUserId(userId)
+                .stream()
                 .map(job -> {
                     JobViewModel jobViewModel = this.modelMapper.map(job, JobViewModel.class);
                     jobViewModel.getUserProfileDetails().setCountry(job.getUserProfileDetails().getCountry().getCountry());
