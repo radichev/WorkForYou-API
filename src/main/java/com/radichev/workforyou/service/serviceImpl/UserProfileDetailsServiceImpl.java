@@ -106,12 +106,4 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
             throw new IllegalStateException(e);
         }
     }
-
-    @Override
-    public byte[] downloadUserProfileImage(String userId) {
-        UserProfileDetails userProfileDetails = this.findUserProfileDetailsById(userId);
-        String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), userId);
-
-        return this.fileStoreService.download(path, userProfileDetails.getProfilePicture());
-    }
 }

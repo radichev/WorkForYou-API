@@ -14,6 +14,4 @@ public interface UserProfileDetailsService {
     UserProfileDetails findUserProfileDetailsById(String userId);
 
     void uploadUserProfileImage(String userId, MultipartFile file);
-
-    byte[] downloadUserProfileImage(String userId);
 }

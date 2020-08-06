@@ -73,12 +73,6 @@ public class UserProfileDetailsController {
                 .build();
     }
 
-    @GetMapping("/{id}/image/download")
-    public byte[] downloadUserProfileImage(@PathVariable("id") String userId) {
-        return this.userProfileDetailsService.downloadUserProfileImage(userId);
-//        return ResponseEntity.ok().build();
-    }
-
     @GetMapping("/lookups")
     public ResponseEntity<UserLookupTablesViewModel> getAllLookupTables() {
         UserLookupTablesViewModel userLookupTablesViewModel = new UserLookupTablesViewModel();

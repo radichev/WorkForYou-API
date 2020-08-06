@@ -45,27 +45,4 @@ public class FileStoreServiceImpl implements FileStoreService {
             throw new IllegalStateException("Failed to store file to s3", e);
         }
     }
-
-    public byte[] download(String path, String key) {
-        try {
-            S3Object object = amazonS3.getObject(path, key);
-            return IOUtils.toByteArray(object.getObjectContent());
-        } catch (AmazonServiceException | IOException e) {
-            throw new IllegalStateException("Failed to download file to s3", e);
-        }
-    }
-
-    public URL generateUrl(String bucketName, String objectKey) {
-        Date expiration = new Date();
-        long expMilliS = expiration.getTime();
-        expMilliS += 604800000;
-        expiration.setTime(expMilliS);
-
-        GeneratePresignedUrlRequest generatePresignedUrlRequest =
-                new GeneratePresignedUrlRequest(bucketName, objectKey)
-                        .withMethod(HttpMethod.GET)
-                        .withExpiration(expiration);
-
-        return amazonS3.generatePresignedUrl(generatePresignedUrlRequest);
-    }
 }
