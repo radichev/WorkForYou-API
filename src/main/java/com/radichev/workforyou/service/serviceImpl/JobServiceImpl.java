@@ -8,6 +8,7 @@ import com.radichev.workforyou.domain.entity.WorkSphere;
 import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
+import com.radichev.workforyou.model.viewModels.jobViewModels.JobScheduledTaskDto;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.repository.JobRepository;
 import com.radichev.workforyou.service.*;
@@ -151,5 +152,13 @@ public class JobServiceImpl implements JobService {
         job.setDeletedOn(LocalDate.now());
 
         this.jobRepository.save(job);
+    }
+
+    @Override
+    public List<JobScheduledTaskDto> findAllJobs() {
+        return this.jobRepository.findAll()
+                .stream()
+                .map(job -> this.modelMapper.map(job, JobScheduledTaskDto.class))
+                .collect(Collectors.toList());
     }
 }

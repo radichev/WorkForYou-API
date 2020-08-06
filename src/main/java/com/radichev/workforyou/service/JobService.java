@@ -3,6 +3,7 @@ package com.radichev.workforyou.service;
 import com.radichev.workforyou.domain.entity.Job;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
+import com.radichev.workforyou.model.viewModels.jobViewModels.JobScheduledTaskDto;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,4 +30,6 @@ public interface JobService {
     String uploadJobImage(String userId, String jobTitle, MultipartFile file);
 
     void deleteJobById(String jobId);
+
+    List<JobScheduledTaskDto> findAllJobs();
 }
