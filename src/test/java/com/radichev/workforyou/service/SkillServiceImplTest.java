@@ -41,6 +41,8 @@ public class SkillServiceImplTest {
     private Skill skill;
     private UserProfileDetails userProfileDetails;
     private SkillLevel testSkillLevel;
+    private SkillBindingModel skillBindingModel;
+    private SkillLevel skillLevel;
 
     @BeforeEach
     public void setUp() {
@@ -48,12 +50,12 @@ public class SkillServiceImplTest {
 
         skill = new Skill();
         skill.setSkill("Spring Data");
-        SkillLevel skillLevel = new SkillLevel("Expert");
+        skillLevel = new SkillLevel("Expert");
         skill.setSkillLevel(skillLevel);
 
         testSkillLevel = new SkillLevel("Basic");
 
-        SkillBindingModel skillBindingModel = new SkillBindingModel();
+        skillBindingModel = new SkillBindingModel();
         skillBindingModel.setSkill("C# Master");
         skillBindingModel.setSkillLevel(this.modelMapper.map(testSkillLevel, SkillLevelDto.class));
 
@@ -72,7 +74,7 @@ public class SkillServiceImplTest {
                 .thenReturn(skill);
 
         when(this.skillLevelService.findSkillLevelById(skill.getSkillLevel().getId()))
-                .thenReturn(testSkillLevel);
+                .thenReturn(skillLevel);
 
         SkillBindingModel skillBindingModel = this.modelMapper.map(skill, SkillBindingModel.class);
 
@@ -100,5 +102,22 @@ public class SkillServiceImplTest {
         });
 
         Assertions.assertEquals(exception.getMessage(), "Skill not found with testId id.");
+    }
+
+    @Test
+    public void testEditSkillByIdShouldReturnCorrectResult() {
+        when(this.skillRepository.findById("testId"))
+                .thenReturn(Optional.ofNullable(skill));
+
+        when(this.skillRepository.save(Mockito.any(Skill.class)))
+                .thenReturn(this.modelMapper.map(skillBindingModel, Skill.class));
+
+        when(this.skillLevelService.findSkillLevelById(skill.getSkillLevel().getId()))
+                .thenReturn(testSkillLevel);
+
+        SkillDto testSkill = this.skillService.editSkillById("testId", skillBindingModel);
+
+        Assertions.assertEquals(skillBindingModel.getSkill(), testSkill.getSkill());
+        Assertions.assertEquals(skillBindingModel.getSkillLevel().getSkillLevel(), testSkill.getSkillLevel().getSkillLevel());
     }
 }
