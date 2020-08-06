@@ -9,8 +9,12 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 
     @Override
     public Optional<String> getCurrentAuditor() {
-        String principalName = SecurityContextHolder.getContext().getAuthentication().getName();
-
+        String principalName;
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+            principalName = SecurityContextHolder.getContext().getAuthentication().getName();
+        } else {
+            principalName = "anonymousUser";
+        }
         return Optional.ofNullable(principalName);
     }
 

@@ -12,6 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CertificateServiceImpl implements CertificateService {
@@ -61,5 +63,13 @@ public class CertificateServiceImpl implements CertificateService {
         this.modelMapper.map(certificateBindingModel, certificate);
 
         return this.modelMapper.map(this.certificateRepository.save(certificate), CertificateDto.class);
+    }
+
+    @Override
+    public List<CertificateDto> findAllCertificates() {
+        return this.certificateRepository.findAll()
+                .stream()
+                .map(certificate -> this.modelMapper.map(certificate, CertificateDto.class))
+                .collect(Collectors.toList());
     }
 }

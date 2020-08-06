@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/certificates")
@@ -49,5 +50,12 @@ public class CertificateController {
         return ResponseEntity
                 .ok()
                 .build();
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<CertificateDto>> getAllCertificates() {
+
+        return ResponseEntity
+                .ok(this.certificateService.findAllCertificates());
     }
 }
