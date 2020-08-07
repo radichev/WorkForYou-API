@@ -36,45 +36,36 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser("testUser")
 public class EducationControllerTest {
 
-    @Autowired
-    MockMvc mockMvc;
+    private final MockMvc mockMvc;
+    private final CountryRepository countryRepository;
+    private final TitleTypeRepository titleTypeRepository;
+    private final EducationRepository educationRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final UserProfileDetailsRepository userProfileDetailsRepository;
 
     @Autowired
-    CountryRepository countryRepository;
-
-    @Autowired
-    TitleTypeRepository titleTypeRepository;
-
-    @Autowired
-    EducationRepository educationRepository;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    UserProfileDetailsRepository userProfileDetailsRepository;
+    public EducationControllerTest(MockMvc mockMvc,
+                                   CountryRepository countryRepository,
+                                   TitleTypeRepository titleTypeRepository,
+                                   EducationRepository educationRepository,
+                                   UserService userService,
+                                   UserRepository userRepository,
+                                   RoleRepository roleRepository,
+                                   UserProfileDetailsRepository userProfileDetailsRepository) {
+        this.mockMvc = mockMvc;
+        this.countryRepository = countryRepository;
+        this.titleTypeRepository = titleTypeRepository;
+        this.educationRepository = educationRepository;
+        this.userService = userService;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.userProfileDetailsRepository = userProfileDetailsRepository;
+    }
 
     private String TEST_USER_ID;
-    private String username = "Pesho";
-    private String email = "pesho@abv.bg";
-    private String password = "123456Jj";
-
-    private String TEST_COUNTRY_ID;
-    private String TEST_COUNTRY = "Bulgaria";
-
-    private String TEST_TITLETYPE_ID;
-    private String TEST_TITLETYPE = "Ph.D";
-
     private String TEST_EDUCATION_ID;
-    private String TEST_universityName = "Softuni";
-    private String TEST_educationSubject = "Spring";
-    private int TEST_graduationYear = 2012;
 
     ModelMapper modelMapper = new ModelMapper();
 
@@ -87,28 +78,35 @@ public class EducationControllerTest {
         this.roleRepository.deleteAll();
         this.userProfileDetailsRepository.deleteAll();
 
+        String TEST_COUNTRY = "Bulgaria";
         Country country = new Country(TEST_COUNTRY);
         this.countryRepository.save(country);
 
+        String TEST_TITLETYPE = "Ph.D";
         TitleType titleType = new TitleType(TEST_TITLETYPE);
         this.titleTypeRepository.save(titleType);
 
         Education education = new Education();
         education.setCountry(country);
+        String TEST_universityName = "Softuni";
         education.setUniversityName(TEST_universityName);
+        String TEST_educationSubject = "Spring";
         education.setEducationSubject(TEST_educationSubject);
         education.setTitleType(titleType);
+        int TEST_graduationYear = 2012;
         education.setGraduationYear(TEST_graduationYear);
         education = this.educationRepository.save(education);
         TEST_EDUCATION_ID = education.getId();
 
         SignUpBindingModel signUpBindingModel = new SignUpBindingModel();
+        String username = "Pesho";
         signUpBindingModel.setUsername(username);
+        String email = "pesho@abv.bg";
         signUpBindingModel.setEmail(email);
+        String password = "123456Jj";
         signUpBindingModel.setPassword(password);
 
         TEST_USER_ID =  this.userService.signUpUser(signUpBindingModel).getId();
-
     }
 
     @AfterEach

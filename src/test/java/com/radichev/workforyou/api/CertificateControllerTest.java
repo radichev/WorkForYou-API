@@ -1,20 +1,16 @@
 package com.radichev.workforyou.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.radichev.workforyou.domain.entity.Certificate;
 import com.radichev.workforyou.model.bindingModels.auth.SignUpBindingModel;
 import com.radichev.workforyou.model.bindingModels.user.certificateBindingModel.CertificateBindingModel;
-import com.radichev.workforyou.model.viewModels.auth.SignUpViewModel;
 import com.radichev.workforyou.repository.CertificateRepository;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.repository.auth.RoleRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
-import com.radichev.workforyou.service.CertificateService;
 import com.radichev.workforyou.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,36 +30,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser("testUser")
 public class CertificateControllerTest {
 
-    @Autowired
-    MockMvc mockMvc;
+    private final MockMvc mockMvc;
+    private final CertificateRepository certificateRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final UserProfileDetailsRepository userProfileDetailsRepository;
 
     @Autowired
-    CertificateService certificateService;
+    public CertificateControllerTest(MockMvc mockMvc,
+                                     CertificateRepository certificateRepository,
+                                     UserService userService,
+                                     UserRepository userRepository,
+                                     RoleRepository roleRepository,
+                                     UserProfileDetailsRepository userProfileDetailsRepository) {
+        this.mockMvc = mockMvc;
+        this.certificateRepository = certificateRepository;
+        this.userService = userService;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.userProfileDetailsRepository = userProfileDetailsRepository;
+    }
 
-    @Autowired
-    CertificateRepository certificateRepository;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    UserProfileDetailsRepository userProfileDetailsRepository;
-
-    private String TEST_CERTIFICATE1_ID, TEST_CERTIFICATE2_ID;
-    private String TEST_certificateSubject1 = "Spring", TEST_certificateSubject2 = "Databases";
-    private String TEST_awardedFrom1 = "Softuni", TEST_awardedFrom2 = "FMI";
-    private int TEST_graduationYear1 = 2012, TEST_graduationYear2 = 2021;
-
+    private String TEST_CERTIFICATE1_ID;
     private String TEST_USER_ID;
-    private String username = "Pesho";
-    private String email = "pesho@abv.bg";
-    private String password = "123456Jj";
 
     @BeforeEach
     public void setUp() {
@@ -73,25 +63,33 @@ public class CertificateControllerTest {
         this.userProfileDetailsRepository.deleteAll();
 
         SignUpBindingModel signUpBindingModel = new SignUpBindingModel();
+        String username = "Pesho";
         signUpBindingModel.setUsername(username);
+        String email = "pesho@abv.bg";
         signUpBindingModel.setEmail(email);
+        String password = "123456Jj";
         signUpBindingModel.setPassword(password);
 
-        TEST_USER_ID =  this.userService.signUpUser(signUpBindingModel).getId();
+        TEST_USER_ID = this.userService.signUpUser(signUpBindingModel).getId();
 
         Certificate certificate1 = new Certificate();
+        String TEST_certificateSubject1 = "Spring";
         certificate1.setCertificateSubject(TEST_certificateSubject1);
+        String TEST_awardedFrom1 = "Softuni";
         certificate1.setAwardedFrom(TEST_awardedFrom1);
+        int TEST_graduationYear1 = 2012;
         certificate1.setGraduationYear(TEST_graduationYear1);
         certificate1 = this.certificateRepository.save(certificate1);
         TEST_CERTIFICATE1_ID = certificate1.getId();
 
         Certificate certificate2 = new Certificate();
+        String TEST_certificateSubject2 = "Databases";
         certificate2.setCertificateSubject(TEST_certificateSubject2);
+        String TEST_awardedFrom2 = "FMI";
         certificate2.setAwardedFrom(TEST_awardedFrom2);
+        int TEST_graduationYear2 = 2021;
         certificate2.setGraduationYear(TEST_graduationYear2);
         certificate2 = this.certificateRepository.save(certificate2);
-        TEST_CERTIFICATE2_ID = certificate2.getId();
     }
 
     @AfterEach
@@ -147,9 +145,4 @@ public class CertificateControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
     }
-
-
-
-
-
 }

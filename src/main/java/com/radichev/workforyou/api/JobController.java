@@ -31,7 +31,7 @@ public class JobController {
     }
 
     @GetMapping("/all/{userId}")
-    public ResponseEntity<List<JobViewModel>> getAllJobs(@PathVariable String userId) {
+    public ResponseEntity<List<JobViewModel>> getAllJobsByUserId(@PathVariable String userId) {
         return ResponseEntity
                 .ok()
                 .body(this.jobService.findAllJobsByUserId(userId));
@@ -67,7 +67,7 @@ public class JobController {
                 .created(ucBuilder.path("/jobs/{jobId}")
                         .buildAndExpand(jobViewModel.getId())
                         .toUri())
-                .build();
+                        .build();
     }
 
     @GetMapping("/{userId}/bought")
