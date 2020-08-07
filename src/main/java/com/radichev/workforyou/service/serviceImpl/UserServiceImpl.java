@@ -52,8 +52,7 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.userRepository.findByUsername(username)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException(String.format("Username %s not found", username))
-                );
+                        new UsernameNotFoundException(String.format("Username %s not found", username)));
     }
 
     @Override
@@ -96,7 +95,6 @@ public class UserServiceImpl implements UserService {
                         new UsernameNotFoundException(String.format("Username %s not found", signInBindingModel.getUsername())));
 
         final String token = jwtUtils.generateToken(user);
-
 
         return new SignInViewModel(token);
     }
