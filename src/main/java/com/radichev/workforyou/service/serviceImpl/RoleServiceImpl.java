@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.radichev.workforyou.domain.entity.auth.Role;
+import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.repository.auth.RoleRepository;
 import com.radichev.workforyou.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,6 @@ public class RoleServiceImpl implements RoleService {
     public Role findByAuthority(String authority) {
         return this.roleRepository.findByAuthority(authority)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException(String.format("Role %s not found", authority)));
+                        new EntityNotFoundException(String.format("Role %s not found", authority)));
     }
 }
