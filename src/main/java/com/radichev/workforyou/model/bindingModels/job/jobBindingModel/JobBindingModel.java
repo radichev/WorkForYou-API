@@ -19,8 +19,6 @@ public class JobBindingModel {
     public JobBindingModel() {
     }
 
-    @NotNull
-    @NotBlank
     @Length(min = 5, max = 40)
     public String getJobTitle() {
         return jobTitle;
@@ -40,7 +38,6 @@ public class JobBindingModel {
     }
 
     @NotNull
-    @NotBlank
     @Min(0)
     public int getDeliveryTime() {
         return deliveryTime;
@@ -51,7 +48,6 @@ public class JobBindingModel {
     }
 
     @NotNull
-    @NotBlank
     @DecimalMin("0")
     public BigDecimal getPrice() {
         return price;

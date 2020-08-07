@@ -61,7 +61,7 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         userProfileDetails.getUser().setId(userId);
 
         if (userProfileDetails.getFirstName() != null &&
-                userProfileDetails.getLanguages() != null &&
+                userProfileDetails.getLastName() != null &&
                 userProfileDetails.getCountry() != null) {
             userProfileDetails.setHasCompletedAccountSetup(true);
         }
