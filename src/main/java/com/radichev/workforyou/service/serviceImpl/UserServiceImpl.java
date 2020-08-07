@@ -1,7 +1,9 @@
 package com.radichev.workforyou.service.serviceImpl;
 
 import com.google.common.collect.Sets;
+import com.radichev.workforyou.domain.entity.auth.Role;
 import com.radichev.workforyou.domain.entity.auth.User;
+import com.radichev.workforyou.model.bindingModels.ChangeRoleBindingModel;
 import com.radichev.workforyou.model.bindingModels.auth.SignInBindingModel;
 import com.radichev.workforyou.model.bindingModels.auth.SignUpBindingModel;
 import com.radichev.workforyou.model.viewModels.auth.SignInViewModel;
@@ -68,7 +70,7 @@ public class UserServiceImpl implements UserService {
         if (this.userRepository.count() == 0) {
             roleService.seedRolesInDB();
 
-            user.setAuthorities(this.roleService.findAllRoles());
+            user.setAuthorities(Sets.newHashSet(this.roleService.findByAuthority("ADMIN")));
         } else {
             user.setAuthorities(Sets.newHashSet(this.roleService.findByAuthority("USER")));
         }
@@ -97,5 +99,17 @@ public class UserServiceImpl implements UserService {
         final String token = jwtUtils.generateToken(user);
 
         return new SignInViewModel(token);
+    }
+
+    @Override
+    public void changeUserRole(ChangeRoleBindingModel changeRoleBindingModel) {
+        User user = this.findByUsername(changeRoleBindingModel.getUsername())
+                .orElseThrow(() ->
+                        new InvalidEntityException(String.format("User with username '%s' already exists.", changeRoleBindingModel.getUsername())));
+
+        Role authority = this.roleService.findByAuthority(changeRoleBindingModel.getAuthority());
+
+        user.setAuthorities(Sets.newHashSet(authority));
+        this.userRepository.save(user);
     }
 }

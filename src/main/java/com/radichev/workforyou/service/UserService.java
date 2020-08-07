@@ -1,6 +1,7 @@
 package com.radichev.workforyou.service;
 
 import com.radichev.workforyou.domain.entity.auth.User;
+import com.radichev.workforyou.model.bindingModels.ChangeRoleBindingModel;
 import com.radichev.workforyou.model.bindingModels.auth.SignInBindingModel;
 import com.radichev.workforyou.model.bindingModels.auth.SignUpBindingModel;
 import com.radichev.workforyou.model.viewModels.auth.SignInViewModel;
@@ -16,4 +17,6 @@ public interface UserService extends UserDetailsService {
     Optional<User> findByUsername(String username);
 
     SignInViewModel signInUser(SignInBindingModel signInBindingModel);
+
+    void changeUserRole(ChangeRoleBindingModel changeRoleBindingModel);
 }

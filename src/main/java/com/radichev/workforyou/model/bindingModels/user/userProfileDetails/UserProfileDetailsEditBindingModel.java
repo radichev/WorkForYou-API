@@ -1,4 +1,4 @@
-package com.radichev.workforyou.model.bindingModels.user.editUserProfileDetails;
+package com.radichev.workforyou.model.bindingModels.user.userProfileDetails;
 
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import org.hibernate.validator.constraints.Length;
@@ -50,8 +50,6 @@ public class UserProfileDetailsEditBindingModel {
         this.lastName = lastName;
     }
 
-    @NotNull
-    @NotBlank
     @Length(min = 15, max = 800)
     public String getDescription() {
         return description;

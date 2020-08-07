@@ -1,11 +1,10 @@
-package com.radichev.workforyou.model.viewModels.getUserProfileDetails;
+package com.radichev.workforyou.model.viewModels.userProfileDetails;
 
 import com.radichev.workforyou.model.dtos.CertificateDto.CertificateDto;
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import com.radichev.workforyou.model.dtos.EducationDto.EducationDto;
 import com.radichev.workforyou.model.dtos.LanguageDto.LanguageDto;
 import com.radichev.workforyou.model.dtos.SkillDto.SkillDto;
-import com.radichev.workforyou.model.dtos.WorkSphereDto.WorkSphereDto;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 
 import java.time.LocalDate;

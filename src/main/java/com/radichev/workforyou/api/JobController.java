@@ -25,7 +25,8 @@ public class JobController {
     private final JobService jobService;
     private final ModelMapper modelMapper;
 
-    public JobController(JobService jobService, ModelMapper modelMapper) {
+    public JobController(JobService jobService,
+                         ModelMapper modelMapper) {
         this.jobService = jobService;
         this.modelMapper = modelMapper;
     }

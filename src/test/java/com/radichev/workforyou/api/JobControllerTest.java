@@ -40,47 +40,35 @@ import static org.hamcrest.Matchers.is;
 public class JobControllerTest {
 
     private final MockMvc mockMvc;
-    private final JobService jobService;
     private final JobRepository jobRepository;
     private final ModelMapper modelMapper;
     private final WorkSphereRepository workSphereRepository;
     private final SubSphereRepository subSphereRepository;
-    private final WorkSphereService workSphereService;
-    private final SubSphereService subSphereService;
     private final UserService userService;
     private final UserProfileDetailsService userProfileDetailsService;
     private final UserProfileDetailsRepository userProfileDetailsRepository;
-    private final CountryRepository countryRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
     @Autowired
     public JobControllerTest(MockMvc mockMvc,
-                             JobService jobService,
                              JobRepository jobRepository,
                              ModelMapper modelMapper,
                              WorkSphereRepository workSphereRepository,
                              SubSphereRepository subSphereRepository,
-                             WorkSphereService workSphereService,
-                             SubSphereService subSphereService,
                              UserService userService,
                              UserProfileDetailsService userProfileDetailsService,
                              UserProfileDetailsRepository userProfileDetailsRepository,
-                             CountryRepository countryRepository,
                              UserRepository userRepository,
                              RoleRepository roleRepository) {
         this.mockMvc = mockMvc;
-        this.jobService = jobService;
         this.jobRepository = jobRepository;
         this.modelMapper = modelMapper;
         this.workSphereRepository = workSphereRepository;
         this.subSphereRepository = subSphereRepository;
-        this.workSphereService = workSphereService;
-        this.subSphereService = subSphereService;
         this.userService = userService;
         this.userProfileDetailsService = userProfileDetailsService;
         this.userProfileDetailsRepository = userProfileDetailsRepository;
-        this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }

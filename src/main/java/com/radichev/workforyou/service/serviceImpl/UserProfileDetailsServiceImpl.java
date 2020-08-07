@@ -3,9 +3,11 @@ package com.radichev.workforyou.service.serviceImpl;
 import com.radichev.workforyou.bucket.BucketName;
 import com.radichev.workforyou.domain.entity.Country;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
+import com.radichev.workforyou.domain.entity.auth.Role;
 import com.radichev.workforyou.exception.EntityNotFoundException;
-import com.radichev.workforyou.model.bindingModels.user.editUserProfileDetails.UserProfileDetailsEditBindingModel;
-import com.radichev.workforyou.model.viewModels.getUserProfileDetails.UserProfileDetailsViewModel;
+import com.radichev.workforyou.model.bindingModels.user.userProfileDetails.UserProfileDetailsEditBindingModel;
+import com.radichev.workforyou.model.viewModels.userProfileDetails.UserProfileDetailsAdminModel;
+import com.radichev.workforyou.model.viewModels.userProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.service.*;
 import org.modelmapper.ModelMapper;
@@ -16,6 +18,7 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.apache.http.entity.ContentType.*;
 
@@ -105,5 +108,19 @@ public class UserProfileDetailsServiceImpl implements UserProfileDetailsService 
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    @Override
+    public List<UserProfileDetailsAdminModel> findAllUsers() {
+        return this.userProfileDetailsRepository.findAll()
+                .stream()
+                .map(userProfileDetails -> {
+                    UserProfileDetailsAdminModel adminModel = this.modelMapper.map(userProfileDetails, UserProfileDetailsAdminModel.class);
+                    adminModel.setUserId(userProfileDetails.getUser().getId());
+                    adminModel.setAuthorities(userProfileDetails.getUser().getAuthorities().stream().map(Role::getAuthority).collect(Collectors.toList()));
+                    adminModel.setUsername(userProfileDetails.getUser().getUsername());
+                    return adminModel;
+                })
+                .collect(Collectors.toList());
     }
 }
