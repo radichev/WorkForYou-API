@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleService roleService;
     private final ModelMapper modelMapper;
-    private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final JwtUtils jwtUtils;
     private final UserProfileDetailsService userProfileDetailsService;
@@ -37,13 +36,12 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository,
                            RoleService roleService,
                            ModelMapper modelMapper,
-                           RoleRepository roleRepository,
                            BCryptPasswordEncoder bCryptPasswordEncoder,
-                           JwtUtils jwtUtils, UserProfileDetailsService userProfileDetailsService) {
+                           JwtUtils jwtUtils,
+                           UserProfileDetailsService userProfileDetailsService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.modelMapper = modelMapper;
-        this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.jwtUtils = jwtUtils;
         this.userProfileDetailsService = userProfileDetailsService;
@@ -71,9 +69,9 @@ public class UserServiceImpl implements UserService {
         if (this.userRepository.count() == 0) {
             roleService.seedRolesInDB();
 
-            user.setAuthorities(Sets.newHashSet(this.roleRepository.findAll()));
+            user.setAuthorities(this.roleService.findAllRoles());
         } else {
-            user.setAuthorities(Sets.newHashSet(this.roleRepository.findByAuthority("USER")));
+            user.setAuthorities(Sets.newHashSet(this.roleService.findByAuthority("USER")));
         }
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

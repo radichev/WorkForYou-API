@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
-import static org.apache.http.entity.ContentType.IMAGE_JPEG;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -45,7 +44,6 @@ public class UserProfileDetailsServiceImplTest {
     private CountryDto testCountry;
 
     private final String VALID_FILE_NAME = "validFileName";
-    private final String VALID_FILE_TYPE = IMAGE_JPEG.getMimeType();
     private final byte[] VALID_DATA = new byte[]{11, 11};
 
     @BeforeEach
@@ -56,7 +54,6 @@ public class UserProfileDetailsServiceImplTest {
                                                                            countryService);
 
         userProfileDetails = new UserProfileDetails();
-//        userProfileDetails.setId("testId");
         userProfileDetails.setFirstName("Ivan");
         userProfileDetails.setLastName("Petrov");
         userProfileDetails.setEmail("asd@abv.bg");
@@ -65,7 +62,6 @@ public class UserProfileDetailsServiceImplTest {
         userProfileDetails.setUser(new User());
 
         userProfileDetailsBindingModel = new UserProfileDetailsEditBindingModel();
-//        userProfileDetails.setId("testId");
         userProfileDetailsBindingModel.setFirstName("Pesho");
         userProfileDetailsBindingModel.setLastName("Ivanov");
         userProfileDetailsBindingModel.setEmail("test@abv.bg");
