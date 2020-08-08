@@ -3,6 +3,7 @@ package com.radichev.workforyou.domain.entity;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "certificates")
@@ -43,6 +44,7 @@ public class Certificate extends BaseEntity {
         this.graduationYear = graduationYear;
     }
 
+    @NotNull
     @ManyToOne
     public UserProfileDetails getUserProfileDetails() {
         return userProfileDetails;

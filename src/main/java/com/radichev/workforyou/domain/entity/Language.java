@@ -11,7 +11,7 @@ import java.util.Set;
 @Where(clause="deleted = 0")
 public class Language extends BaseEntity {
     private String language;
-    LanguageLevel languageLevel;
+    private LanguageLevel languageLevel;
     private UserProfileDetails userProfileDetails;
 
     public Language() {
@@ -28,7 +28,7 @@ public class Language extends BaseEntity {
 
     //May have to change the Relation
     @NotNull
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     public LanguageLevel getLanguageLevel() {
         return languageLevel;
     }

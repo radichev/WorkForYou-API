@@ -14,8 +14,6 @@ public class Job extends BaseEntity {
     private String jobTitle;
     private WorkSphere workSphere;
     private SubSphere subSphere;
-    //TODO to add search tags
-    //TODO to fix delivery times
     private int deliveryTime;
     private BigDecimal price;
     private String description;
@@ -45,6 +43,7 @@ public class Job extends BaseEntity {
         this.workSphere = workSphere;
     }
 
+    @NotNull
     @ManyToOne
     public SubSphere getSubSphere() {
         return subSphere;
@@ -72,7 +71,7 @@ public class Job extends BaseEntity {
         this.price = price;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     public String getDescription() {
         return description;
     }
@@ -81,7 +80,7 @@ public class Job extends BaseEntity {
         this.description = description;
     }
 
-    @Column(name = "job_pictures", columnDefinition = "text")
+    @Column(name = "job_pictures")
     public String getJobPicture() {
         return jobPicture;
     }

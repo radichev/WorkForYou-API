@@ -10,7 +10,6 @@ import java.util.Set;
 @Table(name = "skills")
 @Where(clause="deleted = 0")
 public class Skill extends BaseEntity {
-
     private String skill;
     private SkillLevel skillLevel;
     private UserProfileDetails userProfileDetails;
@@ -27,9 +26,8 @@ public class Skill extends BaseEntity {
         this.skill = skill;
     }
 
-    //May have to change the Relation
     @NotNull
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     public SkillLevel getSkillLevel() {
         return skillLevel;
     }
@@ -38,6 +36,7 @@ public class Skill extends BaseEntity {
         this.skillLevel = skillLevel;
     }
 
+    @NotNull
     @ManyToOne
     public UserProfileDetails getUserProfileDetails() {
         return userProfileDetails;

@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "educations")
 @Where(clause="deleted = 0")
 public class Education extends BaseEntity {
-
     private Country country;
     private String universityName;
     private TitleType titleType;
@@ -21,7 +20,7 @@ public class Education extends BaseEntity {
     }
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     public Country getCountry() {
         return country;
     }
@@ -67,6 +66,7 @@ public class Education extends BaseEntity {
         this.graduationYear = graduationYear;
     }
 
+    @NotNull
     @ManyToOne
     public UserProfileDetails getUserProfileDetails() {
         return userProfileDetails;

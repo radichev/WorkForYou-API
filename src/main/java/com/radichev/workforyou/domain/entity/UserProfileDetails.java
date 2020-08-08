@@ -48,7 +48,7 @@ public class UserProfileDetails extends BaseEntity {
         this.lastName = lastName;
     }
 
-    @Column
+    @Column(columnDefinition = "text")
     public String getDescription() {
         return description;
     }

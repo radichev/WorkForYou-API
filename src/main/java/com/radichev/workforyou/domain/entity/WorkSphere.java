@@ -18,7 +18,7 @@ public class WorkSphere extends BaseEntity {
         this.subSpheres = subSpheres;
     }
 
-    @Column(name = "work_sphere", nullable = false)
+    @Column(name = "work_sphere", nullable = false, unique = true)
     public String getWorkSphere() {
         return workSphere;
     }

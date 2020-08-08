@@ -16,7 +16,7 @@ public class TitleType extends BaseEntity {
         this.titleType = titleType;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     public String getTitleType() {
         return titleType;
     }
