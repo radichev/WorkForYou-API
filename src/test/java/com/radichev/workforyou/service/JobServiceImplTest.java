@@ -265,7 +265,7 @@ public class JobServiceImplTest {
         MultipartFile multipartFile = new MockMultipartFile("picture", VALID_FILE_NAME, "invalidType", VALID_DATA);
 
         Exception exception = Assertions.assertThrows(IllegalStateException.class, () -> {
-            this.jobService.uploadJobImage("testId", "testId", multipartFile);
+            this.jobService.uploadJobImage("testId", "testId", null, multipartFile);
         });
 
         Assertions.assertEquals(exception.getMessage(), "File must be an image");
@@ -277,7 +277,7 @@ public class JobServiceImplTest {
         MultipartFile multipartFile = new MockMultipartFile("picture", VALID_FILE_NAME, "invalidType", emptyFile);
 
         Exception exception = Assertions.assertThrows(IllegalStateException.class, () -> {
-            this.jobService.uploadJobImage("testId", "testId", multipartFile);
+            this.jobService.uploadJobImage("testId", "testId", null, multipartFile);
         });
 
         Assertions.assertEquals(exception.getMessage(), "Cannot upload empty file");

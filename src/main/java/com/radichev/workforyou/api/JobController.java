@@ -81,6 +81,23 @@ public class JobController {
                 .body(this.jobService.editJob(jobId, jobEditBindingModel));
     }
 
+    @PostMapping(
+            value = "/{userId}/{jobTitle}/{jobId}/image/edit",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Void> updateJobPicture(@PathVariable("userId") String userId,
+                                               @PathVariable("jobTitle") String jobTitle,
+                                               @PathVariable("jobId") String jobId,
+                                               @RequestParam("file") MultipartFile file) {
+
+        this.jobService.uploadJobImage(userId, jobTitle, jobId, file);
+
+        return ResponseEntity
+                .ok()
+                .build();
+    }
+
     @GetMapping("/{userId}/bought")
     public ResponseEntity<List<JobViewModel>> getJobsBoughtByUserId(@PathVariable String userId) {
         return ResponseEntity

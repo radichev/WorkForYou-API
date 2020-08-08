@@ -30,7 +30,7 @@ public interface JobService {
 
     List<JobViewModel> findJobsBoughtByUserId(String userId);
 
-    String uploadJobImage(String userId, String jobTitle, MultipartFile file);
+    String uploadJobImage(String userId, String jobTitle, String jobId, MultipartFile file);
 
     void deleteJobById(String jobId);
 

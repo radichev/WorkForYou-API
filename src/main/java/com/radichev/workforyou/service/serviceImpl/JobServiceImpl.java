@@ -58,7 +58,7 @@ public class JobServiceImpl implements JobService {
         job.setUserProfileDetails(userProfileDetails);
         job.setWorkSphere(workSphere);
         job.setSubSphere(subSphere);
-        job.setJobPicture(uploadJobImage(userId, jobBindingModel.getJobTitle(), file));
+        job.setJobPicture(uploadJobImage(userId, jobBindingModel.getJobTitle(), null, file));
 
 
         return this.modelMapper.map(this.jobRepository.save(job), JobViewModel.class);
@@ -138,7 +138,7 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public String uploadJobImage(String userId, String jobTitle, MultipartFile file) {
+    public String uploadJobImage(String userId, String jobTitle, String jobId, MultipartFile file) {
         if (file.isEmpty()) {
             throw new IllegalStateException("Cannot upload empty file");
         }
@@ -159,6 +159,11 @@ public class JobServiceImpl implements JobService {
 
         try {
             this.fileStoreService.save(path, fileName, Optional.of(metadata), file.getInputStream());
+            if (jobId != null) {
+                Job job = this.findJobById(jobId);
+                job.setJobPicture(url);
+                this.jobRepository.save(job);
+            }
             return url;
         } catch (IOException e) {
             throw new IllegalStateException(e);
