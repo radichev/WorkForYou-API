@@ -19,7 +19,6 @@ public class Education extends BaseEntity {
     public Education() {
     }
 
-    @NotNull
     @ManyToOne
     public Country getCountry() {
         return country;
@@ -66,7 +65,6 @@ public class Education extends BaseEntity {
         this.graduationYear = graduationYear;
     }
 
-    @NotNull
     @ManyToOne
     public UserProfileDetails getUserProfileDetails() {
         return userProfileDetails;

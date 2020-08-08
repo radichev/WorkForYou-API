@@ -44,7 +44,6 @@ public class Certificate extends BaseEntity {
         this.graduationYear = graduationYear;
     }
 
-    @NotNull
     @ManyToOne
     public UserProfileDetails getUserProfileDetails() {
         return userProfileDetails;

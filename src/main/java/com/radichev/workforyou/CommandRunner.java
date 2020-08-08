@@ -22,10 +22,10 @@ public class CommandRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        this.languageLevelService.initLanguageLevels();
-        this.skillLevelService.initSkillLevels();
-        this.titleTypeService.initTitleTypes();
-        this.countryService.initCountries();
-        this.workSphereService.initWorkSpheres();
+//        this.languageLevelService.initLanguageLevels();
+//        this.skillLevelService.initSkillLevels();
+//        this.titleTypeService.initTitleTypes();
+//        this.countryService.initCountries();
+//        this.workSphereService.initWorkSpheres();
     }
 }

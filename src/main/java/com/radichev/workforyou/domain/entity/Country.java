@@ -29,7 +29,6 @@ public class Country extends BaseEntity {
         this.country = country;
     }
 
-    @NotNull
     @OneToMany(mappedBy = "country")
     public Set<UserProfileDetails> getUserProfileDetails() {
         return userProfileDetails;

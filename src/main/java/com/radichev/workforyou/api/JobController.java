@@ -87,9 +87,9 @@ public class JobController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Void> updateJobPicture(@PathVariable("userId") String userId,
-                                               @PathVariable("jobTitle") String jobTitle,
-                                               @PathVariable("jobId") String jobId,
-                                               @RequestParam("file") MultipartFile file) {
+                                                 @PathVariable("jobTitle") String jobTitle,
+                                                 @PathVariable("jobId") String jobId,
+                                                 @RequestParam("file") MultipartFile file) {
 
         this.jobService.uploadJobImage(userId, jobTitle, jobId, file);
 
