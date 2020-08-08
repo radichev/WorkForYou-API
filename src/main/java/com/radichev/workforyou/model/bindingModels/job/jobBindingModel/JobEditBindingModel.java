@@ -6,14 +6,14 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-public class JobBindingModel {
+public class JobEditBindingModel {
     private String jobTitle;
     private WorkSphereBindingModel workSphere;
     private int deliveryTime;
     private BigDecimal price;
     private String description;
 
-    public JobBindingModel() {
+    public JobEditBindingModel() {
     }
 
     @Length(min = 5, max = 40)

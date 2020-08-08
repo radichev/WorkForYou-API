@@ -3,6 +3,7 @@ package com.radichev.workforyou.service;
 import com.radichev.workforyou.domain.entity.Job;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
+import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobEditBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobScheduledTaskDto;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,8 @@ import java.util.List;
 public interface JobService {
 
     JobViewModel addJob(JobBindingModel jobBindingModel, String userId, MultipartFile file);
+
+    JobViewModel editJob(String jobId, JobEditBindingModel jobEditBindingModel);
 
     List<JobViewModel> findAllJobsByUserId(String userId);
 

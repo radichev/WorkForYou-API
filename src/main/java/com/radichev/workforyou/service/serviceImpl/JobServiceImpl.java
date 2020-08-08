@@ -8,6 +8,7 @@ import com.radichev.workforyou.domain.entity.WorkSphere;
 import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
+import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobEditBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobScheduledTaskDto;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.repository.JobRepository;
@@ -59,6 +60,24 @@ public class JobServiceImpl implements JobService {
         job.setSubSphere(subSphere);
         job.setJobPicture(uploadJobImage(userId, jobBindingModel.getJobTitle(), file));
 
+
+        return this.modelMapper.map(this.jobRepository.save(job), JobViewModel.class);
+    }
+
+    @Override
+    public JobViewModel editJob(String jobId, JobEditBindingModel jobEditBindingModel) {
+        Job job = this.findJobById(jobId);
+
+        job.setJobTitle(jobEditBindingModel.getJobTitle());
+        job.setDescription(jobEditBindingModel.getDescription());
+        job.setDeliveryTime(jobEditBindingModel.getDeliveryTime());
+        job.setPrice(jobEditBindingModel.getPrice());
+
+        WorkSphere workSphere = this.workSphereService.findWorkSphereById(jobEditBindingModel.getWorkSphere().getId());
+        SubSphere subSphere = this.subSphereService.findSubSphereById(jobEditBindingModel.getWorkSphere().getSubSphere().getId());
+
+        job.setWorkSphere(workSphere);
+        job.setSubSphere(subSphere);
 
         return this.modelMapper.map(this.jobRepository.save(job), JobViewModel.class);
     }

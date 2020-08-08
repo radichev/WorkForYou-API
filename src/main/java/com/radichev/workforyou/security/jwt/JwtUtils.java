@@ -55,7 +55,6 @@ public class JwtUtils {
     private String doGenerateToken(Set<Object> claims, User user) {
         return Jwts.builder()
                 .claim("authorities", claims.toString())
-                .claim("hasCompletedAccountSetup", user.getUserProfileDetails().getHasCompletedAccountSetup())
                 .claim("id", user.getId())
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))

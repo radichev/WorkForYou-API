@@ -2,6 +2,7 @@ package com.radichev.workforyou.api;
 
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBuyBindingModel;
+import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobEditBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.service.JobService;
 import org.modelmapper.ModelMapper;
@@ -69,6 +70,15 @@ public class JobController {
                         .buildAndExpand(jobViewModel.getId())
                         .toUri())
                         .build();
+    }
+
+    @PostMapping("/edit/{jobId}")
+    public ResponseEntity<JobViewModel> editJobById(@PathVariable String jobId,
+                                                    @Valid @RequestBody JobEditBindingModel jobEditBindingModel) {
+
+        return ResponseEntity
+                .ok()
+                .body(this.jobService.editJob(jobId, jobEditBindingModel));
     }
 
     @GetMapping("/{userId}/bought")
