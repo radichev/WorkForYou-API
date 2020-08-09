@@ -17,7 +17,7 @@ public class Skill extends BaseEntity {
     public Skill() {
     }
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     public String getSkill() {
         return skill;
     }

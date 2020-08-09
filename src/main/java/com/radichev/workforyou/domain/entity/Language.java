@@ -17,7 +17,7 @@ public class Language extends BaseEntity {
     public Language() {
     }
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     public String getLanguage() {
         return language;
     }
