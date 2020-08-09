@@ -17,7 +17,7 @@ public class ScheduledTask {
         LocalDate yearAgo = LocalDate.now().minusYears(1);
         this.jobService.findAllJobs()
                 .forEach(job -> {
-                    if (job.getCreatedDate().isBefore(yearAgo)) {
+                    if (job.getCreatedDate().isBefore(yearAgo) && job.getBoughtByUser().size() == 0) {
                         this.jobService.deleteJobById(job.getId());
                     }
                 });

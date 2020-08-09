@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table(name = "sub_spheres")
 public class SubSphere extends BaseEntity {
     private String subSphere;
+    private String subSpherePicture;
     private WorkSphere workSphere;
 
     public SubSphere() {
@@ -22,6 +23,15 @@ public class SubSphere extends BaseEntity {
 
     public void setSubSphere(String subSphere) {
         this.subSphere = subSphere;
+    }
+
+    @Column
+    public String getSubSpherePicture() {
+        return subSpherePicture;
+    }
+
+    public void setSubSpherePicture(String subSpherePicture) {
+        this.subSpherePicture = subSpherePicture;
     }
 
     @ManyToOne

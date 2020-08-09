@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 public class SubSphereDto {
     private String id;
     private String subSphere;
+    private String subSpherePicture;
 
     public SubSphereDto() {
     }
@@ -24,5 +25,13 @@ public class SubSphereDto {
 
     public void setSubSphere(String subSphere) {
         this.subSphere = subSphere;
+    }
+
+    public String getSubSpherePicture() {
+        return subSpherePicture;
+    }
+
+    public void setSubSpherePicture(String subSpherePicture) {
+        this.subSpherePicture = subSpherePicture;
     }
 }
