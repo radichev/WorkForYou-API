@@ -131,11 +131,6 @@ public class JobControllerTest {
         JOB_ID = job.getId();
     }
 
-    @AfterEach
-    public void tearDown() {
-
-    }
-
     @Test
     public void testGetAllJobsByUserIdShouldPerformCorrect() throws Exception {
         this.mockMvc.perform(get("/api/jobs/all/{userId}", TEST_USER_ID))

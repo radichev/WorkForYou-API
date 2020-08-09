@@ -2,10 +2,12 @@ package com.radichev.workforyou.service;
 
 import com.radichev.workforyou.domain.entity.Country;
 import com.radichev.workforyou.domain.entity.UserProfileDetails;
+import com.radichev.workforyou.domain.entity.auth.Role;
 import com.radichev.workforyou.domain.entity.auth.User;
 import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.user.userProfileDetails.UserProfileDetailsEditBindingModel;
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
+import com.radichev.workforyou.model.viewModels.userProfileDetails.UserProfileDetailsAdminModel;
 import com.radichev.workforyou.model.viewModels.userProfileDetails.UserProfileDetailsViewModel;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.service.serviceImpl.UserProfileDetailsServiceImpl;
@@ -20,7 +22,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.mockito.Mockito.when;
 
@@ -52,6 +56,12 @@ public class UserProfileDetailsServiceImplTest {
                                                                            modelMapper,
                                                                            fileStoreService,
                                                                            countryService);
+        Role role = new Role("testRole");
+
+        User user = new User();
+        user.setId("testId");
+        user.setUsername("testUsername");
+        user.setAuthorities(Set.of(role));
 
         userProfileDetails = new UserProfileDetails();
         userProfileDetails.setFirstName("Ivan");
@@ -59,7 +69,7 @@ public class UserProfileDetailsServiceImplTest {
         userProfileDetails.setEmail("asd@abv.bg");
         userProfileDetails.setHasCompletedAccountSetup(true);
         userProfileDetails.setCountry(new Country("Bulgaria"));
-        userProfileDetails.setUser(new User());
+        userProfileDetails.setUser(user);
 
         userProfileDetailsBindingModel = new UserProfileDetailsEditBindingModel();
         userProfileDetailsBindingModel.setFirstName("Pesho");
@@ -144,5 +154,20 @@ public class UserProfileDetailsServiceImplTest {
         });
 
         Assertions.assertEquals(exception.getMessage(), "Cannot upload empty file");
+    }
+
+    @Test
+    public void testFindAllUsersShouldReturnCorrectResult() {
+        when(this.userProfileDetailsRepository.findAll())
+                .thenReturn(List.of(userProfileDetails, userProfileDetails));
+
+        List<UserProfileDetailsAdminModel> testUserCollection = this.userProfileDetailsService.findAllUsers();
+        Assertions.assertEquals(2, testUserCollection.size());
+
+        UserProfileDetailsAdminModel testUserAdminModel = testUserCollection.get(0);
+        Assertions.assertEquals(userProfileDetails.getFirstName(), testUserAdminModel.getFirstName());
+        Assertions.assertEquals(userProfileDetails.getLastName(), testUserAdminModel.getLastName());
+        Assertions.assertEquals(userProfileDetails.getUser().getId(), testUserAdminModel.getUserId());
+        Assertions.assertEquals(userProfileDetails.getUser().getUsername(), testUserAdminModel.getUsername());
     }
 }

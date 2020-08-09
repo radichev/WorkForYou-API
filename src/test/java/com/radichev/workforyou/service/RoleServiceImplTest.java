@@ -11,7 +11,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.mockito.Mockito.when;
 
@@ -49,5 +51,17 @@ public class RoleServiceImplTest {
         });
 
         Assertions.assertEquals(exception.getMessage(), "Role testAuthority not found");
+    }
+
+    @Test
+    public void testFindAllRolesShouldReturnCorrectResult() {
+        when(this.roleRepository.findAll())
+                .thenReturn(List.of(role));
+
+        Set<Role> testRoleCollection = this.roleService.findAllRoles();
+        Assertions.assertEquals(1, testRoleCollection.size());
+
+        Role testRole = testRoleCollection.iterator().next();
+        Assertions.assertEquals(role.getAuthority(), testRole.getAuthority());
     }
 }

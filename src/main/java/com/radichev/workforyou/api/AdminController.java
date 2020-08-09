@@ -1,6 +1,5 @@
 package com.radichev.workforyou.api;
 
-import com.radichev.workforyou.domain.entity.auth.Role;
 import com.radichev.workforyou.model.bindingModels.ChangeRoleBindingModel;
 import com.radichev.workforyou.model.viewModels.role.RoleAdminViewModel;
 import com.radichev.workforyou.model.viewModels.userProfileDetails.UserProfileDetailsAdminModel;

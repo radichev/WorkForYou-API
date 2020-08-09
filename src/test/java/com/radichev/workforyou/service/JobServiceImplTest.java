@@ -6,6 +6,7 @@ import com.radichev.workforyou.exception.EntityNotFoundException;
 import com.radichev.workforyou.model.bindingModels.SubSphereBindingModel;
 import com.radichev.workforyou.model.bindingModels.WorkSphereBindingModel;
 import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobBindingModel;
+import com.radichev.workforyou.model.bindingModels.job.jobBindingModel.JobEditBindingModel;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobScheduledTaskDto;
 import com.radichev.workforyou.model.viewModels.jobViewModels.JobViewModel;
 import com.radichev.workforyou.repository.JobRepository;
@@ -131,6 +132,37 @@ public class JobServiceImplTest {
                 .thenReturn(subSphere);
 
         JobViewModel testJob = this.jobService.addJob(jobBindingModel, "testId", multipartFile);
+
+        Assertions.assertEquals(job.getJobTitle(), testJob.getJobTitle());
+        Assertions.assertEquals(job.getDescription(), testJob.getDescription());
+        Assertions.assertEquals(job.getDeliveryTime(), testJob.getDeliveryTime());
+        Assertions.assertEquals(job.getPrice(), testJob.getPrice());
+        Assertions.assertEquals(job.getWorkSphere().getWorkSphere(), testJob.getWorkSphere().getWorkSphere());
+        Assertions.assertEquals(job.getSubSphere().getSubSphere(), testJob.getSubSphere().getSubSphere());
+        Assertions.assertEquals(job.getUserProfileDetails().getUser().getUsername(), testJob.getUserProfileDetails().getUsername());
+        Assertions.assertEquals(job.getUserProfileDetails().getCountry().getCountry(), testJob.getUserProfileDetails().getCountry());
+    }
+
+    @Test
+    public void testEditJobShouldPerformCorrect() {
+        when(this.jobRepository.save(Mockito.any(Job.class)))
+                .thenReturn(job);
+
+        when(this.jobRepository.findById("testId"))
+                .thenReturn(Optional.ofNullable(job));
+
+        JobEditBindingModel jobEditBindingModel = this.modelMapper.map(job, JobEditBindingModel.class);
+        jobEditBindingModel.setWorkSphere(this.modelMapper.map(workSphere, WorkSphereBindingModel.class));
+        jobEditBindingModel.getWorkSphere().setSubSphere(this.modelMapper.map(subSphere, SubSphereBindingModel.class));
+
+
+        when(this.workSphereService.findWorkSphereById(jobEditBindingModel.getWorkSphere().getId()))
+                .thenReturn(workSphere);
+
+        when(this.subSphereService.findSubSphereById(jobEditBindingModel.getWorkSphere().getSubSphere().getId()))
+                .thenReturn(subSphere);
+
+        JobViewModel testJob = this.jobService.editJob("testId", jobEditBindingModel);
 
         Assertions.assertEquals(job.getJobTitle(), testJob.getJobTitle());
         Assertions.assertEquals(job.getDescription(), testJob.getDescription());
@@ -281,5 +313,17 @@ public class JobServiceImplTest {
         });
 
         Assertions.assertEquals(exception.getMessage(), "Cannot upload empty file");
+    }
+
+    @Test
+    public void testUpdateJobImageShouldPerformCorrect() {
+        when(this.jobRepository.findById("testId"))
+                .thenReturn(Optional.ofNullable(job));
+
+        MultipartFile multipartFile = new MockMultipartFile("picture", VALID_FILE_NAME, VALID_FILE_TYPE, VALID_DATA);
+
+        this.jobService.uploadJobImage("testId", "testTitle", "testId", multipartFile);
+
+        Assertions.assertNotNull(job.getJobTitle());
     }
 }
