@@ -1,0 +1,3 @@
+steps:
+  - uses: actions/checkout@master
+  - uses: radichev/WorkForYou-API@v1
