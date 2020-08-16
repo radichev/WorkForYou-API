@@ -68,6 +68,10 @@ public class AdminControllerTest {
 
     @BeforeEach
     public void setUp() {
+        this.userRepository.deleteAll();
+        this.roleRepository.deleteAll();
+        this.userProfileDetailsRepository.deleteAll();
+        
         UserProfileDetails userProfileDetails = new UserProfileDetails();
         userProfileDetails.setEmail("testEmail@abv.bg");
         userProfileDetails.setFirstName("testFirstName");
