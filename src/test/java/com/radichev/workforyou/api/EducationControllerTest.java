@@ -7,10 +7,7 @@ import com.radichev.workforyou.model.bindingModels.auth.SignUpBindingModel;
 import com.radichev.workforyou.model.bindingModels.user.educationBindingModel.EducationBindingModel;
 import com.radichev.workforyou.model.dtos.EducationDto.CountryDto;
 import com.radichev.workforyou.model.dtos.EducationDto.TitleTypeDto;
-import com.radichev.workforyou.repository.CountryRepository;
-import com.radichev.workforyou.repository.EducationRepository;
-import com.radichev.workforyou.repository.TitleTypeRepository;
-import com.radichev.workforyou.repository.UserProfileDetailsRepository;
+import com.radichev.workforyou.repository.*;
 import com.radichev.workforyou.repository.auth.RoleRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
 import com.radichev.workforyou.service.UserService;
@@ -23,6 +20,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static com.radichev.workforyou.api.TestUtils.asJsonString;
@@ -34,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser("testUser")
+@DirtiesContext
 public class EducationControllerTest {
 
     private final MockMvc mockMvc;

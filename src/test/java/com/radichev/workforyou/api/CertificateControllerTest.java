@@ -4,6 +4,7 @@ import com.radichev.workforyou.domain.entity.Certificate;
 import com.radichev.workforyou.model.bindingModels.auth.SignUpBindingModel;
 import com.radichev.workforyou.model.bindingModels.user.certificateBindingModel.CertificateBindingModel;
 import com.radichev.workforyou.repository.CertificateRepository;
+import com.radichev.workforyou.repository.JobRepository;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.repository.auth.RoleRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static com.radichev.workforyou.api.TestUtils.asJsonString;
@@ -28,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser("testUser")
+@DirtiesContext
 public class CertificateControllerTest {
 
     private final MockMvc mockMvc;
@@ -36,6 +39,7 @@ public class CertificateControllerTest {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final UserProfileDetailsRepository userProfileDetailsRepository;
+    private final JobRepository jobRepository;
 
     @Autowired
     public CertificateControllerTest(MockMvc mockMvc,
@@ -43,13 +47,15 @@ public class CertificateControllerTest {
                                      UserService userService,
                                      UserRepository userRepository,
                                      RoleRepository roleRepository,
-                                     UserProfileDetailsRepository userProfileDetailsRepository) {
+                                     UserProfileDetailsRepository userProfileDetailsRepository,
+                                     JobRepository jobRepository) {
         this.mockMvc = mockMvc;
         this.certificateRepository = certificateRepository;
         this.userService = userService;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.userProfileDetailsRepository = userProfileDetailsRepository;
+        this.jobRepository = jobRepository;
     }
 
     private String TEST_CERTIFICATE1_ID;
@@ -98,6 +104,7 @@ public class CertificateControllerTest {
         this.certificateRepository.deleteAll();
         this.roleRepository.deleteAll();
         this.userProfileDetailsRepository.deleteAll();
+        this.jobRepository.deleteAll();
     }
 
     @Test

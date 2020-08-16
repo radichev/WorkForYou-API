@@ -4,6 +4,7 @@ import com.radichev.workforyou.domain.entity.UserProfileDetails;
 import com.radichev.workforyou.domain.entity.auth.Role;
 import com.radichev.workforyou.domain.entity.auth.User;
 import com.radichev.workforyou.model.bindingModels.ChangeRoleBindingModel;
+import com.radichev.workforyou.repository.JobRepository;
 import com.radichev.workforyou.repository.UserProfileDetailsRepository;
 import com.radichev.workforyou.repository.auth.RoleRepository;
 import com.radichev.workforyou.repository.auth.UserRepository;
@@ -19,9 +20,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Optional;
 import java.util.Set;
 
 import static com.radichev.workforyou.api.TestUtils.*;
@@ -35,6 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(value = "testUser", authorities = {"ADMIN"})
+@DirtiesContext
 public class AdminControllerTest {
 
     private final MockMvc mockMvc;
@@ -44,6 +46,7 @@ public class AdminControllerTest {
     private final RoleRepository roleRepository;
     private final UserProfileDetailsService userProfileDetailsService;
     private final UserProfileDetailsRepository userProfileDetailsRepository;
+    private final JobRepository jobRepository;
 
     @Autowired
     public AdminControllerTest(MockMvc mockMvc,
@@ -52,7 +55,8 @@ public class AdminControllerTest {
                                RoleService roleService,
                                RoleRepository roleRepository,
                                UserProfileDetailsService userProfileDetailsService,
-                               UserProfileDetailsRepository userProfileDetailsRepository) {
+                               UserProfileDetailsRepository userProfileDetailsRepository,
+                               JobRepository jobRepository) {
         this.mockMvc = mockMvc;
         this.userService = userService;
         this.userRepository = userRepository;
@@ -60,6 +64,7 @@ public class AdminControllerTest {
         this.roleRepository = roleRepository;
         this.userProfileDetailsService = userProfileDetailsService;
         this.userProfileDetailsRepository = userProfileDetailsRepository;
+        this.jobRepository = jobRepository;
     }
 
     private String USER_ID;
@@ -68,10 +73,11 @@ public class AdminControllerTest {
 
     @BeforeEach
     public void setUp() {
+        this.jobRepository.deleteAll();
         this.userRepository.deleteAll();
         this.roleRepository.deleteAll();
         this.userProfileDetailsRepository.deleteAll();
-        
+
         UserProfileDetails userProfileDetails = new UserProfileDetails();
         userProfileDetails.setEmail("testEmail@abv.bg");
         userProfileDetails.setFirstName("testFirstName");
@@ -95,6 +101,7 @@ public class AdminControllerTest {
 
     @AfterEach
     public void tearDown() {
+        this.jobRepository.deleteAll();
         this.userRepository.deleteAll();
         this.roleRepository.deleteAll();
         this.userProfileDetailsRepository.deleteAll();
