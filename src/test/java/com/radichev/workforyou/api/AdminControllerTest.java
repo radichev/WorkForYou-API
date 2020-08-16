@@ -10,6 +10,7 @@ import com.radichev.workforyou.repository.auth.UserRepository;
 import com.radichev.workforyou.service.RoleService;
 import com.radichev.workforyou.service.UserProfileDetailsService;
 import com.radichev.workforyou.service.UserService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,10 +68,6 @@ public class AdminControllerTest {
 
     @BeforeEach
     public void setUp() {
-        this.userRepository.deleteAll();
-        this.roleRepository.deleteAll();
-        this.userProfileDetailsRepository.deleteAll();
-
         UserProfileDetails userProfileDetails = new UserProfileDetails();
         userProfileDetails.setEmail("testEmail@abv.bg");
         userProfileDetails.setFirstName("testFirstName");
@@ -90,6 +87,13 @@ public class AdminControllerTest {
         user.setUserProfileDetails(userProfileDetails);
         user = this.userRepository.save(user);
         USER_ID = user.getId();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        this.userRepository.deleteAll();
+        this.roleRepository.deleteAll();
+        this.userProfileDetailsRepository.deleteAll();
     }
 
     @Test
