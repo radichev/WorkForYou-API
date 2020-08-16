@@ -30,6 +30,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Upload coverage to Codecov
-      uses: radichev/WorkForYou-API@v1
+      uses: radichev/WorkForYou-API
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
