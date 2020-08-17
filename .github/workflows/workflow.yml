@@ -35,5 +35,5 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./target/site/jacoco-unit-test-coverage-report/jacoco.xml
-        directory: ./target/site/jacoco-unit-test-coverage-report/
+        file: /target/site/jacoco-unit-test-coverage-report/jacoco.xml
+        directory: ./target/site/
