@@ -22,6 +22,9 @@ WorkForYou-API is a REST API for freelance platform which provide CRUD functiona
 - Guava
 
 # Website Screenshots
+
+Screenshots from [WorkForYou-Client](https://github.com/radichev/WorkForYou-Client) that consumes this API.
+
 - Index Page
 
 ![Index Page](https://github.com/radichev/WorkForYou-API/blob/master/src/main/resources/static/screenshots/index.jpg)
