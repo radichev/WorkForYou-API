@@ -34,6 +34,10 @@ WorkForYou-API is a REST API for freelance platform which provide CRUD functiona
 
 ![User Profile Page](https://github.com/radichev/WorkForYou-API/blob/master/src/main/resources/static/screenshots/user%20profile.png)
 
+- Edit User Profile Page
+
+![Edit User Profile Page](https://github.com/radichev/WorkForYou-API/blob/master/src/main/resources/static/screenshots/edit%20user%20profile.jpg)
+
 - Job Page
 
 ![Job Page](https://github.com/radichev/WorkForYou-API/blob/master/src/main/resources/static/screenshots/job.jpg)
