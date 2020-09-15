@@ -58,7 +58,7 @@ public class JobServiceImpl implements JobService {
         job.setUserProfileDetails(userProfileDetails);
         job.setWorkSphere(workSphere);
         job.setSubSphere(subSphere);
-        job.setJobPicture(uploadJobImage(userId, jobBindingModel.getJobTitle(), null, file));
+        job.setJobPicture(uploadJobImage(userId, jobBindingModel.getJobTitle(), jobBindingModel.getJobId(), file));
 
 
         return this.modelMapper.map(this.jobRepository.save(job), JobViewModel.class);

@@ -7,6 +7,7 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class JobBindingModel {
+    private String jobId;
     private String jobTitle;
     private WorkSphereBindingModel workSphere;
     private int deliveryTime;
@@ -14,6 +15,14 @@ public class JobBindingModel {
     private String description;
 
     public JobBindingModel() {
+    }
+
+    public String getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
     }
 
     @Length(min = 5, max = 40)
